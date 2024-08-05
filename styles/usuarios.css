@@ -64,8 +64,6 @@ section {
   
 }
 
-
-
 .table-header p{
   width: 100%;
   height: 100%;
@@ -180,7 +178,7 @@ section {
 .editsvg{
   width:14px; 
   height:auto; 
-  margin-right: 15px;
+  margin-right: 10px;
   cursor: pointer;
 }
 .trash-cansvg{
@@ -216,12 +214,18 @@ section {
   border-bottom: 3px solid var(--color-pink-hover) !important;
 }
 
-
-
 .none {
   display: none;
 }
 
 .block {
   display: block;
+}
+
+/* Media Querys */
+
+@media (max-width:917px) {
+  .editsvg{
+    padding: 0 0 0 10px;
+  }
 }
