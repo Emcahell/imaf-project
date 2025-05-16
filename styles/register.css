@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -17,16 +19,19 @@
     /* Font Family */
     --font-family: 'Montserrat', sans-serif;
     --font-size: 62.5%;
+    --font-h1: 2rem;
+    --font-button: 1.6rem;
+    --font-links: 1.2rem;
 
     /* Medidas */
     --width: 30%;
     --height: 70%;
-    --border-login: 3px;
+    --border-login: 3px solid #cbcbcb;
     --border-radius-login: 24px;
 }
 
 html{
-    font-size: 62.5%;
+    font-size: var(--font-size)
 }
 
 body{
@@ -38,17 +43,92 @@ body{
     background-position: center;
     background-attachment: fixed;
     height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+    font-family: "monserrat", sans-serif;
+    display: flex;
+    justify-content: space-around;
 }
 
-/* box-container */
+.box-center{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 60px;
+}
+
+/* Form */
 
 .form{
     width: 30%;
     height: 70%;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: var(--background-color);
-    border: 
+    border: var(--border-login);
+    border-radius: var(--border-radius-login);
+    padding: 1rem 3rem;
+    text-align: center;
+    box-shadow: 1px 1px 12px var(--color-gray-borders);
+}
+
+.form-title{
+    width: 100%;
+    margin: 15px 0;
+}
+
+h1{
+    font-size: var(--font-h1);
+    color: var(--color-gray-titles);
+}
+
+.form-item{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-input{
+    width: 100%;
+    padding: .6rem 0;
+    border: none;
+    border-bottom: 2px solid var(--color-pink-buttons);
+    outline: none;
+    background: var(--background-color);
+}
+
+.btn{
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    background: var(--color-pink-buttons);
+    border-radius: var(--border-radius-login);
+    color: var(--background-color);
+    font-size: var(--font-button);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: var(--color-wine);
+}
+
+.form-link{
+    width: 100%;
+    margin-top: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: var(--color-pink-hover);
+    font-size: 1.2rem;
+}
+
+a:hover{
+    text-decoration: underline;
 }
