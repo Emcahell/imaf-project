@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --color-pink-buttons: #bf005a;
+    --color-wine: #80003c;
+    --color-gray-titles: #4d4d4d;
+    --color-pink-hover: #ff0078;
+    --color-light-pink-shadow: #ffc5e2; 
+    --color-green: #48cd80;
+    --color-gray-borders: #cbcbcb;
+    --background-color: #fbfbfb;
+
+    /* Font Family */
+    --font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(/assets/recursos/bars-bg.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+}
+
+/* box-container */
+
+.form{
+    width: 30%;
+    height: 70%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color);
+}

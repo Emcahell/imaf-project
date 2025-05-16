@@ -12,4 +12,11 @@
 
     /* Font Family */
     --font-family: 'Montserrat', sans-serif;
+
+    /* Medidas */
+    --width: 30%;
+    --height: 70%;
+    --border-login: 3px;
+    --border-radius-login: 24px;
+
 }
