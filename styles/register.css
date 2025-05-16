@@ -45,7 +45,7 @@ body{
     height: 100vh; /* Asegura que el body ocupe toda la pantalla */
     font-family: "monserrat", sans-serif;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .box-center{
@@ -59,6 +59,11 @@ body{
 
 img{
     width: 60px;
+}
+
+.img-women{
+    width: 100vw;
+    height: 100vh;
 }
 
 /* Form */
@@ -76,6 +81,7 @@ img{
     padding: 1rem 3rem;
     text-align: center;
     box-shadow: 1px 1px 12px var(--color-gray-borders);
+    position: absolute;
 }
 
 .form-title{
