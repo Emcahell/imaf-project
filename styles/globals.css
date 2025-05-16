@@ -36,3 +36,9 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none; 
     margin: 0; 
 }
+/* 
+box shadow */
+
+box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
+-webkit-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
+-moz-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
