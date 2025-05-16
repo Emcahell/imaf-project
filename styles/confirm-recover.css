@@ -1,0 +1,8 @@
+import globalStyles from './global.css';
+
+body {
+  background-image: url('../assets/recursos/hojas.png');
+  /* background-color: var(--color-background); */
+  color: var(--color-gray-titles);
+  font-family: var(--font-family);
+}
