@@ -18,6 +18,17 @@ body {
   width: 100%;
 }
 
+.back-login {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding: .5rem 1rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--color-pink-buttons);
+}
+
 form {
   display: flex;
   flex-direction: column;
