@@ -12,12 +12,14 @@
 
     /* Font Family */
     --font-family: 'Montserrat', sans-serif;
-    --font-size: 62,5%;
+    --font-size: 62.5%;
+    --font-button: 1.6rem;
+    --font-links: 1.2rem;
 
     /* Medidas */
     --width: 30%;
     --height: 70%;
-    --border-login: 3px;
+    --border-login: 3px solid #cbcbcb;
     --border-radius-login: 24px;
 
 }
