@@ -5,7 +5,7 @@
     --color-wine: #80003c;
     --color-gray-titles: #4d4d4d;
     --color-pink-hover: #ff0078;
-    --color-light-pink-shadow: #ffc5e2; 
+    --color-light-pink-shadow: #ffc4e1; 
     --color-green: #48cd80;
     --color-gray-borders: #cbcbcb;
     --background-color: #fbfbfb;
@@ -24,11 +24,17 @@
 
     /* Font Family */
     --font-family: 'Montserrat', sans-serif;
+    
+
+    
 }
 
 .icon {
     width: 1.875rem;
     height: 1.875rem;
+}
+body{
+    font-weight: 600;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -39,6 +45,6 @@ input[type=number]::-webkit-outer-spin-button {
 /* 
 box shadow */
 
-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
+/* box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
 -webkit-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
--moz-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
+-moz-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7); */
