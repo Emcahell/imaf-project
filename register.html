@@ -1,34 +1,58 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles/register.css">
-
-  <title>Iniciar Sesión</title>
-</head>
-<body>
-  <div class="center-box">
-
-    <img src="./assets/recursos/logo-imaf.png" class="logo-img" alt="logo-imaf">
-    <div class="form-box">
-      <h1>Iniciar Sesión</h1>
-      <form action="">
-        <input type="number" placeholder="Cédula">
-        <input type="password" placeholder="Contraseña">
-        <button>Ingresar</button>
-      </form>
-      <div class="additional-links">
-        <div class="links-box">
-          <a href="#">Registrarse</a>
-          <a href="/pages/auth/confirm-recover.html" target="_blank">Recuperar Contraseña</a>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/register.css" />
+    <title>Register | IMAF</title>
+  </head>
+  <body>
+    <div class="box-center">
+      <img
+        src="assets/recursos/logo-imaf.png"
+        alt="logo-imaf"
+        class="logo-img"
+      />
+      <form action="" name="formRegister" class="form">
+        <div class="form-title">
+          <h1>Registrarse</h1>
         </div>
-      </div>
+        <div class="form-item">
+          <input
+            type="number"
+            name="cedula"
+            placeholder="Cedula"
+            class="form-input"
+          />
+        </div>
+        <div class="form-item">
+          <input
+            type="password"
+            name="contraseña"
+            placeholder="Contraseña"
+            class="form-input"
+          />
+        </div>
+        <div class="form-item">
+          <input
+            type="email"
+            name="correo"
+            placeholder="Correo"
+            class="form-input"
+          />
+        </div>
+        <div class="form-item">
+          <button type="submit" name="button" class="btn">Registrar</button>
+        </div>
+        <div class="form-link">
+          <a href="">Iniciar Sesion</a>
+        </div>
+      </form>
     </div>
-  </div>
-  <div class="caja-img">
-
-    <img src="assets/images/model-register.png" class="chama" alt="">
-  </div>
-</body>
+    <img
+      src="assets/images/model-register.png"
+      alt="mujer-posando-con-un-telefono-en-la-mano"
+      class="img-modelo"
+    />
+  </body>
 </html>
