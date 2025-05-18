@@ -115,24 +115,6 @@
             color: var(--color-pink-hover);
         }
 
-<<<<<<< HEAD
-   @media (max-width: 1024px){
-    .form-box{
-        min-width: 70%;
-    }
-
-   }
-        
-     @media (max-width: 768px){
-
-        .links-box{
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
-     }
-=======
     /* MEDIA QUERYS */
 
     @media (max-width: 400px) {
@@ -176,4 +158,3 @@
             width: 90%;
         }
     }
->>>>>>> 201717ba0374c922b20e7f99707c4c7e362da98c
