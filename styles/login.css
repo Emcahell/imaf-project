@@ -92,6 +92,7 @@
             color: var(--background-color);
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
         .form-box button:hover{
@@ -114,4 +115,46 @@
             color: var(--color-pink-hover);
         }
 
-    
+    /* MEDIA QUERYS */
+
+    @media (max-width: 400px) {
+        .center-box{
+            justify-content: flex-start;
+            margin-top: 30px;
+        }
+        .form-box{
+            width: 90%;
+            height: auto;
+            padding: 10px;
+            margin-top: 40px;
+        }
+        .form-box h1{
+            font-size: 1.6rem;
+            margin: 15px 0;
+        }
+        form {
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        form input::placeholder{
+            font-size: 1.2rem;
+        }
+        form input{
+            width: 90%;
+            margin-top: 20px;
+        }
+        .form-box button{
+            width: 90%;
+            padding: 8px 0;
+        }
+        .additional-links{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .links-box {
+            width: 90%;
+        }
+    }
