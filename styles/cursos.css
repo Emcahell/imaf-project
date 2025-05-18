@@ -7,7 +7,7 @@
         }
         
         body {
-             background-image: url(/assets/recursos/hojas-arriba.png);
+             background-image: url(/voceto.PNG);
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -16,6 +16,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            padding: 0 5%;
         }
         
         .container {
@@ -25,7 +26,8 @@
         
         .left-column {
             width: 20%;
-    
+            background-color: red;
+            opacity: 30%;
             padding: 20px;
             transition: all 0.3s ease;
             display: flex;
@@ -33,15 +35,16 @@
         }
 
         .logo-img{
-            width: 50px;
+            width: 40px;
             align-self: center;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
 
         .sidebar-options-box svg{
             width: 14px;
         }
 
+       
         .sidebar-options-box{
           background-color: white;
           width: 100%;
@@ -89,11 +92,13 @@
         
         .right-top {
             height: 20%;
-            padding: 20px;
+            
             display: flex;
             align-items: center;
             justify-content: flex-end;
             color: var(--color-wine);
+            background-color: blue;
+            opacity: 30%;
         }
         
         .right-top h2{
@@ -114,7 +119,7 @@
         .right-bottom {
             height: 80%;
             /* background-color: red; */
-            padding: 20px;
+            
         
         }
         
