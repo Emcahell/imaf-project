@@ -27,6 +27,7 @@ body {
   color: #fff;
   text-decoration: none;
   background-color: var(--color-pink-buttons);
+  z-index: 10;
 }
 
 form {
