@@ -116,7 +116,7 @@ a {
   color: var(--color-gray-titles);
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 a:hover {
@@ -141,6 +141,7 @@ a:hover {
 
   .box-center {
     width: 100%;
+    padding-top: 30px;
   }
 
   .box-center form {
@@ -148,20 +149,20 @@ a:hover {
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 1.6rem;
   }
   .form-input::placeholder {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 
   .logo-img {
-    width: 80px;
+    width: 60px;
   }
-  .btn {
-    font-size: 2rem;
-  }
+.btn{
+  padding: 8px 0;
+}
   a {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .form-item {
     margin-top: 30px;

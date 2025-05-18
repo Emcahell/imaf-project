@@ -108,7 +108,7 @@
             color: var(--color-gray-titles);
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .form-box a:hover{
@@ -128,7 +128,7 @@
     @media (max-width: 425px) {
         .center-box{
             justify-content: flex-start;
-            margin-top: 30px;
+            padding-top: 30px;
         }
         .form-box{
             width: 90%;
