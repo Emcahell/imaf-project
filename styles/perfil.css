@@ -1,0 +1,123 @@
+@import url(/styles/globals.css);
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: var(--font-size);
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family);
+    padding: 0 5%;
+}
+
+.container{
+    display: flex;
+    flex: 1;
+}
+
+.left-column{
+    width: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-img{
+    width: 40px;
+    align-self: center;
+    margin-bottom: 40px;
+}
+
+.sidebar-perfil{
+    width: 100%;
+    min-height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid var(--color-gray-borders);
+}
+
+.img-box{
+    width: 90%;
+    height: 50%;
+    border: 3px solid var(--color-gray-borders);
+    border-radius: 50%;
+    background: var(--color-gray-titles);
+    margin-bottom: 10px;
+}
+
+.credenciales{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.label-perfil{
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+.input-perfil{
+    width: 100%;
+    margin: 10px 0;
+}
+
+.volver{
+    text-decoration: none;
+    color: var(--color-gray-titles);
+    font-size: 1.2rem;
+}
+
+.volver:hover{
+    color: var(--color-pink-hover);
+    text-decoration: underline;
+}
+
+.right-column{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-top{
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--color-wine);
+}
+
+.right-top h2{
+    font-size: 1rem;
+}
+
+.right-top svg{
+    width: 16px;
+    margin-left: 32px;
+    margin-right: 8px;
+}
+
+.right-top p{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.right-bottom{
+    height: 80%;
+}
