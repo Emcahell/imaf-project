@@ -106,21 +106,27 @@ body{
     height: 20%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     color: var(--color-wine);
 }
 
-.right-top h2{
+.options-users{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.options-users h2{
     font-size: 1rem;
 }
 
-.right-top svg{
+.options-users svg{
     width: 16px;
     margin-left: 32px;
     margin-right: 8px;
 }
 
-.right-top p{
+.options-users p{
     font-size: 1rem;
     font-weight: bold;
 }
@@ -129,3 +135,16 @@ body{
     height: 80%;
 }
 
+.buscador{
+    width: 25%;
+    background-color: var(--color-background-input-search);
+    border: none;
+    outline: none;
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.buscador::placeholder{
+    color: var(--color-wine);
+    font-weight: bold;
+}
