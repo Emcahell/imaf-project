@@ -15,12 +15,17 @@ body{
     display: flex;
     flex-direction: column;
     font-family: var(--font-family);
-    padding: 0 5%;
+    background-image: url(/assets/recursos/hojas-arriba.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .container{
     display: flex;
     flex: 1;
+    padding: 10px 20px;
 }
 
 .left-column{
@@ -148,3 +153,4 @@ body{
     color: var(--color-wine);
     font-weight: bold;
 }
+
