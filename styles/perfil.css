@@ -76,6 +76,13 @@ body{
 .input-perfil{
     width: 100%;
     margin: 10px 0;
+    outline: none;
+    padding: .2rem;
+}
+
+.input-perfil:focus{
+    outline: auto;
+    outline-color: var(--color-pink-hover);
 }
 
 .volver{
