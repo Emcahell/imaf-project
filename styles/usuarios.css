@@ -36,6 +36,26 @@ header {
   width: 50px;
 }
 
+.box-useradmin {
+  z-index: 20;
+}
+
+.icon-up-admin:hover {
+  fill: var(--color-pink-hover);
+  cursor: pointer;
+}
+.icon-down-admin:hover {
+  fill: var(--color-pink-hover);
+  cursor: pointer;
+}
+
+.icon-down-admin {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  fill: var(--color-wine);
+}
+
 .icon-nav {
   width: 15px;
 }
@@ -109,6 +129,47 @@ header {
 .notification-modal p:hover {
   background-color: var(--color-light-pink-shadow);
   color: var(--color-wine);
+}
+
+.edit-modal {
+  position: absolute;
+  top: 15px;
+  right: -8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  width: 180px;
+  height: 70px;
+  border-radius: 20px 5px 20px 20px;
+  border: 2px solid var(--color-gray-borders);
+  background-color: #fff;
+  z-index: 10;
+}
+
+.box-edit {
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--color-gray-titles);
+  cursor: pointer;
+  z-index: 30;
+}
+.box-edit:hover {
+  color: var(--color-pink-hover);
+}
+
+.icon-edit-modal {
+  width: 15px;
+  fill: var(--color-gray-titles);
+}
+.box-edit:hover .icon-edit-modal {
+  fill: var(--color-pink-hover);
 }
 
 
@@ -230,4 +291,8 @@ table td {
 
 .block {
   display: block;
+}
+
+#icon-notification.fill-notification {
+  fill: var(--color-pink-hover);
 }
