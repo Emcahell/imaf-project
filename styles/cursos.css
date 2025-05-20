@@ -7,7 +7,7 @@
         }
         
         body {
-             background-image: url(/voceto.PNG);
+            background-image: url(../assets/recursos/hojas-arriba.png);
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
@@ -18,6 +18,159 @@
             min-height: 100vh;
             padding: 0 5%;
         }
+
+        main {
+            width: 90%;
+          }
+          
+          header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 70px;
+            margin: 20px 0 80px 0;
+          }
+          
+          .logo {
+            width: 50px;
+          }
+          
+          .box-useradmin {
+            z-index: 20;
+          }
+          
+          .icon-up-admin:hover {
+            fill: var(--color-pink-hover);
+            cursor: pointer;
+          }
+          .icon-down-admin:hover {
+            fill: var(--color-pink-hover);
+            cursor: pointer;
+          }
+          
+          .icon-down-admin {
+            position: absolute;
+            right: 10px;
+            top: 7px;
+            fill: var(--color-wine);
+          }
+          
+          .icon-nav {
+            width: 15px;
+          }
+          #icon-notification {
+            cursor: pointer;
+          }
+          #icon-notification:hover {
+            fill: var(--color-pink-hover);
+          }
+          
+          .tools {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            color: var(--color-wine);
+          }
+          
+          .tools div {
+            display: flex;
+            align-items: center;
+          }
+          
+          .tools p {
+            display: flex;
+            align-items: center;
+          }
+          
+          .tools span {
+            margin: 0 0 5px 10px;
+            font-size: 3rem;
+            color: var(--color-green);
+          }
+          
+          .tools svg {
+            fill: var(--color-wine);
+          }
+          
+          .notification-modal {
+            position: absolute;
+            top: 60px;
+            right: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 20px;
+            width: 300px;
+            max-height: 200px;
+            border-radius: 15px;
+            border: 2px solid var(--color-gray-borders);
+            background-color: #fff;
+            overflow-y: scroll;
+            z-index: 30;
+          }
+          .notification-modal::-webkit-scrollbar {
+            width: 5px;
+            background-color: var(--color-light-pink-shadow);
+          }
+          .notification-modal::-webkit-scrollbar-thumb {
+            background: var(--color-wine);
+            border-radius: 20px;
+          }
+          
+          .notification-modal p {
+            width: auto;
+            padding: 10px 10px;
+            border-radius: 5px;
+            color: var(--color-gray-titles);
+            background-color: var(--background-color);
+            cursor: pointer;
+          }
+          .notification-modal p:hover {
+            background-color: var(--color-light-pink-shadow);
+            color: var(--color-wine);
+          }
+          
+          .edit-modal {
+            position: absolute;
+            top: 15px;
+            right: -8px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+            width: 200px;
+            height: 70px;
+            border-radius: 20px 5px 20px 20px;
+            border: 2px solid var(--color-gray-borders);
+            background-color: #fff;
+            z-index: 10;
+          }
+          
+          .box-edit {
+            position: absolute;
+            left: 20px;
+            bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: var(--color-gray-titles);
+            cursor: pointer;
+            z-index: 30;
+          }
+          .box-edit:hover {
+            color: var(--color-pink-hover);
+          }
+          
+          .icon-edit-modal {
+            width: 15px;
+            fill: var(--color-gray-titles);
+          }
+          .box-edit:hover .icon-edit-modal {
+            fill: var(--color-pink-hover);
+          }
         
         .container {
             display: flex;
@@ -26,7 +179,7 @@
         
         .left-column {
             width: 20%;
-            background-color: red;
+            /* background-color: red; */
             opacity: 30%;
             padding: 20px;
             transition: all 0.3s ease;
@@ -84,45 +237,6 @@
           list-style: none;
         }
         
-        .right-column {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .right-top {
-            height: 20%;
-            
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            color: var(--color-wine);
-            background-color: blue;
-            opacity: 30%;
-        }
-        
-        .right-top h2{
-            font-size: 1rem;
-        }
-        .right-top svg{
-            width: 16px;
-            margin-left: 32px;
-            margin-right: 8px;
-        }
-        .right-top p{
-            font-size: 0.6rem;
-            font-weight: bold;
-        }
-
-
-
-        .right-bottom {
-            height: 80%;
-            /* background-color: red; */
-            
-        
-        }
-        
         .dashboard-options{
             display: flex;
             gap: 30px;
@@ -161,6 +275,18 @@
             padding: 10px 15px;
             cursor: pointer;
         }
+
+        .none {
+            display: none;
+          }
+          
+          .block {
+            display: block;
+          }
+          
+          #icon-notification.fill-notification {
+            fill: var(--color-pink-hover);
+          }
 
         
         @media (max-width: 768px) {
