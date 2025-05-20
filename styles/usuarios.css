@@ -215,7 +215,7 @@ nav a {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   border-radius: 6px;
   text-decoration: none;
   color: var(--color-gray-titles);
@@ -268,14 +268,18 @@ nav svg {
 table {
   width: 100%;
   text-align: center;
-  /* border-collapse: collapse; */
+  border-collapse: collapse;
 }
 
-table thead{
+table th{
   padding: 5px;
   border: 2px solid var(--color-gray-borders);
   color: var(--color-wine);
   background-color: #fff;
+}
+
+tr{
+  margin: 10px;
 }
 
 table td {
