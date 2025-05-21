@@ -6,33 +6,15 @@
     box-sizing: border-box;
 }
 
-html{
-    font-size: var(--font-size);
-}
-
 body{
+    width: 100vw;
     height: 100vh;
-    font-family: var(--font-family);
-    background-image: url(../assets/recursos/hojas-arriba.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background-image: url(/assets/recursos/hojas-arriba.png);
     background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family);
 }
-
-.logo{
-    width: 50px;
-}
-
-.search{
-    border: none;
-    background-color: var(--color-background-input-search);
-    padding: .8rem;
-    border-radius: 6px;
-}
-
-.search::placeholder{
-    color: var(--color-wine);
-    font-weight: bold;
-}
-
