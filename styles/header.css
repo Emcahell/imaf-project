@@ -58,7 +58,7 @@ header {
   align-items: center;
 }
 
-.tools span {
+.tools #conexion {
   margin: 0 0 5px 10px;
   font-size: 3rem;
   color: var(--color-green);
@@ -170,6 +170,24 @@ header {
     position: absolute;
     top: 60px;
     right: 80px;
+  }
+  
+  #conexion {
+    display: none;
+  }
+
+  .box-useradmin svg.icon-modal-open {
+    position: relative;
+    left: -40px;
+  }
+
+  .box-useradmin span {
+    display: none;
+  }
+
+  .edit-modal {
+    width: 125px;
+    height: 60px;
   }
 }
 
