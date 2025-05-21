@@ -83,13 +83,14 @@
             border: 1px solid var(--color-gray-borders);
             height: fit-content;
         }
-        .menu-toggle {
+
+        /* .menu-toggle {
             display: none;
             background-color: #333;
             color: white;
             padding: 10px 15px;
             cursor: pointer;
-        }
+        } */
 
         .none {
             display: none;
@@ -123,5 +124,20 @@
             
             .menu-toggle {
                 display: block;
+            }
+        }
+
+        @media (max-width:600px) {
+            .edit-modal {
+                width: 145px;
+                height: 80px;
+            }
+        }
+
+        @media (max-width:480px) {
+            .edit-modal {
+                top: 30px;
+                right: 10px;
+                width: 150px;
             }
         }

@@ -198,6 +198,19 @@ header {
   header {
     position: unset;
   }
+
+  .logo {
+    display: none;
+  }
+
+  .tools p {
+    position: absolute;
+    left: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* letter-spacing: 1px; */
+  }
+
   .notification-modal {
     position: absolute;
     top: 0;
@@ -239,6 +252,23 @@ header {
     letter-spacing: 1px;
     color: var(--color-pink-hover);
     background-color: #fff;
-    fill: var(--color-pink-hover);
+    fill: var(--color-wine);
+  }
+
+  .edit-modal {
+    top: 30px;
+    right: 10px;
+    width: 125px;
+    height: 60px;
+  }
+}
+
+@media (max-width:380px) {
+  .tools p {
+    position: absolute;
+    left: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    /* letter-spacing: 1px; */
   }
 }
