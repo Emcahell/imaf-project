@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,28 +62,31 @@
     </header>
     
     <section>
-      <div class="sidebar">
-        <div class="img-box">
-          <!-- <img src="#" alt="imagen-perfil"> -->
+     <article class="sidebar">
+       <div class="perfil-box">
+          <div class="img-box">
+            <img src="#" alt="imagen-perfil">
+          </div>
+
+          <div class="credenciales">
+            <div class="div-label">Usuario</div>
+            <input type="text" name="usuario" placeholder="Usuario" class="credenciales-input">
+
+            <div class="div-label">Contraseña</div>
+            <input type="password" name="password" placeholder="Contraseña" class="credenciales-input">
+          </div>
+          <a href="#" class="back">volver</a>
         </div>
 
-        <div class="credenciales">
-          <div class="div-label">Usuario</div>
-          <input type="text" name="usuario" placeholder="Usuario" class="credenciales-input">
+     </article>
 
-          <div class="div-label">Contraseña</div>
-          <input type="password" name="password" placeholder="Contraseña" class="credenciales-input">
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="dates-box">
-        <div class="dates-label">Nombres</div>
-        <input type="text" name="nombres" placeholder="Jencer Enrique" class="dates-input">
-        <div class="dates-label">Apellidos</div>
-        <input type="text" name="apellidos" placeholder="Ojeda Murzi" class="dates-input">
-        <div class="dates-label">Cedula</div>
+     <article>
+       <div class="dates-box">
+         <div class="dates-label">Nombres</div>
+         <input type="text" name="nombres" placeholder="Jencer Enrique" class="dates-input">
+         <div class="dates-label">Apellidos</div>
+         <input type="text" name="apellidos" placeholder="Ojeda Murzi" class="dates-input">
+         <div class="dates-label">Cedula</div>
         <input type="number" name="cedula" placeholder="Cedula" class="dates-input">
         <div>Telefono</div>
         <input type="number" name="telefono" placeholder="Telefono" class="dates-input">
@@ -97,6 +100,7 @@
         <input type="text" name="Cargo" placeholder="Cargo" class="dates-input">
       </div>
     </section>
+  </article>
   </main>
 </body>
 </html>
