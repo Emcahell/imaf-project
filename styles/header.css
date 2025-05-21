@@ -1,0 +1,160 @@
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  margin: 20px 0 80px 0;
+}
+
+.logo {
+  width: 50px;
+}
+
+.box-useradmin {
+  z-index: 20;
+}
+
+.icon-up-admin:hover {
+  fill: var(--color-pink-hover);
+  cursor: pointer;
+}
+.icon-down-admin:hover {
+  fill: var(--color-pink-hover);
+  cursor: pointer;
+}
+
+.icon-down-admin {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  fill: var(--color-wine);
+}
+
+.icon-nav {
+  width: 15px;
+}
+#icon-notification {
+  cursor: pointer;
+}
+#icon-notification:hover {
+  fill: var(--color-pink-hover);
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  color: var(--color-wine);
+}
+
+.tools div {
+  display: flex;
+  align-items: center;
+}
+
+.tools p {
+  display: flex;
+  align-items: center;
+}
+
+.tools span {
+  margin: 0 0 5px 10px;
+  font-size: 3rem;
+  color: var(--color-green);
+}
+
+.tools svg {
+  fill: var(--color-wine);
+}
+
+.notification-modal {
+  position: absolute;
+  top: 60px;
+  right: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+  width: 300px;
+  max-height: 200px;
+  border-radius: 15px;
+  border: 2px solid var(--color-gray-borders);
+  background-color: #fff;
+  overflow-y: scroll;
+  z-index: 30;
+}
+.notification-modal::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--color-light-pink-shadow);
+}
+.notification-modal::-webkit-scrollbar-thumb {
+  background: var(--color-wine);
+  border-radius: 20px;
+}
+
+.notification-modal p {
+  width: auto;
+  padding: 10px 10px;
+  border-radius: 5px;
+  color: var(--color-gray-titles);
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+.notification-modal p:hover {
+  background-color: var(--color-light-pink-shadow);
+  color: var(--color-wine);
+}
+
+.edit-modal {
+  position: absolute;
+  top: 15px;
+  right: -8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  width: 180px;
+  height: 70px;
+  border-radius: 20px 5px 20px 20px;
+  border: 2px solid var(--color-gray-borders);
+  background-color: #fff;
+  z-index: 10;
+}
+
+.box-edit {
+  position: absolute;
+  left: 20px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--color-gray-titles);
+  cursor: pointer;
+  z-index: 30;
+}
+.box-edit:hover {
+  color: var(--color-pink-hover);
+}
+
+.icon-edit-modal {
+  width: 15px;
+  fill: var(--color-gray-titles);
+}
+.box-edit:hover .icon-edit-modal {
+  fill: var(--color-pink-hover);
+}
+
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+#icon-notification.fill-notification {
+  fill: var(--color-pink-hover);
+}
