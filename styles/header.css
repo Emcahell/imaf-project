@@ -106,6 +106,10 @@ header {
   color: var(--color-wine);
 }
 
+.title-notification {
+  display: none;
+}
+
 .edit-modal {
   position: absolute;
   top: 15px;
@@ -157,4 +161,66 @@ header {
 
 #icon-notification.fill-notification {
   fill: var(--color-pink-hover);
+}
+
+/* Media querys */
+
+@media (max-width:600px) {
+  .notification-modal {
+    position: absolute;
+    top: 60px;
+    right: 80px;
+  }
+}
+
+@media (max-width:480px) {
+  body {
+    position: relative;
+  }
+  header {
+    position: unset;
+  }
+  .notification-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    width: 100vw;
+    min-height: 100vh;
+    border-radius: 0;
+    border: 0;
+    background-color: #fff;
+    overflow-y: scroll;
+  }
+  .notification-modal::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+  }
+  .notification-modal::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0;
+  }
+  .notification-modal p {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 0;
+    color: var(--color-gray-titles);
+    background-color: #fff;
+  }
+  .title-notification {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .title-notification div {
+    display: flex;
+    gap: 40px;
+    margin: 5px 0 30px 0;
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    color: var(--color-pink-hover);
+    background-color: #fff;
+    fill: var(--color-pink-hover);
+  }
 }
