@@ -24,66 +24,13 @@ main {
 }
 
   /* Los estilos del header se aplican desde header.css */
+  /* Los estilos del sidebar se aplican desde sidebar.css */
 
 section {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: auto;
-}
-
-.sidebar {
-  width: 10%;
-  height: auto;
-}
-
-nav {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  padding: 30px 40px;
-  border-radius: 8px;
-  border: 2px solid var(--color-gray-borders);
-  background: #fff;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-nav li {
-  padding: 0 25px;
-  list-style-type: none;
-}
-.li-location {
-  border-left: 4px solid var(--color-pink-hover);
-}
-
-nav a {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 10px 15px;
-  border-radius: 6px;
-  text-decoration: none;
-  color: var(--color-gray-titles);
-}
-.location {
-  background-color: var(--color-light-pink-shadow);
-  color: var(--color-pink-hover);
-  fill: var(--color-pink-hover);
-}
-
-nav a:hover {
-  background-color: var(--color-light-pink-shadow);
-}
-
-nav svg {
-  fill: var(--color-gray-titles);
 }
 
 .box-contenido {
