@@ -6,10 +6,6 @@
     box-sizing: border-box;
 }
 
-html{
-    font-size: var(--font-size);
-}
-
 body{
     width: 100vw;
     height: 100vh;
@@ -31,7 +27,7 @@ section{
     width: 100%;
     height: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .sidebar{
@@ -71,14 +67,14 @@ section{
 }
 
 .div-label{
-    font-size: 1.3rem;
+    font-size: .8rem;
     text-align: left;
     padding: 5px 0 5px 0;
 }
 
 .credenciales-input{
     width: 100%;
-    padding: .2rem;
+    padding: 2px;
     outline: none;
 }
 
@@ -88,7 +84,7 @@ section{
 
 .back{
     margin-top: 10px;
-    font-size: 1.2rem;
+    font-size: 12px;
     font-weight: bold;
     color: var(--color-gray-titles);
     text-decoration: none;
@@ -97,4 +93,29 @@ section{
 .back:hover{
     color: var(--color-pink-hover);
     text-decoration: underline;
+}
+
+.content-box{
+    width: 70%;
+    height: auto;
+    padding: 10px;
+}
+
+.dates-box{
+    width: 100%;
+    min-height: 250px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid var(--color-gray-borders)
+}
+
+.dates-column-left{
+    width: 50%;
+}
+
+.dates-column-right{
+    width: 50%;
 }
