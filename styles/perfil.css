@@ -114,8 +114,23 @@ section{
 
 .dates-column-left{
     width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .dates-column-right{
     width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dates-input{
+    width: 95%;
+    padding: 5px 8px;
+    border: 1px solid var(--color-gray-borders);
+    border-radius: 5px;
 }
