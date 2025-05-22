@@ -36,9 +36,10 @@ section {
 
 .box-contenido {
   position: relative;
-  width: 80%;
+  width: 100%;
   height: 400px;
-  /* background-color: lightcoral; */
+  margin: 0 20px;
+  background-color: lightskyblue;
 }
 
 .filter {
@@ -63,30 +64,6 @@ section {
 .btn-active {
   color: var(--color-pink-hover) !important;
   border-bottom: 3px solid var(--color-pink-hover) !important;
-}
-
-table {
-  width: 100%;
-  text-align: center;
-  border-collapse: collapse;
-}
-
-table th{
-  padding: 5px;
-  border: 2px solid var(--color-gray-borders);
-  color: var(--color-wine);
-  background-color: #fff;
-}
-
-tr{
-  margin: 10px;
-}
-
-table td {
-  padding: 10px;
-  border-radius: 5px;
-  border: 2px solid var(--color-gray-borders);
-  background-color: #fff;
 }
 
 .none {

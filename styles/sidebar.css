@@ -1,5 +1,4 @@
 .sidebar {
-  width: 10%;
   height: auto;
 }
 
@@ -8,7 +7,7 @@ nav {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 125px;
   padding: 30px 40px;
   border-radius: 8px;
   border: 2px solid var(--color-gray-borders);
@@ -50,4 +49,105 @@ nav a:hover {
 
 nav svg {
   fill: var(--color-gray-titles);
+}
+
+/* Media querys */
+
+@media (max-width: 600px) {
+  nav {
+    width: 100px;
+  }
+  nav li {
+    padding: 0 11px;
+  }
+}
+
+@media (max-width:550px) {
+  body {
+    position: relative;
+  }
+
+  section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box-contenido {
+    height: 800px;
+  }
+
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    z-index: 20;
+  }
+
+  nav {
+    /* position: fixed; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 0;
+    border: none;
+    background: #fff;
+    box-shadow: 1px 1px 5px var(--color-gray-borders);
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  nav li {
+    padding: 0;
+  }
+
+  .li-location {
+    border-left: none;
+  }
+  
+  nav a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: var(--color-gray-titles);
+  }
+
+  .icon-nav {
+    width: 25px;
+  }
+  .icon-cursos {
+    width: 29px;
+  }
+
+  .location {
+    background-color: transparent;
+    color: var(--color-pink-hover);
+    fill: var(--color-pink-hover);
+  }
+}
+
+@media (max-width:380px) {
+  nav ul {
+    gap: 0;
+  }
+  nav a {
+    gap: 5px;
+  }
 }
