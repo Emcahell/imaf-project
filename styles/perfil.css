@@ -44,7 +44,7 @@ section{
     padding: 10px 20px;
     border: 1px solid var(--color-gray-borders);
     border-radius: 10px;
-    gap: 100;
+    background-color: var(--background-color);
 }
 
 .img-box{
@@ -109,7 +109,9 @@ section{
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    border: 1px solid var(--color-gray-borders)
+    border: 1px solid var(--color-gray-borders);
+    flex-wrap: wrap;
+    background-color: var(--background-color);
 }
 
 .dates-column-left{
@@ -133,4 +135,18 @@ section{
     padding: 5px 8px;
     border: 1px solid var(--color-gray-borders);
     border-radius: 5px;
+}
+
+.box-button{
+    margin-top: 10px;
+}
+
+.btn{
+    width: 100px;
+    border: none;
+    background-color: var(--color-green);
+    padding: 5px 3px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
 }
