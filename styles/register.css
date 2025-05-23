@@ -190,3 +190,10 @@ a:hover {
     justify-content: flex-start;
   }
 }
+
+@media (max-width: 500px) {
+  .icons-input-register {
+    width: 1.8rem;
+    height:1.8rem;
+  } 
+}
