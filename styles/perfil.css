@@ -143,6 +143,7 @@ section{
     width: 90%;
     padding: 10px;
     border-radius: 5px;
+    font-size: 1.1rem;
     border: 1px solid var(--color-gray-borders);
 }
 
