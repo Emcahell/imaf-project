@@ -121,7 +121,7 @@ header {
   gap: 5px;
   padding: 10px;
   width: 180px;
-  height: 70px;
+  height: 110px;
   border-radius: 20px 5px 20px 20px;
   border: 1.4px solid var(--color-gray-borders);
   background-color: #fff;
@@ -131,7 +131,7 @@ header {
 .box-edit {
   position: absolute;
   left: 20px;
-  bottom: 5px;
+  bottom: 50px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -151,6 +151,32 @@ header {
 }
 .box-edit:hover .icon-edit-modal {
   fill: var(--color-pink-hover);
+}
+
+.box-salir {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--color-gray-titles);
+  cursor: pointer;
+  z-index: 30;
+}
+.box-salir:hover {
+  color: var(--color-pink-hover);
+}
+.box-salir:hover .icon-salir-modal {
+  fill: var(--color-pink-hover);
+}
+
+.icon-salir-modal {
+  width: 15px;
+  height: 15px;
+  fill: var(--color-gray-titles);
 }
 
 .none {
@@ -189,7 +215,11 @@ header {
 
   .edit-modal {
     width: 125px;
-    height: 60px;
+    height: 110px;
+  }
+
+  .box-salir {
+    left: 15px;
   }
 }
 
@@ -264,8 +294,13 @@ header {
     top: 30px;
     right: 10px;
     width: 125px;
-    height: 60px;
+    height: 110px;
   }
+
+  .box-salir {
+    left: 15px;
+  }
+  
 }
 
 @media (max-width:380px) {
