@@ -98,7 +98,7 @@ header {
   width: 300px;
   max-height: 200px;
   border-radius: 15px;
-  border: 2px solid var(--color-gray-borders);
+  border: 1.4px solid var(--color-gray-borders);
   background-color: #fff;
   overflow-y: scroll;
   z-index: 30;
@@ -140,7 +140,7 @@ header {
   width: 180px;
   height: 70px;
   border-radius: 20px 5px 20px 20px;
-  border: 2px solid var(--color-gray-borders);
+  border: 1.4px solid var(--color-gray-borders);
   background-color: #fff;
   z-index: 10;
 }
