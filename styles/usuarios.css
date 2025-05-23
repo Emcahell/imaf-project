@@ -66,6 +66,63 @@ section {
   border-bottom: 3px solid var(--color-pink-hover) !important;
 }
 
+<<<<<<< HEAD
+/* .table-border{
+  width: max-content;
+  height: max-content;
+  border: 2px solid black;
+} */
+
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+
+}
+
+table th{
+  padding: 5px;
+  background-color: #fff;
+}
+
+tr{
+  margin: 10px;
+}
+
+table td {
+  padding: 10px;
+  
+  border-right: 2px solid transparent;
+    background: linear-gradient(to left, #ffffff, #ffffff) padding-box,
+linear-gradient(white, #c994ad, white) border-box;
+  
+}
+
+table thead tr{
+    border: 1.6px solid var( --color-gray-borders);
+  
+}
+
+table tbody tr{
+    border: 0;
+    border-radius: 5px;
+    overflow: hidden;
+  
+}
+
+thead{
+  
+  
+  th{
+    border-right: 1.4px solid transparent;
+    background: linear-gradient(to left, #ffffff, #ffffff) padding-box,
+linear-gradient(white, #c994ad, white) border-box;
+  }
+
+}
+
+=======
+>>>>>>> 2805596379ff5dd2d63df8306420b87a13fae9dc
 .none {
   display: none;
 }
