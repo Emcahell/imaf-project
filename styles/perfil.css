@@ -84,11 +84,11 @@ section{
 .credenciales-input{
     width: 100%;
     padding: 2px;
-    outline: none;
+    border: 1px solid var(--color-gray-borders);
 }
 
 .credenciales-input:focus{
-    border: 2px solid var(--color-wine);
+    outline-color: var(--color-wine);
 }
 
 .back{
