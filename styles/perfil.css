@@ -36,6 +36,14 @@ section{
     height: auto;
 }
 
+.edit-modal {
+    width: 200px;
+    height: 80px;
+}
+.icon-edit-modal {
+    width: 15px;
+}
+
 .perfil-box{
     width: 100%;
     min-height: auto;
