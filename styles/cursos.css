@@ -28,7 +28,7 @@
 
             .edit-modal {
               width: 200px;
-              height: 80px;
+              height: 130px !important;
             }
             .icon-edit-modal {
               width: 15px;
