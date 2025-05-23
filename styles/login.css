@@ -36,18 +36,18 @@
         .form-box{
             background-color: var(--background-color);
             width: 30%;
-            height: 68%;
             border-radius: 24px;
-            border: 3px solid var(--color-gray-borders);
+            border: 2px solid var(--color-gray-borders);
             padding: 40px;
-            max-height: 400px;
-            box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
-            -webkit-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
-            -moz-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7);
+            max-height: 500px;
+            box-shadow: 5px 5px 15px rgba(203,203,203,0.7);
+            /* -webkit-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7); */
+            /* -moz-box-shadow: 12px 14px 12px -2px rgba(203,203,203,0.7); */
         }
 
+
         .form-box h1{
-            font-size: 2rem;
+            font-size: 1.5rem;
             text-align: center;
             color: var(--color-gray-titles);
         }
@@ -55,6 +55,7 @@
         form{
             display: flex;
             flex-direction: column;
+            gap: 5px;
         }
 
         .input-box{
@@ -64,11 +65,17 @@
             flex-direction: column;
             width: 100%;
         }
-
+        
         .icons-login{
             position: absolute;
-            bottom: 1rem;
-            right: 1rem;
+            bottom: 0;
+            right: 0;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+        .input-box .lock{
+            width: 2rem;
+            height: 1.5rem;
         }
 
         form input{
@@ -79,15 +86,18 @@
             background-color: var(--background-color);
             outline: none;
             padding: 5px;
-            transition: 0.6s;
+            transition: 0.4s;
         }
 
         form input:focus{
-            border-bottom: 2px solid var(--color-pink-hover);
+            padding: 1rem 2rem;
+            border: 2px solid var(--color-pink-hover);
+            border-radius: 0.5rem;
+            box-shadow: 0 0 5px var(--color-light-pink-shadow);
         }
 
         form input::placeholder{
-            font-size: 1.5rem;
+            font-size: 1rem;
             opacity: 100%;
             
             color: var(--color-gray-titles)
@@ -101,7 +111,8 @@
             border-radius: 24px;
             padding: 16px 0;
             color: var(--background-color);
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -112,14 +123,16 @@
 
         .links-box{
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .form-box a{
             color: var(--color-gray-titles);
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .form-box a:hover{
@@ -127,10 +140,12 @@
         }
 
         .links-social-media{
+            position: absolute;
+            left: 170px;
+            bottom: 63px;
             display: flex;
             justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
+            gap: 30px;
         }
 
         .links-social-media a{
@@ -140,10 +155,11 @@
         .links-social-media a svg{
             width: 3rem;
             height: 3rem;
+            fill: var(--color-pink-hover);
         }
         
         .links-social-media a svg:hover{
-            fill: var(--color-pink-hover);
+            fill: var(--color-pink-buttons);
         }
 
     /* MEDIA QUERYS */
@@ -194,8 +210,19 @@
     }
 
     @media (max-width:500px){
+        .center-box{
+            justify-content: flex-start;
+            padding-top: 50px;
+        }
+
+        .form-box{
+            width: 90%;
+            height: auto;
+            margin-top: 50px;
+        }
+
         .icons-login{
-            right: 3rem;
+            margin-right: -55px;
         }
         .links-box{
             align-items: center;
@@ -204,5 +231,10 @@
 
         .links-box a{
             margin-bottom: 4px;
+        }
+
+        .links-social-media{
+            left: 35%;
+            bottom: 63px;
         }
     }

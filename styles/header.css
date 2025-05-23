@@ -13,23 +13,6 @@ header {
   width: 50px;
 }
 
-.search{
-  background-color: var(--color-background-input-search);
-  border: none;
-  padding: .5rem;
-  border-radius: 5px;
-  outline: none;
-}
-
-.search::placeholder{
-  color: var(--color-wine);
-  font-weight: bold;
-}
-
-.search:focus{
-  border: 1px solid var(--color-pink-hover);
-}
-
 .box-useradmin {
   z-index: 20;
 }
