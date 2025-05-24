@@ -162,6 +162,7 @@ a:hover {
 
   h1 {
     font-size: 1.3rem;
+    margin: 15px 0;
   }
   .form-input::placeholder {
     font-size: 1.1rem;
