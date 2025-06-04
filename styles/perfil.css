@@ -108,6 +108,7 @@ section{
     border: 1px solid var(--color-gray-borders);
     background-color: var(--color-wine);
     transition: .5s ease;
+    border-radius: 10px;
 }
 
 .content-box{
