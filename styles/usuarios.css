@@ -194,6 +194,9 @@ section {
 .corner-upleft-svg{
   cursor: pointer; 
 }
+.icon-devolver path{
+  fill: var(--color-gray-titles);
+}
 
 .box-icon-see-more {
   display: none;
