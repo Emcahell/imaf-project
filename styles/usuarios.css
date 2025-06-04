@@ -330,6 +330,7 @@ section {
 
   .icon-accion {
     width: 15px !important;
+    fill: var(--color-gray-titles);
   }
 
   .rotate-icon {
@@ -338,9 +339,6 @@ section {
 
   .icon-trash path{
     fill: var(--color-red-error);
-  }
-  .icon-corner path{
-    fill: var(--color-pink-hover);
   }
 
 }

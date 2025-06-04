@@ -24,23 +24,19 @@ btnTodos.addEventListener('click', () => {
 
   // MOSTRAR Y OCULTAR SECCION DE VER MAS INFO EN DISPOSITIVOS MOVILES
 
-  const btnSeeMore = document.querySelectorAll('.icon-see-more-open');
-  
-  btnSeeMore.forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll('.icon-see-more-open').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const boton = e.currentTarget;
+      const table = boton.closest('.table-row2');
 
-    })
+      if (table) {
+        const boxSeeMore = table.querySelector('.box-see-more');
+        table.classList.toggle('active');
+        boton.classList.toggle('rotate-icon');
+        boxSeeMore.classList.toggle('none');
+      }
+    });
   });
 
-
-//   const iconSeeMore = document.getElementById('icon-see-more');
-//   const table = document.getElementById('table');
-//   const boxSeeMore = document.getElementById('see-more');
-
-// iconSeeMore.addEventListener('click', () => {
-//   table.classList.toggle('active');
-//   boxSeeMore.classList.toggle('none');
-//   iconSeeMore.classList.toggle('rotate-icon');
-// })
 
 //Hice esto recién terminado mi reposo por la cirujia 3/06/25.
