@@ -46,7 +46,7 @@ section{
 
 .perfil-box{
     width: 100%;
-    min-height: auto;
+    min-height: 400px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -58,7 +58,7 @@ section{
 
 .img-box{
     width: 80%;
-    min-height: 100px;
+    min-height: 150px;
     border-radius: 50%;
     background-color: #ccc;
     text-align: center;
@@ -66,7 +66,7 @@ section{
     align-items: center;
     justify-content: center;
     border: 2px solid var(--color-gray-borders);
-    margin-bottom: 20px;
+    margin: 20px 0
 }
 
 .credenciales{
@@ -76,15 +76,16 @@ section{
 }
 
 .div-label{
-    font-size: .8rem;
+    font-size: 1rem;
     text-align: left;
     padding: 5px 0 5px 0;
 }
 
 .credenciales-input{
     width: 100%;
-    padding: 2px;
+    padding: 6px;
     border: 1px solid var(--color-gray-borders);
+    font-size: 1.1rem;
 }
 
 .credenciales-input:focus{
@@ -92,16 +93,21 @@ section{
 }
 
 .back{
-    margin-top: 10px;
-    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1rem;
     font-weight: bold;
     color: var(--color-gray-titles);
     text-decoration: none;
+    padding: 8px 5px;
 }
 
 .back:hover{
-    color: var(--color-pink-hover);
-    text-decoration: underline;
+    color: white;
+    border: 1px solid var(--color-gray-borders);
+    background-color: var(--color-wine);
+    transition: .5s ease;
 }
 
 .content-box{
