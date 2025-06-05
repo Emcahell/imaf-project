@@ -93,16 +93,53 @@ section {
   background: var(--color-pink-hover);
 }
 
-.input-field{
-  width: 50%;
+.form-modal-cursos{
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
   box-sizing: border-box;
-  margin-top: 10px;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.input-field label {
-  font-size: 1.1rem;
+.left-content{
+  width: 50%;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-content{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.box-input{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.box-input label{
+  font-size: 1rem;
+  text-align: left;
+  padding: 5px 0;
   color: var(--color-gray-titles);
+}
+
+.box-input input , select{
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--color-gray-borders);
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+
+.box-input input:focus, select:focus{
+  outline-color: var(--color-wine);
 }
