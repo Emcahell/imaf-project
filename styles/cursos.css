@@ -189,7 +189,7 @@ nav {
   .cards-area {
     grid-template-columns: 1fr;
     height: max-content;
-    max-height: 500px; /* Ajusta este valor según lo que prefieras en mobile */
+    max-height: 300px; /* Ajusta este valor según lo que prefieras en mobile */
     overflow-y: auto;
     padding: 0 4px;
   }
