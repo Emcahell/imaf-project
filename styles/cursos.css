@@ -49,7 +49,7 @@ nav {
 
 .right-column {
   width: 80%;
-  height: 400px;
+  height: auto;
 }
 
 .right-bottom {
@@ -95,16 +95,16 @@ nav {
 
 /* //cards */
 .cards-area {
+  background-color: red;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   width: 100%;
   background: none;
-  margin-bottom: 20px;
   /* Elimina el max-height para que crezca según el contenido */
   max-height: 500px;
   overflow-y: auto; /* O auto si quieres scroll solo cuando sea necesario */
-  padding: 0 10px;
+  padding: 20px 10px;
 }
 
 .cards-area::-webkit-scrollbar {
