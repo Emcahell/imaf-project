@@ -98,9 +98,10 @@ nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
+  height: auto;
   width: 100%;
   background: none;
-  max-height: 500px; /* Ajusta la altura máxima según tu necesidad */
+  max-height: 300px; /* Ajusta la altura máxima según tu necesidad */
   overflow-y: auto; /* Habilita el scroll vertical */
   padding: 0 10px;
 }
@@ -126,6 +127,8 @@ nav {
   box-shadow: 0 2px 8px #0001;
   min-height: 140px;
   transition: box-shadow 0.2s;
+  max-width: 100%;
+  height: auto;
 }
 
 .card-cursos svg {
@@ -145,6 +148,7 @@ nav {
   border-radius: 10px;
   flex-shrink: 0;
   margin-right: 16px;
+  align-self: center;
 }
 
 .card-info {
@@ -176,6 +180,13 @@ nav {
   .card-info {
     flex-direction: column;
     gap: 10px;
+  }
+
+  .cards-area {
+    grid-template-columns: 1fr;
+    /* O si quieres cards más pequeñas pero aún en grid:
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    */
   }
 }
 
