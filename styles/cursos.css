@@ -103,7 +103,7 @@ nav {
   /* Elimina el max-height para que crezca según el contenido */
   max-height: 430px;
   overflow-y: auto; /* O auto si quieres scroll solo cuando sea necesario */
-  /* padding: 20px 10px; */
+  padding: 20px 10px;
   margin-bottom: 50px;
 }
 
