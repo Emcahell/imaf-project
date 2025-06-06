@@ -188,9 +188,10 @@ nav {
 
   .cards-area {
     grid-template-columns: 1fr;
-
-    max-height: 420px; /* Ajusta este valor según lo que prefieras en mobile */
+    height: max-content;
+    max-height: 500px; /* Ajusta este valor según lo que prefieras en mobile */
     overflow-y: auto;
+    padding: 0 4px;
   }
 }
 
@@ -208,7 +209,6 @@ nav {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    height: auto;
   }
 
   .left-column {
