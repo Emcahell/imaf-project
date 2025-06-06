@@ -88,11 +88,14 @@ section{
     font-size: 1rem;
     text-align: left;
     padding: 5px 0 5px 0;
+    color: var(--color-gray-titles);
 }
 
 .credenciales-input{
     width: 100%;
+    margin-bottom: 10px;
     padding: 6px;
+    border-radius: 5px;
     border: 1px solid var(--color-gray-borders);
     font-size: 1.1rem;
 }
@@ -105,6 +108,7 @@ section{
     width: 100px;
     text-align: center;
     margin-top: 15px;
+    border-radius: 10px;
     font-size: 1rem;
     font-weight: bold;
     color: var(--color-gray-titles);
@@ -114,10 +118,8 @@ section{
 
 .back:hover{
     color: white;
-    border: 1px solid var(--color-gray-borders);
     background-color: var(--color-wine);
-    transition: .5s ease;
-    border-radius: 10px;
+    transition: .2s ease;
 }
 
 .content-box{
@@ -155,12 +157,13 @@ section{
     color: var(--color-gray-titles)
 }
 
-.data input{
+.data input, select{
     width: 90%;
     padding: 10px;
     border-radius: 5px;
     font-size: 1.1rem;
     border: 1px solid var(--color-gray-borders);
+    background-color: var(--background-color);
 }
 
 .data input:focus{
@@ -168,7 +171,7 @@ section{
 }
 
 .edit-btn{
-    width: 80px;
+    width: 100px;
     padding: 10px;
     border: none;
     margin-top: 10px;
@@ -177,6 +180,8 @@ section{
     color: var(--background-color);
     background-color: var(--color-wine);
     cursor: pointer;
+    transition: background-color .2s ease;
+    font-size: 1.1rem;
 }
 
 .edit-btn:hover{
