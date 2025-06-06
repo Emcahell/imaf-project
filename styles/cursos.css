@@ -176,24 +176,6 @@ nav {
   cursor: pointer;
 }
 
-@media (max-width: 700px) {
-  .right-column {
-    height: auto;
-    min-height: 0;
-  }
-  .card-info {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .cards-area {
-    grid-template-columns: 1fr;
-
-    max-height: 420px; /* Ajusta este valor según lo que prefieras en mobile */
-    overflow-y: auto;
-  }
-}
-
 /* cards fin */
 .none {
   display: none;
