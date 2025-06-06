@@ -49,7 +49,7 @@ nav {
 
 .right-column {
   width: 80%;
-  height: auto;
+  height: 400px;
 }
 
 .right-bottom {
@@ -101,10 +101,9 @@ nav {
   width: 100%;
   background: none;
   /* Elimina el max-height para que crezca según el contenido */
-  max-height: 430px;
+  max-height: 500px;
   overflow-y: auto; /* O auto si quieres scroll solo cuando sea necesario */
-  padding: 20px 10px;
-  margin-bottom: 50px;
+  padding: 0 10px;
 }
 
 .cards-area::-webkit-scrollbar {
@@ -175,6 +174,24 @@ nav {
 .icon-field svg {
   margin-right: 8px;
   cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .right-column {
+    height: auto;
+    min-height: 0;
+  }
+  .card-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cards-area {
+    grid-template-columns: 1fr;
+
+    max-height: 420px; /* Ajusta este valor según lo que prefieras en mobile */
+    overflow-y: auto;
+  }
 }
 
 /* cards fin */
