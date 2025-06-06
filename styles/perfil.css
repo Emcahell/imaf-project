@@ -43,6 +43,15 @@ section{
 .icon-edit-modal {
     width: 15px;
 }
+.box-edit {
+    bottom: 8px;
+    font-size: 15px;
+}
+
+.arrow-left {
+    width: 15px;
+    fill: var(--color-gray-titles);
+}
 
 .perfil-box{
     width: 100%;
@@ -167,6 +176,7 @@ section{
     border-radius: 5px;
     color: var(--background-color);
     background-color: var(--color-wine);
+    cursor: pointer;
 }
 
 .edit-btn:hover{

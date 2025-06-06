@@ -53,16 +53,17 @@ nav svg {
 
 /* Media querys */
 
-@media (max-width: 600px) {
+@media (max-width: 915px) {
   nav {
-    width: 100px;
+    width: 80px;
+    font-size: 0.8rem;
   }
   nav li {
     padding: 0 11px;
   }
 }
 
-@media (max-width:550px) {
+@media (max-width:617px) {
   body {
     position: relative;
   }
