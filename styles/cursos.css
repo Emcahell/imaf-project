@@ -49,7 +49,7 @@ nav {
 
 .right-column {
   width: 80%;
-  height: 400px;
+  height: 80%;
 }
 
 .right-bottom {
@@ -180,6 +180,7 @@ nav {
   .right-column {
     height: auto;
     min-height: 0;
+    padding: 20px 0px;
   }
   .card-info {
     flex-direction: column;
@@ -189,7 +190,7 @@ nav {
   .cards-area {
     grid-template-columns: 1fr;
     height: max-content;
-    max-height: 300px; /* Ajusta este valor según lo que prefieras en mobile */
+    max-height: 350px; /* Ajusta este valor según lo que prefieras en mobile */
     overflow-y: auto;
     padding: 0 4px;
   }
