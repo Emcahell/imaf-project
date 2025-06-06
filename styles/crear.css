@@ -54,7 +54,6 @@ section {
   gap: 20px;;
   align-items: center;
   flex-direction: column;
-  border: 1px solid var(--color-wine);
   box-sizing: border-box;
 }
 
