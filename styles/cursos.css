@@ -95,16 +95,16 @@ nav {
 
 /* //cards */
 .cards-area {
-  background-color: red;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   width: 100%;
   background: none;
   /* Elimina el max-height para que crezca según el contenido */
-  max-height: 500px;
+  max-height: 430px;
   overflow-y: auto; /* O auto si quieres scroll solo cuando sea necesario */
   padding: 20px 10px;
+  margin-bottom: 50px;
 }
 
 .cards-area::-webkit-scrollbar {
