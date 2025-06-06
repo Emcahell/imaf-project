@@ -123,6 +123,7 @@ section{
 }
 
 .content-box{
+    position: relative;
     width: 80%;
     height: auto;
     padding: 10px;
@@ -131,7 +132,6 @@ section{
 .data-box{
     width: 100%;
     padding: 0 20px;
-
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -170,6 +170,19 @@ section{
     outline-color: var(--color-wine);
 }
 
+.see-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    border: 1px solid var(--color-gray-borders);
+    background-color: var(--background-color);
+}
+
 .edit-btn{
     width: 100px;
     padding: 10px;
@@ -186,4 +199,48 @@ section{
 
 .edit-btn:hover{
     background-color: var(--color-pink-hover);
+}
+
+.icon-perfil-user {
+    width: 20px;
+    fill: var(--color-gray-titles);
+    cursor: pointer;
+}
+.icon-perfil-user:hover {
+    fill: var(--color-pink-hover);
+}
+
+.modal-iniciados, .modal-finalizados, .modal-solicitudes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 20px;
+    background-color: var(--background-color);
+}
+
+.closed-modal {
+    fill: var(--color-gray-titles);
+    cursor: pointer;
+}
+.closed-modal:hover {
+    fill: var(--color-pink-hover);
+}
+
+.content-iniciados, .content-finalizados, .content-solicitudes {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-hidden {
+    display: none;
+}
+
+.modal-active {
+    display: block;
 }
