@@ -251,15 +251,12 @@ section {
 
 @media (max-width:700px) {
 
-  .separador {
-    margin-bottom: 40px;
-  }
-
   .scroll-area{
     height: 60vh;
     max-height: 60vh;
     /* min-height: 550px; */
     overflow-y: scroll;
+    margin-bottom: 40px;
   }
 
   .editsvg.r{
