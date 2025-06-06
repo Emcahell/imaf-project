@@ -64,11 +64,51 @@ section {
   margin-bottom: 10px;
 }
 
-.filter-options{
+.card-container{
+  width: 50%;
+  height: 100%;
   display: flex;
-  gap: 20px;
+  gap: 50px;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  box-sizing: border-box;
+}
+
+.card {
+  width: 300px;
+  height: 250px;
+  border: 3px solid var(--color-gray-borders);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Para que el borde redondeado afecte la imagen */
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  /* background: #3ad29f; Color de fondo similar al de la imagen */
+}
+
+.card-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content span {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: var(--font-family, Arial, sans-serif);
+}
+
+.card:hover{
+  border: 3px solid var(--color-wine);
+  transition: border 0.3s ease;
 }
