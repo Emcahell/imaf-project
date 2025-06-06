@@ -52,29 +52,37 @@
           height: 400px;
         }
         
+        .right-bottom{
+          position: relative;
+        }
+
         .dashboard-options{
             display: flex;
             gap: 30px;
+            position: absolute;
+            top: -35px;
             
         }
-        .dashboard-options a{
-            text-decoration: none;
-            font-size: 1rem;
-            color: var(--color-gray-titles);
-        
-            height: 20px;
+        .dashboard-options button{
+          font-size: 1rem;
+          font-weight: bold;
+          
+          height: 20px;
+          border: none;
+          color: var(--color-gray-titles);
+          background: none;
+          cursor: pointer;
         }
 
-        .dashboard-options a:hover{
+        .dashboard-options button:hover{
             color: var(--color-pink-hover);
-            border-bottom: 3px solid var(--color-pink-hover);
         }
 
         
 
         .label-box span{
             color: var(--color-wine);
-            margin-top: 20px;
+           
             display: inline-block;
             width: max-content;
             background-color: var(--background-color);
