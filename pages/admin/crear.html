@@ -119,6 +119,48 @@
           </div>
         </div>
       </form>
+
+      <div class="modal-crear">
+        <div class="close-modal-crear">
+          <svg class="icon icon-close-modal" id="close-modal-crear" viewBox="0 0 512 512"><path d="M256 0c-141.4 0-256 114.6-256 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zm128.5 345.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 301.3l-83.2 89.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l83.2-89.4L127.5 192c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l83.2 89.4L339.7 146c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-83.2 89.4L384.5 345z"/></svg>
+        </div>
+
+        <div>
+          <h1>Crear Curso</h1>
+        </div>
+        <form action="" class="form-modal-curso">
+          <label for="nombre-curso">Nombre Del Curso</label>
+          <input type="text" id="nombre-curso" name="nombre-curso" placeholder="Nombre del curso" required>
+
+          <label for="profesor-curso">Profesor</label>
+          <select name="select-profesor" id="profesor">
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+            <option value="">Profesor</option>
+          </select>
+
+          <label for="fecha-inicio">Fecha De Inicio</label>
+          <input type="date" name="fecha-inicio" required>
+
+          <label for="fecha-fin">Fecha De Finalizacion</label>
+          <input type="date" name="fecha-fin" required>
+          
+          <label for="cupos">Total De Cupos</label>
+          <input type="text" name="cupos" placeholder="Total de cupos" required>
+
+          <label for="coste">Coste De Inscripcion</label>
+          <input type="text" name="coste" placeholder="Coste de inscripcion" required>
+
+          <button type="submit" name="btn-modal" class="btn">Crear</button>
+        </form>
+      </div>
     </article>
   </section>
   
