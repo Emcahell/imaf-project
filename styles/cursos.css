@@ -100,6 +100,7 @@ nav {
   gap: 20px;
   width: 100%;
   background: none;
+  margin-bottom: 20px;
   /* Elimina el max-height para que crezca según el contenido */
   max-height: 500px;
   overflow-y: auto; /* O auto si quieres scroll solo cuando sea necesario */
