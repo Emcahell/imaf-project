@@ -50,6 +50,7 @@ nav {
 .right-column {
   width: 80%;
   height: 80%;
+  padding-bottom: 30px;
 }
 
 .right-bottom {
@@ -107,6 +108,7 @@ nav {
   overflow-y: auto;
   overflow-x: hidden; /* Evita scroll horizontal */
   padding: 0 10px;
+  box-sizing: content-box;
 }
 
 .cards-area::-webkit-scrollbar {
@@ -193,7 +195,7 @@ nav {
   .cards-area {
     grid-template-columns: 1fr;
     max-width: 100vw;
-    max-height: 350px; /* Ajusta según lo que prefieras en mobile */
+    max-height: 55vh; /* Ajusta según lo que prefieras en mobile */
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 2px;
