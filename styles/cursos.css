@@ -109,6 +109,11 @@ nav {
 }
 
 /* Media querys */
+@media (max-width: 768px) {
+  .right-column {
+    height: 40vh;
+  }
+}
 
 @media (max-width: 768px) {
   .container {
