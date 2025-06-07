@@ -96,13 +96,16 @@ nav {
 /* //cards */
 .cards-area {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 1fr)
+  ); /* Mejor para tablets y mobile */
   gap: 20px;
   width: 100%;
   background: none;
-  /* Elimina el max-height para que crezca según el contenido */
   max-height: 500px;
-  overflow-y: auto; /* O auto si quieres scroll solo cuando sea necesario */
+  overflow-y: auto;
+  overflow-x: hidden; /* Evita scroll horizontal */
   padding: 0 10px;
 }
 
@@ -176,23 +179,36 @@ nav {
   cursor: pointer;
 }
 
+@media (max-width: 900px) {
+  .cards-area {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
 @media (max-width: 700px) {
   .right-column {
     height: auto;
     min-height: 0;
     padding: 20px 0px;
+    width: 100%;
   }
   .card-info {
     flex-direction: column;
     gap: 10px;
   }
-
   .cards-area {
     grid-template-columns: 1fr;
-    height: max-content;
-    max-height: 350px; /* Ajusta este valor según lo que prefieras en mobile */
+    max-width: 100vw;
+    max-height: 350px; /* Ajusta según lo que prefieras en mobile */
     overflow-y: auto;
-    padding: 0 4px;
+    overflow-x: hidden;
+    padding: 0 2px;
+  }
+  .card-cursos {
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -210,6 +226,12 @@ nav {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
+    height: auto !important;
+  }
+  .right-column {
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
   }
 
   .left-column {
@@ -222,10 +244,6 @@ nav {
   .left-column.active {
     max-height: 500px;
     padding: 20px;
-  }
-
-  .right-column {
-    width: 100%;
   }
 
   .menu-toggle {
@@ -247,6 +265,14 @@ nav {
 }
 
 @media (max-width: 550px) {
+  .cards-area {
+    padding: 0 1px;
+    gap: 10px;
+  }
+  .card-cursos {
+    padding: 10px 4px;
+  }
+
   body {
     position: relative;
   }
