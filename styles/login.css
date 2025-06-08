@@ -108,7 +108,7 @@
 
 
         .form-box button{
-            margin: 30px 0;
+            margin: 50px 0 30px 0;
             background-color: var(--color-pink-buttons);
             border: 0;
             border-radius: 24px;
@@ -163,6 +163,14 @@
         
         .links-social-media a svg:hover{
             fill: var(--color-pink-buttons);
+        }
+
+        .error {
+            position: absolute;
+            left: 5px;
+            bottom: -25px;
+            font-size: 0.9em;
+            color: var(--color-red-error);
         }
 
     /* MEDIA QUERYS */

@@ -20,7 +20,7 @@ form.addEventListener('submit', async (e) => {
   }
 
   try {
-    const response = await fetch('../../scripts/example-data/cedula.json');
+    const response = await fetch('../../scripts/example-data/cedulaAdmin.json');
     const data = await response.json();
     const listaCedula = data.validos;
 
