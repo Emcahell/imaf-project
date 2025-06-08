@@ -105,6 +105,7 @@ h1 {
 .btn {
   width: 100%;
   padding: 16px 0;
+  margin-top: 20px;
   border-radius: var(--border-radius-login);
   border: none;
   background-color: var(--color-pink-buttons);
@@ -142,6 +143,14 @@ a:hover {
   max-height: 90%;
   align-self: flex-end;
   margin-right: 20px;
+}
+
+.error {
+  position: absolute;
+  left: 5px;
+  bottom: -15px;
+  font-size: 0.9em;
+  color: var(--color-red-error);
 }
 
 /* MEDIA QUERIES */
