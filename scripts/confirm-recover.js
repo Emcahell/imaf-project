@@ -22,9 +22,9 @@ form.addEventListener('submit', async (e) => {
   try {
     const response = await fetch('../../scripts/example-data/cedulaAdmin.json');
     const data = await response.json();
-    const listaCedula = data.validos;
+    // const listaCedula = data.validos;
 
-    if (!listaCedula.includes(cedula)) {
+    if (!data.includes(cedula)) {
       errorP.textContent = 'La cédula es incorrecta.';
       return;
     }
