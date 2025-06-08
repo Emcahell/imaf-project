@@ -130,37 +130,46 @@
         <div class="title-modal-crear">
           <h1>Crear Curso</h1>
         </div>
-        <form action="" class="form-modal-curso">
-          <label for="nombre-curso">Nombre Del Curso</label>
-          <input type="text" id="nombre-curso" name="nombre-curso" placeholder="Nombre del curso" required>
+        
+        <form action="" class="form-modal">
+          <div class="left-content-modal">
+            <div class="data-modal">
+              <label for="nombre">Nombre</label>
+              <input type="text" name="nombre-curso" placeholder="Nombre del curso">
+            </div>
+            <div class="data-modal">
+              <label for="profesor">Profesor</label>
+              <select name="profesor-curso" id="profesor-curso">
+                <option value="" disabled selected>Selecciona un profesor</option>
+                <option value="profesor1">Profesor 1</option>
+                <option value="profesor2">Profesor 2</option>
+                <option value="profesor3">Profesor 3</option>
+                <option value="profesor4">Profesor 4</option>
+                <option value="profesor5">Profesor 5</option>
+              </select>
+            </div>
+            <div class="data-modal">
+              <label for="fecha-inicio">Fecha De Inicio</label>
+              <input type="date" name="fecha-inicio-curso">
+            </div>
+          </div>
 
-          <label for="profesor-curso">Profesor</label>
-          <select name="select-profesor" id="profesor">
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-            <option value="">Profesor</option>
-          </select>
+          <div class="right-content-modal">
+            <div class="data-modal">
+              <label for="fecha-fin">Fecha De Finalizacion</label>
+              <input type="date" name="fecha-fin-curso">
+            </div>
+            <div class="data-modal">
+              <label for="cupos">Cupos</label>
+              <input type="number" name="cupos-curso" placeholder="Cantidad de cupos">
+            </div>
+            <div class="data-modal">
+              <label for="precio-curso">Precio Del Curso</label>
+              <input type="number" name="precio-curso" placeholder="Precio del curso">
+            </div>
+          </div>
 
-          <label for="fecha-inicio">Fecha De Inicio</label>
-          <input type="date" name="fecha-inicio" required>
-
-          <label for="fecha-fin">Fecha De Finalizacion</label>
-          <input type="date" name="fecha-fin" required>
-          
-          <label for="cupos">Total De Cupos</label>
-          <input type="text" name="cupos" placeholder="Total de cupos" required>
-
-          <label for="coste">Coste De Inscripcion</label>
-          <input type="text" name="coste" placeholder="Coste de inscripcion" required>
-
-          <button type="submit" name="btn-modal" class="btn">Crear</button>
+          <button type="submit" name="btn-modal" class="btn-modal">Crear</button>
         </form>
       </div>
     </article>
