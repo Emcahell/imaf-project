@@ -40,7 +40,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
       {
         cedulas: await (await fetch('../../scripts/example-data/cedulaUsuario.json')).json(),
         passwords: await (await fetch('../../scripts/example-data/passwordUsuario.json')).json(),
-        redirect: './pages/admin/usuarios.html'
+        redirect: './pages/user/cursos.html'
       }
     ];
 
