@@ -78,6 +78,40 @@ nav {
   color: var(--color-pink-hover);
 }
 
+.dashboard-options button.active {
+  font-weight: bold;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: #444;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-right: 24px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.2s;
+}
+
+.tab-btn.active {
+  color: #ff4fa3;
+  font-weight: bold;
+}
+
+.tab-btn.active::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #ff4fa3;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+}
+
 .label-box {
   margin-bottom: 10px;
 }
@@ -121,7 +155,7 @@ nav {
   border-radius: 20px;
 }
 
-.card-cursos {
+.card-style {
   display: flex;
   align-items: flex-start;
   background: #fff;
@@ -136,13 +170,13 @@ nav {
   height: auto;
 }
 
-.card-cursos svg {
+.card-style svg {
   width: 12px;
   height: auto;
   fill: var(--color-gray-titles);
 }
 
-.card-cursos:hover {
+.card-style:hover {
   box-shadow: 0 4px 16px #0002;
 }
 
@@ -181,6 +215,12 @@ nav {
   cursor: pointer;
 }
 
+.card-activos {
+}
+
+.card-profesores {
+}
+
 @media (max-width: 700px) {
   .right-column {
     height: auto;
@@ -200,7 +240,7 @@ nav {
     overflow-x: hidden;
     padding: 0 2px;
   }
-  .card-cursos {
+  .card-style {
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
@@ -264,7 +304,7 @@ nav {
     padding: 0 1px;
     gap: 10px;
   }
-  .card-cursos {
+  .card-style {
     padding: 10px 4px;
   }
 
