@@ -396,6 +396,9 @@ nav {
 }
 
 @media (max-width: 480px) {
+  .cards-area{
+    max-height: 370px;
+  }
   .edit-modal {
     top: 30px;
     right: 10px;
@@ -404,9 +407,12 @@ nav {
 }
 
 @media (max-width: 380px) {
+<<<<<<< HEAD
   .cards-area {
     max-height: 50vh;
   }
+=======
+>>>>>>> f742f4d4fc4f94e379865f0e56fb7000f523d276
   nav ul {
     gap: 0;
   }
