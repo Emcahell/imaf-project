@@ -397,7 +397,7 @@ nav {
 
 @media (max-width: 480px) {
   .cards-area {
-    max-height: 30vh;
+    max-height: 50vh;
   }
   .edit-modal {
     top: 30px;
