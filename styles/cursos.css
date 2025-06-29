@@ -310,7 +310,7 @@ nav {
   .cards-area {
     padding: 0 1px;
     gap: 10px;
-    max-height: 50vh;
+    max-height: 25vh !important;
   }
   .card-style {
     padding: 10px 4px;
@@ -396,8 +396,8 @@ nav {
 }
 
 @media (max-width: 480px) {
-  .cards-area{
-    max-height: 370px;
+  .cards-area {
+    max-height: 30vh;
   }
   .edit-modal {
     top: 30px;
@@ -407,12 +407,9 @@ nav {
 }
 
 @media (max-width: 380px) {
-<<<<<<< HEAD
   .cards-area {
-    max-height: 50vh;
+    max-height: 40vh;
   }
-=======
->>>>>>> f742f4d4fc4f94e379865f0e56fb7000f523d276
   nav ul {
     gap: 0;
   }
