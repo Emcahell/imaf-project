@@ -310,7 +310,7 @@ nav {
   .cards-area {
     padding: 0 1px;
     gap: 10px;
-    max-height: 25vh !important;
+    max-height: 30vh !important;
   }
   .card-style {
     padding: 10px 4px;
