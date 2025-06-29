@@ -138,7 +138,7 @@ nav {
   gap: 20px;
   width: 100%;
   background: none;
-  max-height: 500px;
+  max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden; /* Evita scroll horizontal */
   padding: 0 10px;
