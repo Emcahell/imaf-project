@@ -191,11 +191,11 @@
             max-width: 100%;
             max-height: 100%;
             opacity: 1;
-            transition: opacity .5s ease-in-out;
+            transition: opacity .3s ease-in-out;
           }
           #login-content {
             opacity: 0;
-            transition: opacity .5s ease-in-out;
+            transition: opacity .3s ease-in-out;
           }
           .video-fade-out {
             opacity: 0 !important;
