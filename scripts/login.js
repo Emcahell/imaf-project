@@ -68,29 +68,43 @@ document.getElementById('form').addEventListener('submit', async (e) => {
     alert('Error al verificar credenciales.');
   }
 
-  //   const cedulasValidas = await cedulasRes.json();
-  //   const passwordsValidas = await passwordsRes.json();
 
-  //   const listaCedula = cedulasValidas.validos;
-  //   const listaPassword = passwordsValidas.validos;
+});
 
-  //   const cedulaCorrecta = listaCedula.includes(cedula);
-  //   const passwordCorrecta = listaPassword.includes(password);
-
-  //   if (!cedulaCorrecta) {
-  //     errorCedula.textContent = 'Cédula incorrecta.';
-  //   }
-
-  //   if (!passwordCorrecta) {
-  //     errorPassword.textContent = 'Contraseña incorrecta.';
-  //   }
-
-  //   if (cedulaCorrecta && passwordCorrecta) {
-  //     window.location.href = './pages/admin/usuarios.html';
-  //   }
-
-  // } catch (err) {
-  //   console.error('Error cargando archivos JSON', err);
-  //   alert('Ocurrió un error al verificar las credenciales.');
-  // }
+document.addEventListener('DOMContentLoaded', function() {
+  const videoContainer = document.getElementById('video-container');
+  const video = document.getElementById('intro-video');
+  const loginContent = document.getElementById('login-content');
+  
+  // Verificar si ya se mostró el video en esta sesión
+  if(sessionStorage.getItem('videoShown') !== 'true') {
+    // Mostrar video solo si es la primera vez en esta sesión
+    video.play();
+    
+    video.addEventListener('ended', function() {
+      // Primero: animación de fade out del video
+      videoContainer.classList.add('video-fade-out');
+      
+      // Esperar a que termine la animación de fade out
+      setTimeout(() => {
+        // Ocultar completamente el video
+        videoContainer.classList.add('hidden');
+        
+        // Mostrar el login con fade in
+        loginContent.classList.add('login-fade-in');
+        
+        // Guardar en sesión que ya se mostró el video
+        sessionStorage.setItem('videoShown', 'true');
+      }, 800); // 800ms = duración de la animación de fade out
+    });
+  } else {
+    // Si ya se mostró el video, ir directamente al login
+    videoContainer.classList.add('hidden');
+    loginContent.classList.add('login-fade-in');
+  }
+  
+  // Precargar el video para caché
+  const videoPreload = document.createElement('video');
+  videoPreload.src = './assets/intro-video.mp4';
+  videoPreload.preload = 'auto';
 });
