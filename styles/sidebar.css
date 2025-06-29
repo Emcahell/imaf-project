@@ -63,7 +63,7 @@ nav svg {
   }
 }
 
-@media (max-width:617px) {
+@media (max-width: 617px) {
   body {
     position: relative;
   }
@@ -71,10 +71,6 @@ nav svg {
   section {
     flex-direction: column;
     align-items: center;
-  }
-
-  .box-contenido {
-    height: 800px;
   }
 
   .sidebar {
@@ -116,7 +112,7 @@ nav svg {
   .li-location {
     border-left: none;
   }
-  
+
   nav a {
     display: flex;
     flex-direction: column;
@@ -144,7 +140,7 @@ nav svg {
   }
 }
 
-@media (max-width:380px) {
+@media (max-width: 380px) {
   nav ul {
     gap: 0;
   }

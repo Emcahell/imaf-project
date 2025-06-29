@@ -96,7 +96,7 @@ nav {
 }
 
 .tab-btn.active {
-  color: #ff4fa3;
+  color: var(--color-pink-hover);
   font-weight: bold;
 }
 
@@ -105,7 +105,7 @@ nav {
   display: block;
   height: 4px;
   width: 100%;
-  background: #ff4fa3;
+  background: var(--color-pink-hover);
   border-radius: 2px;
   position: absolute;
   left: 0;
@@ -138,7 +138,7 @@ nav {
   gap: 20px;
   width: 100%;
   background: none;
-  max-height: 400px;
+  max-height: 50vh;
   overflow-y: auto;
   overflow-x: hidden; /* Evita scroll horizontal */
   padding: 0 10px;
@@ -310,6 +310,7 @@ nav {
   .cards-area {
     padding: 0 1px;
     gap: 10px;
+    max-height: 50vh;
   }
   .card-style {
     padding: 10px 4px;
@@ -324,9 +325,9 @@ nav {
     align-items: center;
   }
 
-  .box-contenido {
+  /* .box-contenido {
     height: 800px;
-  }
+  } */
 
   .sidebar {
     position: fixed;
@@ -403,8 +404,8 @@ nav {
 }
 
 @media (max-width: 380px) {
-  .cards-area{
-    max-width: 60vh;
+  .cards-area {
+    max-height: 50vh;
   }
   nav ul {
     gap: 0;
