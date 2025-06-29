@@ -404,7 +404,7 @@ nav {
 
 @media (max-width: 380px) {
   .cards-area{
-    max-height: 55vh;
+    max-height: 350px;
   }
   nav ul {
     gap: 0;
