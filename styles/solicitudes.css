@@ -170,7 +170,7 @@ section {
     height: max-content;
   }
   .contenido {
-    max-height: 40vh;
+    max-height: 45vh;
   }
 }
 @media (max-width: 660px) {
