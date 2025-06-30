@@ -137,7 +137,7 @@ nav {
   gap: 20px;
   width: 100%;
   background: none;
-  height: 58vh;
+  height: 57vh;
   overflow-y: auto;
   overflow-x: hidden; /* Evita scroll horizontal */
   padding: 0 10px;
@@ -240,8 +240,8 @@ nav {
   }
   .cards-area {
     grid-template-columns: 1fr;
-    /* max-width: 100vw;
-    max-height: 55vh; Ajusta según lo que prefieras en mobile */
+    max-width: 100vw;
+    max-height: 55vh; /* Ajusta según lo que prefieras en mobile */
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 2px;
@@ -309,7 +309,7 @@ nav {
   .cards-area {
     padding: 0 1px;
     gap: 10px;
-    /* max-height: 50vh; */
+    max-height: 50vh;
   }
   .card-style {
     padding: 10px 4px;
@@ -395,9 +395,9 @@ nav {
 }
 
 @media (max-width: 480px) {
-  /* .cards-area {
+  .cards-area {
     max-height: 50vh;
-  } */
+  }
   .edit-modal {
     top: 30px;
     right: 10px;
@@ -406,9 +406,9 @@ nav {
 }
 
 @media (max-width: 380px) {
-  /* .cards-area {
+  .cards-area {
     max-height: 40vh;
-  } */
+  }
   nav ul {
     gap: 0;
   }
