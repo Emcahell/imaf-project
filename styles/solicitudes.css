@@ -71,8 +71,27 @@ section {
 }
 
 .contenido {
+  display: grid;
   width: 100%;
   height: 60vh;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 1fr)
+  ); /* Mejor para tablets y mobile */
+  gap: 20px;
+  overflow-y: auto;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  box-sizing: content-box;
+}
+
+.contenido::-webkit-scrollbar {
+  margin-left: 10px;
+  width: 5px;
+  background-color: var(--color-light-pink-shadow);
+}
+.contenido::-webkit-scrollbar-thumb {
+  background: var(--color-wine);
+  border-radius: 20px;
 }
 
 .card-style {
@@ -142,13 +161,22 @@ section {
   cursor: pointer;
 }
 
-@media (max-width: 495px) {
+@media (max-width: 718px) {
+  .filter button {
+    font-size: 2vw;
+  }
+  .card-style {
+    padding: 10px 4px;
+    height: max-content;
+  }
+}
+@media (max-width: 660px) {
   .filter {
     display: flex;
     gap: 10px;
   }
   .filter button {
-    font-size: 3.5vw;
+    font-size: 2.5vw;
 
     margin-right: 0;
   }
@@ -158,5 +186,11 @@ section {
   }
   .card-style {
     padding: 10px 4px;
+  }
+}
+
+@media (max-width: 616px) {
+  .filter button {
+    font-size: 3.5vw;
   }
 }
