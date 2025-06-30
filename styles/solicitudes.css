@@ -169,9 +169,6 @@ section {
     padding: 10px 4px;
     height: max-content;
   }
-  .contenido {
-    max-height: 45vh;
-  }
 }
 @media (max-width: 660px) {
   .filter {
