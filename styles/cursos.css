@@ -313,6 +313,7 @@ nav {
   }
   .card-style {
     padding: 10px 4px;
+    height: max-content;
   }
 
   body {
