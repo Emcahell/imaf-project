@@ -1,0 +1,36 @@
+.btn-finalizar {
+  background-color: lightgreen;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+  width: 100%;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all .1s;
+  cursor: pointer;
+}
+
+.btn-finalizar:hover {
+  background-color: rgb(112, 214, 112);
+}
+
+.card-info {
+  position: relative;
+}
+
+.wasa {
+  position: absolute;
+  bottom: -35px;
+  right: 5px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background-color: lightgreen;
+  color: black;
+}
