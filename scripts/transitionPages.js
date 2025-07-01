@@ -13,7 +13,7 @@ document.querySelectorAll('a').forEach(link => {
         document.body.style.opacity = '0';
         setTimeout(() => {
           window.location.href = this.href;
-        }, 100);
+        }, 60);
       }
     });
   }
