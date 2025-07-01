@@ -221,12 +221,6 @@ nav {
   cursor: pointer;
 }
 
-.card-activos {
-}
-
-.card-profesores {
-}
-
 @media (max-width: 700px) {
   .right-column {
     height: auto;
