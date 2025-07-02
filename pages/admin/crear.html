@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../styles/header.css" />
     <link rel="stylesheet" href="../../styles/sidebar.css" />
     <link rel="stylesheet" href="../../styles/crear.css" />
-    <link rel="stylesheet" href="../../styles/transitionPages.css">
+    <link rel="stylesheet" href="../../styles/transitionPages.css" />
     <script src="../../scripts/transitionPages.js" defer></script>
     <script src="../../scripts/header.js" defer></script>
   </head>
@@ -158,174 +158,22 @@
         </article>
 
         <article class="box-contenido">
-          <form action="" name="form-crear" class="form-crear">
-            <h1>Crear</h1>
-
-            <div class="cards-box" id="open-modal-curso">
-              <div class="card">
-                <div class="card-img">
-                  <img
-                    src="/assets/images/imagen-cursos.png"
-                    alt="imagen cursos"
-                  />
-                </div>
-                <div class="card-title">
-                  <h2>Cursos</h2>
-                </div>
-              </div>
-              <div class="card" id="open-modal-profesor">
-                <div class="card-img">
-                  <img
-                    src="/assets/images/profesor-posando.png"
-                    alt="imagen profesor"
-                  />
-                </div>
-                <div class="card-title">
-                  <h2>Profesor</h2>
-                </div>
-              </div>
+          <h1>Crear</h1>
+          <div class="selection-box-card">
+            <div class="card-box">
+              <img
+                src="/assets/images/imagen-cursos.png"
+                alt="imagen sobre cursos"
+              />
+              <span>Cursos</span>
             </div>
-          </form>
-
-          <div class="modal-crear-curso none" id="modal-curso">
-            <div class="close-modal-crear">
-              <svg
-                class="close-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
-                id="close-curso"
-              >
-                <!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-                />
-              </svg>
+            <div class="card-box">
+              <img
+                src="/assets/images/profesor-posando.png"
+                alt="imagen de un profesor posando"
+              />
+              <span>Profesor</span>
             </div>
-
-            <div class="title-modal-crear">
-              <h1>Crear Curso</h1>
-            </div>
-
-            <form action="" class="form-modal">
-              <div class="left-content-modal">
-                <div class="data-modal">
-                  <label for="nombre">Nombre</label>
-                  <input
-                    type="text"
-                    name="nombre-curso"
-                    placeholder="Nombre del curso"
-                  />
-                </div>
-                <div class="data-modal">
-                  <label for="profesor">Profesor</label>
-                  <select name="profesor-curso" id="profesor-curso">
-                    <option value="" disabled selected>
-                      Selecciona un profesor
-                    </option>
-                    <option value="profesor1">Profesor 1</option>
-                    <option value="profesor2">Profesor 2</option>
-                    <option value="profesor3">Profesor 3</option>
-                    <option value="profesor4">Profesor 4</option>
-                    <option value="profesor5">Profesor 5</option>
-                  </select>
-                </div>
-                <div class="data-modal">
-                  <label for="fecha-inicio">Fecha De Inicio</label>
-                  <input type="date" name="fecha-inicio-curso" />
-                </div>
-              </div>
-
-              <div class="right-content-modal">
-                <div class="data-modal">
-                  <label for="fecha-fin">Fecha De Finalizacion</label>
-                  <input type="date" name="fecha-fin-curso" />
-                </div>
-                <div class="data-modal">
-                  <label for="cupos">Cupos</label>
-                  <input
-                    type="number"
-                    name="cupos-curso"
-                    placeholder="Cantidad de cupos"
-                  />
-                </div>
-                <div class="data-modal">
-                  <label for="precio-curso">Precio Del Curso</label>
-                  <input
-                    type="number"
-                    name="precio-curso"
-                    placeholder="Precio del curso"
-                  />
-                </div>
-              </div>
-
-              <button type="submit" name="btn-modal" class="btn-modal">
-                Crear
-              </button>
-            </form>
-          </div>
-
-          <div class="modal-crear-profesor none" id="modal-profesor">
-            <div class="close-modal-crear">
-              <svg
-                class="close-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
-                id="close-profesor"
-              >
-                <!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-                />
-              </svg>
-            </div>
-
-            <div class="title-modal-crear">
-              <h1>Crear Curso</h1>
-            </div>
-
-            <form action="" class="form-modal">
-              <div class="left-content-modal">
-                <div class="data-modal">
-                  <label for="nombre-profesor">Nombre</label>
-                  <input
-                    type="text"
-                    name="nombre-profesor"
-                    placeholder="Nombre del Profesor"
-                  />
-                </div>
-                <div class="data-modal">
-                  <label for="cedula-profesor">Cedula</label>
-                  <input
-                    type="text"
-                    name="cedula-profesor"
-                    placeholder="Cedula del profesor"
-                  />
-                </div>
-              </div>
-
-              <div class="right-content-modal">
-                <div class="data-modal">
-                  <label for="contraseña-profesor">Contraseña</label>
-                  <input
-                    type="password"
-                    name="contraseña-profesor"
-                    placeholder="Contraseña del profesor"
-                  />
-                </div>
-                <div class="data-modal">
-                  <label for="telefono-profesor">Telefono</label>
-                  <input
-                    type="number"
-                    name="telefono-profesor"
-                    placeholder="Cantidad de cupos"
-                  />
-                </div>
-              </div>
-
-              <button type="submit" name="btn-modal" class="btn-modal">
-                Crear
-              </button>
-            </form>
           </div>
         </article>
       </section>
