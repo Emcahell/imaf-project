@@ -61,7 +61,7 @@ section {
 
 .card-box {
   width: 320px;
-  height: 340px;
+  height: 300px;
   overflow: hidden;
   border-radius: 20px;
   border: 2px solid var(--color-gray-borders);
@@ -96,5 +96,5 @@ section {
   cursor: pointer;
   transform: scale(1.05);
   transition: transform .8s ease;
-  box-shadow: 0 0 20px var(--color-pink-hover);
+  box-shadow: 0 0 10px var(--color-wine);
 }
