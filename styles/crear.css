@@ -96,6 +96,11 @@ section {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
 }
 
 .modal-icon{
@@ -115,5 +120,75 @@ section {
 
 .closed-modal:hover{
   fill: var(--color-pink-hover);
+  transform: scale(1.1);
+  transition: transform .3s ease;
 }
 
+.form-crear-curso {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-crear-curso .modal-title {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-crear-curso .modal-title h2 {
+  font-size: 2rem;
+  color: var(--color-wine);
+}
+
+.form-group {
+  width: 300px;
+  height: auto;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  color: var(--color-wine);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 40px;
+  border: 2px solid var(--color-gray-borders);
+  border-radius: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: var(--color-gray-text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline-color: var(--color-wine);
+}
+
+.btn-modal {
+  width: 50%;
+  height: 50px;
+  background: var(--color-wine);
+  color: var(--background-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
