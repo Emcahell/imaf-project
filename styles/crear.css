@@ -177,6 +177,10 @@ section {
   color: var(--color-gray-text);
 }
 
+.form-group select{
+  background: #fff;
+}
+
 .form-group input:focus,
 .form-group select:focus {
   outline-color: var(--color-wine);
