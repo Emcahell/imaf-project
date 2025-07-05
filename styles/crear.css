@@ -186,6 +186,32 @@ section {
   outline-color: var(--color-wine);
 }
 
+.form-group input[type="file"] {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  border: 2px solid var(--color-gray-borders);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.form-group input[type="file"]::file-selector-button {
+  background: var(--color-wine);
+  color: var(--background-color);
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+  background: var(--color-pink-hover);
+  transform: scale(1.05);
+  transition: transform .3s ease;
+}
+
 .btn-modal {
   width: 50%;
   height: 50px;
