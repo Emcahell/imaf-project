@@ -158,7 +158,7 @@
         </article>
 
         <article class="box-contenido">
-          <!-- <div class="selection-box-card">
+          <div class="selection-box-card">
             <div class="card-box">
               <img
                 src="/assets/images/imagen-cursos.png"
@@ -173,7 +173,7 @@
               />
               <span>Profesor</span>
             </div>
-          </div> -->
+          </div>
 
           <div class="modal-cursos modal-none" id="modal-cursos">
             <div class="modal-icon">
@@ -231,6 +231,55 @@
               </div>
             </form>
             <button class="btn-modal" type="submit">Crear</button>
+          </div>
+
+          <div class="modal-profesor modal-none" id="modal-profesor">
+            <div class="modal-icon">
+              <svg class="closed-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+            </div>
+            
+            <form action="" class="form-crear-profesor" id="form-crear-profesor">
+              <div class="modal-title">
+                <h2>Crear Profesor</h2>
+              </div>
+              <div class="form-group">
+                <label for="nombre-profesor">Nombre</label>
+                <input type="text" name="nombre-profesor" id="nombre-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="apellido-profesor">Apellido</label>
+                <input type="text" name="apellido-profesor" id="apellido-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="cedula-profesor">Cedula</label>
+                <input type="number" name="cedula-profesor" id="cedula-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="fecha-nacimiento">Fecha Nacimiento</label>
+                <input type="date" name="fecha-nacimiento" id="fecha-nacimiento" required>
+              </div>
+              <div class="form-group">
+                <label for="usuario-profesor">Usuario</label>
+                <input type="text" name="usuario-profesor" id="usuario-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="contraseña-profesor">Contraseña</label>
+                <input type="password" name="contraseña-profesor" id="contraseña-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="correo-profesor">Correo</label>
+                <input type="email" name="correo-profesor" id="correo-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="telefono-profesor">Telefono</label>
+                <input type="number" name="telefono-profesor" id="telefono-profesor" required>
+              </div>
+              <div class="form-group">
+                <label for="imagen-profesor">Imagen del Profesor</label>
+                <input type="file" name="imagen-profesor" id="imagen-profesor" accept="image/*" required>
+              </div>
+            </form>
+            <button type="submit" class="btn-modal">Crear</button>
           </div>
         </article>
       </section>
