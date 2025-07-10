@@ -194,6 +194,9 @@ header {
 /* Media querys */
 
 @media (max-width:600px) {
+  header {
+    margin: 20px 0 60px 0;
+  }
   .notification-modal {
     position: absolute;
     top: 60px;

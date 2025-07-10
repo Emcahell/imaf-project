@@ -282,3 +282,41 @@ section {
 .modal-none {
   display: none;
 }
+
+/* Media Querys */
+
+@media (max-width: 478px) {
+  .box-contenido {
+    height: 500px;
+  }
+  .selection-box-card {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .modal-cursos,
+  .modal-profesor {
+    position: absolute;
+    top: -40px;
+    left: -20px;    
+    width: 100vw;
+    height: auto;
+    padding-bottom: 150px;
+    background-color: #fff;
+    gap: 50px;
+  }
+
+  .form-group {
+    align-items: start !important;
+    gap: 10px;
+  }
+
+  .form-group label {
+    margin-left: 12px;
+  }
+
+  .btn-modal {
+    width: 80%;
+  }
+}
