@@ -1,4 +1,4 @@
-document.getElementById('form').addEventListener('submit', function (e) {
+document.getElementById('form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const cedula = document.getElementById('input-cedula').value.trim();
@@ -41,18 +41,42 @@ document.getElementById('form').addEventListener('submit', function (e) {
 
   // Si todo está bien
 if (valido) {
-  Swal.fire({
-    icon: 'success',
-    title: "Registro exitoso",
-    text: "Puedes iniciar sesión",
-    confirmButtonText: 'Aceptar'
-}).then(() => {
-    // setTimeout(() => {
-      window.location.href = "../index.html";
-  // }, 1000);
-});
-}
+  try{
+    const response = await fetch('aqui metes el enlace al php bro', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        cedula: cedula,
+        contraseña: password,
+        correo: correo
+      })
+    });
 
+    const data = await response.json();
+
+    if (response.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: "Registro exitoso",
+        text: "Puedes iniciar sesión",
+        confirmButtonText: 'Aceptar'
+    }).then(() => {
+          window.location.href = "../index.html";
+    });
+    } else {
+      throw new Error(data.message || 'Error al registrar');
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: error.message || 'Ocurrió un error al registrar',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+}
 });
 
 
