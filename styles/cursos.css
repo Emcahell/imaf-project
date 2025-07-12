@@ -297,6 +297,11 @@ nav {
   nav li {
     padding: 0 11px;
   }
+  .card-style {
+    padding: 30px 26px;
+    display: flex;
+    gap: 16px;
+  }
 }
 
 @media (max-width: 550px) {
@@ -305,10 +310,10 @@ nav {
     gap: 10px;
     max-height: 50vh;
   }
-  .card-style {
+  /* .card-style {
     padding: 10px 4px;
     height: max-content;
-  }
+  } */
 
   body {
     position: relative;
