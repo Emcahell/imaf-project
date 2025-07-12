@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +17,8 @@
   <div class="box-center">
     <img src="../assets/recursos/logo-imaf.png" alt="logo-imaf" class="logo-img" />
 
-    <form action="#" name="formRegister" class="form" id="form">
+    
+     <form method="POST" action="#" name="formRegister" class="form" id="form">
       <div class="form-title">
         <h1>Registrarse</h1>
       </div>
@@ -61,6 +64,11 @@
   </div>
   <img class="img-modelo" src="../assets/images/model-register.png" alt="mujer-posando-con-un-telefono-en-la-mano">
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+
+   <?php
+include("../backend/registrar.php");
+?>
+
 </body>
 </html>
