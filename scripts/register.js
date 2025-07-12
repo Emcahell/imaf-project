@@ -1,74 +1,72 @@
-document.getElementById('form').addEventListener('submit', function (e) {
+document.getElementById("form").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const cedula = document.getElementById('input-cedula').value.trim();
-  const password = document.getElementById('input-password').value.trim();
-  const correo = document.getElementById('input-email').value.trim();
+  const cedula = document.getElementById("input-cedula").value.trim();
+  const password = document.getElementById("input-password").value.trim();
+  const correo = document.getElementById("input-email").value.trim();
 
-  const errorCedula = document.getElementById('error-cedula');
-  const errorPassword = document.getElementById('error-password');
-  const errorCorreo = document.getElementById('error-email');
+  const errorCedula = document.getElementById("error-cedula");
+  const errorPassword = document.getElementById("error-password");
+  const errorCorreo = document.getElementById("error-email");
 
-  errorCedula.textContent = '';
-  errorPassword.textContent = '';
-  errorCorreo.textContent = '';
+  errorCedula.textContent = "";
+  errorPassword.textContent = "";
+  errorCorreo.textContent = "";
 
   let valido = true;
 
-  if (cedula === '') {
-    errorCedula.textContent = 'La cédula no puede estar vacía.';
+  if (cedula === "") {
+    errorCedula.textContent = "La cédula no puede estar vacía.";
     valido = false;
   } else if (!/^\d{7,}$/.test(cedula)) {
-    errorCedula.textContent = 'La cédula debe tener al menos 7 números.';
+    errorCedula.textContent = "La cédula debe tener al menos 7 números.";
     valido = false;
   }
 
-  if (password === '') {
-    errorPassword.textContent = 'La contraseña no puede estar vacía.';
+  if (password === "") {
+    errorPassword.textContent = "La contraseña no puede estar vacía.";
     valido = false;
   } else if (!/^[a-zA-Z0-9\*]+$/.test(password)) {
-    errorPassword.textContent = 'La contraseña solo puede contener letras, números y el asterisco (*).';
+    errorPassword.textContent =
+      "La contraseña solo puede contener letras, números y el asterisco (*).";
     valido = false;
   }
 
-  if (correo === '') {
-    errorCorreo.textContent = 'El correo no puede estar vacío.';
+  if (correo === "") {
+    errorCorreo.textContent = "El correo no puede estar vacío.";
     valido = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
-    errorCorreo.textContent = 'El correo no es válido.';
+    errorCorreo.textContent = "El correo no es válido.";
     valido = false;
   }
 
   // Si todo está bien
-if (valido) {
-  Swal.fire({
-    icon: 'success',
-    title: "Registro exitoso",
-    text: "Puedes iniciar sesión",
-    confirmButtonText: 'Aceptar'
-}).then(() => {
-    // setTimeout(() => {
+  if (valido) {
+    Swal.fire({
+      icon: "success",
+      title: "Registro exitoso",
+      text: "Puedes iniciar sesión",
+      confirmButtonText: "Aceptar",
+    }).then(() => {
+      // setTimeout(() => {
       window.location.href = "../index.html";
-  // }, 1000);
+      // }, 1000);
+    });
+  }
 });
-}
-
-});
-
 
 // Fade in del body
-document.addEventListener('DOMContentLoaded', function() {
-  document.body.style.opacity = '1';
+document.addEventListener("DOMContentLoaded", function () {
+  document.body.style.opacity = "1";
 });
 
 // Fade out antes de cambiar de página
-document.querySelectorAll('a').forEach(link => {
+document.querySelectorAll("a").forEach((link) => {
   if (link.href && !link.hash) {
-    link.addEventListener('click', function(e) {
-
+    link.addEventListener("click", function (e) {
       if (this.href.includes(window.location.hostname)) {
         e.preventDefault();
-        document.body.style.opacity = '0';
+        document.body.style.opacity = "0";
         setTimeout(() => {
           window.location.href = this.href;
         }, 300);
