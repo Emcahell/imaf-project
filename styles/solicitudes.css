@@ -38,8 +38,6 @@ section {
   width: 100%;
   height: auto;
   margin: 0 20px;
-  /* background-color: lightcoral; */
-  border: 1px solid var(--color-gray-borders);
 }
 
 .filter {
@@ -71,9 +69,17 @@ section {
 }
 
 .contenido {
+  width: 100%;
+  height: 60vh;
+  overflow-y: hidden;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  box-sizing: content-box;
+}
+
+.box-cards {
   display: grid;
   width: 100%;
-  height: 58vh;
+  height: 100%;
   grid-template-columns: repeat(
     auto-fit,
     minmax(350px, 1fr)
@@ -84,12 +90,12 @@ section {
   box-sizing: content-box;
 }
 
-.contenido::-webkit-scrollbar {
+.box-cards::-webkit-scrollbar {
   margin-left: 10px;
   width: 5px;
   background-color: var(--color-light-pink-shadow);
 }
-.contenido::-webkit-scrollbar-thumb {
+.box-cards::-webkit-scrollbar-thumb {
   background: var(--color-wine);
   border-radius: 20px;
 }
@@ -161,6 +167,19 @@ section {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.filter button.button-active {
+  color: var(--color-pink-hover);
+  border-bottom: 5px solid var(--color-pink-hover);
+}
+
 @media (max-width: 718px) {
   .filter button {
     font-size: 2vw;
@@ -185,7 +204,9 @@ section {
     gap: 10px;
   }
   .card-style {
-    padding: 10px 4px;
+    padding: 30px 26px;
+    display: flex;
+    gap: 16px;
   }
 }
 
