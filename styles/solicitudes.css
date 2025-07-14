@@ -251,6 +251,9 @@ section {
 
     margin-right: 0;
   }
+  .card-img {
+    margin-bottom: 18px;
+  }
   .card-info {
     flex-direction: column;
     gap: 10px;
@@ -260,9 +263,14 @@ section {
     display: flex;
     gap: 16px;
   }
+  .card-field {
+    font-size: 16px;
+
+  }
   .title-c {
     top: 0;
     left: -112px;
+    font-size: 12px;
   }
 }
 
