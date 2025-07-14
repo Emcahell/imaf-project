@@ -102,14 +102,15 @@ section {
 
 .card-style {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
   background: #fff;
   border: 1px solid var(--color-gray-borders, #bbb);
   border-radius: 12px;
   padding: 18px 20px;
   box-sizing: border-box;
   box-shadow: 0 2px 8px #0001;
-  min-height: 140px;
+  min-height: 180px;
   transition: box-shadow 0.2s;
   max-width: 100%;
   height: auto;
@@ -126,12 +127,13 @@ section {
 }
 
 .card-img {
+  position: relative;
   width: 80px;
-  height: 80px;
+  height: 100px;
   background: #80003c;
   border-radius: 10px;
   flex-shrink: 0;
-  margin-right: 16px;
+  margin-right: 10px;
   align-self: center;
 }
 
@@ -145,6 +147,7 @@ section {
 .card-info {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   width: 100%;
   align-self: center;
 }
@@ -152,7 +155,7 @@ section {
 .card-col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .card-field {
@@ -165,6 +168,55 @@ section {
 .icon-field svg {
   margin-right: 8px;
   cursor: pointer;
+}
+
+.title-c {
+  position: absolute;
+  bottom: -22px;
+  font-size: 10px;
+}
+
+.box-buttons {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.aprobar {
+  border: none;
+  background-color: #18ac0adc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.rechazar {
+  border: none;
+  background-color: #da0909dc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.aprobar:hover {
+  background-color: #11ce00dc;
+}
+.rechazar:hover {
+  background-color: #ff0000dc;
+}
+
+.e-aprobado {
+  color: #17ac0abe;
+  font-weight: bold;
+}
+.e-rechazado {
+  color: #da0909be;
+  font-weight: bold;
 }
 
 .hidden {
@@ -207,6 +259,10 @@ section {
     padding: 30px 26px;
     display: flex;
     gap: 16px;
+  }
+  .title-c {
+    top: 0;
+    left: -112px;
   }
 }
 
