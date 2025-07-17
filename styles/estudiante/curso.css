@@ -1,0 +1,99 @@
+.cards-area {
+  display: grid;
+  grid-template-columns: none;
+  gap: 0;
+  width: 100%;
+  background: none;
+  height: 57vh;
+  overflow-y: auto;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  padding: 0 0;
+  box-sizing: content-box;
+}
+
+.card-area{
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(350px, 1fr)
+  ); /* Mejor para tablets y mobile */
+  gap: 20px;
+  width: 100%;
+  background: none;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  padding: 0 10px;
+  box-sizing: content-box;
+}
+
+.card-style {
+  position: relative;
+  height: auto;
+}
+
+.card-area::-webkit-scrollbar {
+  margin-left: 10px;
+  width: 5px;
+  background-color: var(--color-light-pink-shadow);
+}
+.card-area::-webkit-scrollbar-thumb {
+  background: var(--color-wine);
+  border-radius: 20px;
+}
+
+.inscribir {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background-color: lightgreen;
+  color: rgb(2, 37, 2);
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.certificado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  width: 140px;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: lightgreen;
+  color: rgb(2, 37, 2);
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.inscribir:hover {
+  transform: scale(1.05);
+}
+
+.certificado:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 673px){
+  .cards-area {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    height: auto;
+  }
+
+  .card-area {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    height: auto;
+  }
+
+  .terminado {
+    display: flex;
+    flex-direction: row;
+  }
+}

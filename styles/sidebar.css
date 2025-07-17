@@ -63,7 +63,7 @@ nav svg {
   }
 }
 
-@media (max-width: 617px) {
+@media (max-width: 750px) {
   body {
     position: relative;
   }
