@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../assets/logo-imaf.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../styles/register.css" />
-  <script src="../scripts/register.js" defer></script>
+  <link rel="stylesheet" href="../styles/register.css?v=<?=time()?>" />
+  <script src="../scripts/register.js"></script>
 
   <title>IMAF | Registrarse</title>
 </head>
@@ -17,8 +15,27 @@
   <div class="box-center">
     <img src="../assets/recursos/logo-imaf.png" alt="logo-imaf" class="logo-img" />
 
-    
-     <form method="POST" action="#" name="formRegister" class="form" id="form">
+
+    <form method="POST" name="formRegister" class="form" action="">
+      <h1 class="form-title">Registrarse</h1>
+      <input class="form-input" type="text" name="cedula" id="input-cedula" placeholder="Cédula" />
+      <p class="error" id="error-cedula"></p>
+
+      <input class="form-input" type="password" name="contraseña" id="input-contraseña" placeholder="Contraseña" />
+      <p class="error" id="error-password"></p>
+
+      <input class="form-input" type="email" name="correo" id="input-correo" placeholder="Correo" />
+      <p class="error" id="error-email"></p>
+
+      <button type="submit" class="btn" name="register" id="register">Registrar</button>
+      <a class="form-link" href="../index.html">Iniciar Sesion</a>
+    </form>
+
+
+
+  <!-- FORMULARIO DE JENCER QUE NO SE POR QUE NO FUNCIONA -->
+
+    <!-- <form method="POST" name="formRegister" class="form" >
       <div class="form-title">
         <h1>Registrarse</h1>
       </div>
@@ -59,12 +76,12 @@
       <div class="form-link">
         <a href="../index.html">Iniciar Sesion</a>
       </div>
-    </form>
+    </form> -->
 
   </div>
   <img class="img-modelo" src="../assets/images/model-register.png" alt="mujer-posando-con-un-telefono-en-la-mano">
 
-  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
    <?php
 include("../backend/registrar.php");
