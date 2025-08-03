@@ -1,6 +1,21 @@
+<?php
+include("../../backend/registrar-docente.php");
+include("../../backend/registrar-curso.php");
+
+include("../../backend/conexion.php");
+
+// Obtener profesores (empleados tipo docente)
+$profesores = [];
+$result = $conex->query("SELECT empleado.id, usuario.nombre, usuario.apellido FROM empleado JOIN usuario ON empleado.usuario_id = usuario.id WHERE empleado.tipo_empleado = 'docente'");
+while ($row = $result->fetch_assoc()) {
+    $profesores[] = $row;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IMAF | Crear</title>
@@ -68,18 +83,18 @@
               Notificaciones
             </div>
           </div>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./usuarios.html">Nuevo usuario registrado</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./usuarios.html">Nuevo usuario registrado</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./solicitudes.html">Solicitud recibida</a>
-          <a href="./usuarios.html">Nuevo usuario registrado</a>
-          <a href="./usuarios.html">Nuevo usuario registrado</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
         </div>
 
         <div class="edit-modal none" id="edit-modal">
@@ -92,7 +107,7 @@
               d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"
             />
           </svg>
-          <a class="box-edit" href="/pages/admin/edit-perfil-admin.html">
+          <a class="box-edit" href="/pages/admin/edit-perfil-admin.php">
             <svg class="icon icon-edit-modal" viewBox="0 0 512 512">
               <path
                 d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
@@ -100,7 +115,7 @@
             </svg>
             Editar perfil
           </a>
-          <a class="box-salir" href="../../index.html">
+          <a class="box-salir" href="../../index.php">
             <svg class="icon-nav icon-salir-modal" viewBox="0 0 512 512">
               <path
                 d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
@@ -116,7 +131,7 @@
           <nav>
             <ul>
               <li>
-                <a href="./usuarios.html">
+                <a href="./usuarios.php">
                   <svg class="icon-nav" viewBox="0 0 448 512">
                     <path
                       d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z"
@@ -126,7 +141,7 @@
                 </a>
               </li>
               <li>
-                <a href="./cursos.html">
+                <a href="./cursos.php">
                   <svg class="icon-nav icon-cursos" viewBox="0 0 512 512">
                     <path
                       d="M160 64c0-35.3 28.7-64 64-64L576 0c35.3 0 64 28.7 64 64l0 288c0 35.3-28.7 64-64 64l-239.2 0c-11.8-25.5-29.9-47.5-52.4-64l99.6 0 0-32c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 32 64 0 0-288L224 64l0 49.1C205.2 102.2 183.3 96 160 96l0-32zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352l53.3 0C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7L26.7 512C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"
@@ -136,7 +151,7 @@
                 </a>
               </li>
               <li>
-                <a href="./solicitudes.html">
+                <a href="./solicitudes.php">
                   <svg class="icon-nav" viewBox="0 0 512 512">
                     <path
                       d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"
@@ -163,14 +178,14 @@
           <div class="selection-box-card">
             <div class="card-box">
               <img
-                src="/assets/images/imagen-cursos.png"
+                src="/imaf-project/assets/images/imagen-cursos.png"
                 alt="imagen sobre cursos"
               />
               <span>Cursos</span>
             </div>
             <div class="card-box">
               <img
-                src="/assets/images/profesor-posando.png"
+                src="/imaf-project/assets/images/profesor-posando.png"
                 alt="imagen de un profesor posando"
               />
               <span>Profesor</span>
@@ -182,37 +197,27 @@
               <svg class="closed-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
             </div>
 
-            <form action="" class="form-crear-curso" id="form-crear-curso">
+            <form action="" method="POST" enctype="multipart/form-data" class="form-crear-curso" id="form-crear-curso">
               <div class="modal-title">
                 <h2>Crear Curso</h2>
               </div>
               <div class="form-group">
                 <label for="imagen-curso">Imagen del Curso</label>
-                <input type="file" name="imagen-curso" id="imagen-curso" accept="image/*" required>
+                <input type="file" name="imagen-curso" id="imagen-curso" accept="image/*" >
               </div>
               <div class="form-group">
                 <label for="nombre-curso">Nombre</label>
                 <input type="text" name="nombre-curso" id="nombre-curso" required>
               </div>
               <div class="form-group">
-                <label for="porfesor">Profesor</label>
-                <select name="porfesor" id="profesor-curso">
+                <label for="profesor">Profesor</label>
+                <select name="profesor" id="profesor-curso" required>
                   <option value="">Seleccione Un Profesor</option>
-                  <option value="pf1">Profesor#1</option>
-                  <option value="pf2">Profesor#2</option>
-                  <option value="pf3">Profesor#3</option>
-                  <option value="pf4">Profesor#4</option>
-                  <option value="pf4">Profesor#5</option>
-                  <option value="pf4">Profesor#6</option>
-                  <option value="pf4">Profesor#7</option>
-                  <option value="pf4">Profesor#8</option>
-                  <option value="pf4">Profesor#9</option>
-                  <option value="pf4">Profesor#10</option>
-                  <option value="pf4">Profesor#11</option>
-                  <option value="pf4">Profesor#12</option>
-                  <option value="pf4">Profesor#13</option>
-                  <option value="pf4">Profesor#14</option>
-                  <option value="pf4">Profesor#15</option>
+                  <?php foreach ($profesores as $prof): ?>
+                    <option value="<?= $prof['id'] ?>">
+                      <?= htmlspecialchars($prof['nombre'] . ' ' . $prof['apellido']) ?>
+                    </option>
+                  <?php endforeach; ?>
                 </select>
               </div>
               <div class="form-group">
@@ -231,16 +236,16 @@
                 <label for="precio">Valor en BS</label>
                 <input type="number" name="precio" id="precio-inscripcion" required>
               </div>
+              <button class="btn-modal" name="crear-curso" type="submit">Crear</button>
             </form>
-            <button class="btn-modal" type="submit">Crear</button>
           </div>
 
           <div class="modal-profesor modal-none" id="modal-profesor">
             <div class="modal-icon">
               <svg class="closed-modal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
             </div>
-            
-            <form action="" class="form-crear-profesor" id="form-crear-profesor">
+
+            <form method="POST" action="" enctype="multipart/form-data" class="form-crear-profesor" id="form-crear-profesor">
               <div class="modal-title">
                 <h2>Crear Profesor</h2>
               </div>
@@ -260,10 +265,7 @@
                 <label for="fecha-nacimiento">Fecha Nacimiento</label>
                 <input type="date" name="fecha-nacimiento" id="fecha-nacimiento" required>
               </div>
-              <div class="form-group">
-                <label for="usuario-profesor">Usuario</label>
-                <input type="text" name="usuario-profesor" id="usuario-profesor" required>
-              </div>
+              
               <div class="form-group">
                 <label for="contraseña-profesor">Contraseña</label>
                 <input type="password" name="contraseña-profesor" id="contraseña-profesor" required>
@@ -277,16 +279,22 @@
                 <input type="number" name="telefono-profesor" id="telefono-profesor" required>
               </div>
               <div class="form-group">
-                <label for="imagen-profesor">Imagen del Profesor</label>
-                <input type="file" name="imagen-profesor" id="imagen-profesor" accept="image/*" required>
+                <label for="foto-profesor">Foto del Profesor</label>
+                <input type="file" name="foto-profesor" id="foto-profesor" accept="image/*">
               </div>
+              <button type="submit" name="crear-profesor" class="btn-modal">Crear</button>
             </form>
-            <button type="submit" class="btn-modal">Crear</button>
           </div>
         </article>
       </section>
     </main>
-    <script src="/scripts/modal-crear.js"></script>
+    <script src="../../scripts/modal-crear.js"></script>
     </div>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php if (!empty($alerta)) echo $alerta; ?>
+<?php if (!empty($alerta_docente)) echo $alerta_docente; ?>
+
+
   </body>
 </html>

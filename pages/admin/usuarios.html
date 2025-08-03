@@ -1,547 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="../../assets/logo-imaf.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../../styles/usuarios.css">
-  <link rel="stylesheet" href="../../styles/header.css">
-  <link rel="stylesheet" href="../../styles/sidebar.css">
-  <link rel="stylesheet" href="../../styles/transitionPages.css">
-  <script src="../../scripts/transitionPages.js" defer></script>
-  <script src="../../scripts/header.js" defer></script>
-  <script src="../../scripts/usuarios.js" defer></script>
-  <title>IMAF | Usuarios</title>
-</head>
-<body>
-  <main>
-    <header>
-      <div>
-      <img class="logo" src="../../assets/recursos/logo-imaf.png" alt="logo imaf">
-    </div>
-    <div class="tools">
-      <p>Administrador <span id="conexion">•</span></p>
-      <div id="btn-notification">
-        <svg class="icon" id="icon-notification" viewBox="0 0 448 512"><path d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416l400 0c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4l0-25.4c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112l0 25.4c0 47.9 13.9 94.6 39.7 134.6L72.3 368C98.1 328 112 281.3 112 233.4l0-25.4c0-61.9 50.1-112 112-112zm64 352l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/></svg>
-      </div>
-      <div class="box-useradmin">
-        <svg class="icon" id="icon-user" viewBox="0 0 512 512"><path d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/></svg>
-        <span>&nbsp; UserAdmin</span>
-      </div>
-      <div id="open-modal-edit">
-        <svg class="icon icon-up-admin"viewBox="0 0 448 512"><path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
-      </div>
-    </div>
-
-    <div class="notification-modal none" id="notification-modal">
-      <div class="title-notification">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../../assets/logo-imaf.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../styles/usuarios.css" />
+    <link rel="stylesheet" href="../../styles/header.css" />
+    <link rel="stylesheet" href="../../styles/sidebar.css" />
+    <link rel="stylesheet" href="../../styles/transitionPages.css" />
+    <script src="../../scripts/transitionPages.js" defer></script>
+    <script src="../../scripts/header.js" defer></script>
+    <script src="../../scripts/usuarios.js" defer></script>
+    <title>IMAF | Usuarios</title>
+  </head>
+  <body>
+    <main>
+      <header>
         <div>
-          <svg class="icon" id="icon-notification-back" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
-          Notificaciones
+          <img
+            class="logo"
+            src="../../assets/recursos/logo-imaf.png"
+            alt="logo imaf"
+          />
         </div>
-      </div>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./usuarios.html">Nuevo usuario registrado</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./usuarios.html">Nuevo usuario registrado</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./solicitudes.html">Solicitud recibida</a>
-      <a href="./usuarios.html">Nuevo usuario registrado</a>
-      <a href="./usuarios.html">Nuevo usuario registrado</a>
-    </div>
-
-    <div class="edit-modal none" id="edit-modal">
-      <svg class="icon icon-down-admin" id="close-modal-edit" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
-      <a class="box-edit" href="./edit-perfil-admin.html">
-        <svg class="icon icon-edit-modal" viewBox="0 0 512 512"><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-        Editar perfil
-      </a>
-        <a class="box-salir" href="../../index.html">
-        <svg class="icon-nav icon-salir-modal" viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
-        Salir
-        </a>
-    </div>
-  </header>
-
-
-  <section>
-    <article class="sidebar">
-      <nav>
-        <ul>
-          <li class="li-location">
-            <a class="location">
-              <svg class="icon-nav location" viewBox="0 0 448 512"><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z"/></svg> 
-              Usuarios
-            </a>
-          </li>
-          <li>
-            <a href="./cursos.html">
-              <svg class="icon-nav icon-cursos" viewBox="0 0 512 512"><path d="M160 64c0-35.3 28.7-64 64-64L576 0c35.3 0 64 28.7 64 64l0 288c0 35.3-28.7 64-64 64l-239.2 0c-11.8-25.5-29.9-47.5-52.4-64l99.6 0 0-32c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 32 64 0 0-288L224 64l0 49.1C205.2 102.2 183.3 96 160 96l0-32zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352l53.3 0C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7L26.7 512C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/></svg>
-              Cursos
-            </a>
-          </li>
-          <li>
-            <a href="./solicitudes.html">
-              <svg class="icon-nav" viewBox="0 0 512 512"><path d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"/></svg>
-              Solicitudes
-            </a>
-          </li>
-          <li>
-            <a href="./crear.html">
-              <svg class="icon-nav" viewBox="0 0 448 512"><path d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM200 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
-              Crear
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </article>
-
-    <article class="box-contenido">
-      
-      <div class="filter">
-        <button class="tab-btn btn-active" id="btn-todos">Todos</button>
-        <button class="tab-btn" id="btn-inactivos">Inactivos</button>
-      </div>
-
-      
-      <article class="box-todos" id="box-todos">
-
-      <div class="contenido">
-        <div class="separador">
-         <div class="table-header table-row">
-           <p class="table-header-item">Cédula</p>
-           <p class="table-header-item b">Nombre</p>
-           <p class="table-header-item r">Teléfono</p>
-           <p class="table-header-item r">Correo</p>
-           <p class="table-header-item r">Municipio</p>
-           <p class="table-header-item r">Fecha de Nacimiento</p>
-           <p class="table-header-item lastchild r">Eliminar</p>
+        <div class="tools">
+          <p>Administrador <span id="conexion">•</span></p>
+          <div id="btn-notification">
+            <svg class="icon" id="icon-notification" viewBox="0 0 448 512">
+              <path
+                d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416l400 0c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4l0-25.4c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112l0 25.4c0 47.9 13.9 94.6 39.7 134.6L72.3 368C98.1 328 112 281.3 112 233.4l0-25.4c0-61.9 50.1-112 112-112zm64 352l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"
+              />
+            </svg>
+          </div>
+          <div class="box-useradmin">
+            <svg class="icon" id="icon-user" viewBox="0 0 512 512">
+              <path
+                d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"
+              />
+            </svg>
+            <span>&nbsp; UserAdmin</span>
+          </div>
+          <div id="open-modal-edit">
+            <svg class="icon icon-up-admin" viewBox="0 0 448 512">
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+              />
+            </svg>
           </div>
         </div>
-        
-        <div class="scroll-area">
 
-
-          <div class="table-row2" id="table">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" id="icon-see-more" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-              <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none" id="see-more">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
+        <div class="notification-modal none" id="notification-modal">
+          <div class="title-notification">
+            <div>
+              <svg
+                class="icon"
+                id="icon-notification-back"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+                />
+              </svg>
+              Notificaciones
             </div>
           </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="table-row2">
-            <div class="box-icon-see-more">
-              <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
-            </div>
-            <p class="table-header-item box-info-y-edit">
-              <a href="/pages/admin/edit-perfil-usuario.html">
-                <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
-              </a>
-              29588843
-            </p>
-            <p class="table-header-item b">Juan Marin</p>
-            <p class="table-header-item r">0412-0000000</p>
-            <p class="table-header-item r">Juan@gmail.com</p>
-            <p class="table-header-item r">Independencia</p>
-            <p class="table-header-item r">10 de Febrero de 2003</p>
-            <span class="table-header-item r">
-                <img class="trash-cansvg" src="/assets/icons/trash-can.svg" alt="Eliminar">
-            </span>
-
-            <div class="box-see-more none">
-              <div>
-                <p class="title-see-more">Teléfono:</p>
-                <p>0412-0000000</p>
-              </div>
-              <div>
-                <p class="title-see-more">Correo:</p>
-                <p>Juan@gmail.com</p>
-              </div>
-              <div>
-                <p class="title-see-more">Municipio:</p>
-                <p>Independencia</p>
-              </div>
-              <div>
-                <p class="title-see-more">Fecha de Nacimiento:</p>
-                <p>10 de febrero de 2002</p>
-              </div>
-              <div class="box-accion">
-                <p class="title-see-more">Acción:</p>
-                <p>
-                  <a href="/pages/admin/edit-perfil-usuario.html">
-                    <svg class="icon icon-accion" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
-                  </a>
-                </p>
-                <p><svg class="icon icon-accion icon-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#4d4d4d" d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg></p>
-              </div>
-            </div>
-          </div>
-
-          </div>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./solicitudes.php">Solicitud recibida</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
+          <a href="./usuarios.php">Nuevo usuario registrado</a>
         </div>
-      </article>
 
-          <!-- ################# -->
+        <div class="edit-modal none" id="edit-modal">
+          <svg
+            class="icon icon-down-admin"
+            id="close-modal-edit"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"
+            />
+          </svg>
+          <a class="box-edit" href="./edit-perfil-admin.php">
+            <svg class="icon icon-edit-modal" viewBox="0 0 512 512">
+              <path
+                d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+              />
+            </svg>
+            Editar perfil
+          </a>
+          <a class="box-salir" href="../../index.php">
+            <svg class="icon-nav icon-salir-modal" viewBox="0 0 512 512">
+              <path
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              />
+            </svg>
+            Salir
+          </a>
+        </div>
+      </header>
 
-          <!-- USUARIOS INACTIVOS -->  
+      <section>
+        <article class="sidebar">
+          <nav>
+            <ul>
+              <li class="li-location">
+                <a class="location">
+                  <svg class="icon-nav location" viewBox="0 0 448 512">
+                    <path
+                      d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z"
+                    />
+                  </svg>
+                  Usuarios
+                </a>
+              </li>
+              <li>
+                <a href="./cursos.php">
+                  <svg class="icon-nav icon-cursos" viewBox="0 0 512 512">
+                    <path
+                      d="M160 64c0-35.3 28.7-64 64-64L576 0c35.3 0 64 28.7 64 64l0 288c0 35.3-28.7 64-64 64l-239.2 0c-11.8-25.5-29.9-47.5-52.4-64l99.6 0 0-32c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 32 64 0 0-288L224 64l0 49.1C205.2 102.2 183.3 96 160 96l0-32zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352l53.3 0C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7L26.7 512C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"
+                    />
+                  </svg>
+                  Cursos
+                </a>
+              </li>
+              <li>
+                <a href="./solicitudes.php">
+                  <svg class="icon-nav" viewBox="0 0 512 512">
+                    <path
+                      d="M64 112c-8.8 0-16 7.2-16 16l0 22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1l0-22.1c0-8.8-7.2-16-16-16L64 112zM48 212.2L48 384c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-171.8L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64l384 0c35.3 0 64 28.7 64 64l0 256c0 35.3-28.7 64-64 64L64 448c-35.3 0-64-28.7-64-64L0 128z"
+                    />
+                  </svg>
+                  Solicitudes
+                </a>
+              </li>
+              <li>
+                <a href="./crear.php">
+                  <svg class="icon-nav" viewBox="0 0 448 512">
+                    <path
+                      d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM200 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+                    />
+                  </svg>
+                  Crear
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </article>
 
-          <article class="box-inactivos" id="box-inactivos">
+        <article class="box-contenido">
+          <div class="filter">
+            <button class="tab-btn btn-active" id="btn-todos">Todos</button>
+            <button class="tab-btn" id="btn-inactivos">Inactivos</button>
+          </div>
 
+          <article class="box-todos" id="box-todos">
             <div class="contenido">
-             <div class="separador">
-               <div class="table-header table-row">
-                 <p class="table-header-item">Cédula</p>
-                 <p class="table-header-item b">Nombre</p>
-                 <p class="table-header-item r">Teléfono</p>
-                 <p class="table-header-item r">Correo</p>
-                 <p class="table-header-item r">Municipio</p>
-                 <p class="table-header-item r">Fecha de Nacimiento</p>
-                 <p class="table-header-item lastchild r">Devolver</p>
+              <div class="separador">
+                <div class="table-header table-row">
+                  <p class="table-header-item">Cédula</p>
+                  <p class="table-header-item b">Nombre</p>
+                  <p class="table-header-item r">Teléfono</p>
+                  <p class="table-header-item r">Correo</p>
+                  <p class="table-header-item r">Municipio</p>
+                  <p class="table-header-item r">Fecha de Nacimiento</p>
+                  <p class="table-header-item lastchild r">Eliminar</p>
                 </div>
               </div>
-                
+
               <div class="scroll-area">
-            
                 <div class="table-row2" id="table">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" id="icon-see-more" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      id="icon-see-more"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -551,9 +208,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none" id="see-more">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -574,24 +235,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -601,9 +291,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -624,24 +318,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/solicitudes.html">
-                          <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -651,9 +374,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -674,24 +401,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -701,9 +457,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -724,24 +484,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -751,9 +540,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -774,24 +567,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -801,9 +623,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -824,24 +650,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -851,9 +706,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -874,24 +733,53 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
                 </div>
-      
+
                 <div class="table-row2">
                   <div class="box-icon-see-more">
-                    <svg class="icon icon-see-more icon-see-more-open" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"/></svg>
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
                   </div>
                   <p class="table-header-item box-info-y-edit">
-                    <a href="/pages/admin/edit-perfil-usuario.html">
-                      <img class="editsvg r" src="/assets/icons/pen-to-square.svg" alt="Editar">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
                     </a>
                     29588843
                   </p>
@@ -901,9 +789,13 @@
                   <p class="table-header-item r">Independencia</p>
                   <p class="table-header-item r">10 de Febrero de 2003</p>
                   <span class="table-header-item r">
-                    <svg class="icon icon-accion icon-devolver" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                    <img
+                      class="trash-cansvg"
+                      src="/assets/icons/trash-can.svg"
+                      alt="Eliminar"
+                    />
                   </span>
-      
+
                   <div class="box-see-more none">
                     <div>
                       <p class="title-see-more">Teléfono:</p>
@@ -924,25 +816,700 @@
                     <div class="box-accion">
                       <p class="title-see-more">Acción:</p>
                       <p>
-                        <a href="/pages/admin/edit-perfil-usuario.html">
-                          <svg class="icon icon-accion" viewBox="0 0 512 512"><path fill="#4d4d4d" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"/></svg>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg class="icon icon-accion" viewBox="0 0 512 512">
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
                         </a>
                       </p>
                       <p>
-                        <svg class="icon icon-accion" viewBox="0 0 512 512"><path d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                        <svg
+                          class="icon icon-accion icon-trash"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512"
+                        >
+                          <path
+                            fill="#4d4d4d"
+                            d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"
+                          />
+                        </svg>
                       </p>
                     </div>
                   </div>
-                </div>
-      
                 </div>
               </div>
-            </article>
+            </div>
+          </article>
 
           <!-- ################# -->
-     
-    </article>
-  </section>
-</main>
-</body>
+
+          <!-- USUARIOS INACTIVOS -->
+
+          <article class="box-inactivos" id="box-inactivos">
+            <div class="contenido">
+              <div class="separador">
+                <div class="table-header table-row">
+                  <p class="table-header-item">Cédula</p>
+                  <p class="table-header-item b">Nombre</p>
+                  <p class="table-header-item r">Teléfono</p>
+                  <p class="table-header-item r">Correo</p>
+                  <p class="table-header-item r">Municipio</p>
+                  <p class="table-header-item r">Fecha de Nacimiento</p>
+                  <p class="table-header-item lastchild r">Devolver</p>
+                </div>
+              </div>
+
+              <div class="scroll-area">
+                <div class="table-row2" id="table">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      id="icon-see-more"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none" id="see-more">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg class="icon icon-accion" viewBox="0 0 512 512">
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/solicitudes.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg
+                            class="icon icon-accion"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                          >
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="table-row2">
+                  <div class="box-icon-see-more">
+                    <svg
+                      class="icon icon-see-more icon-see-more-open"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM135 241c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l87 87 87-87c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L273 345c-9.4 9.4-24.6 9.4-33.9 0L135 241z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="table-header-item box-info-y-edit">
+                    <a href="/pages/admin/edit-perfil-usuario.php">
+                      <img
+                        class="editsvg r"
+                        src="/assets/icons/pen-to-square.svg"
+                        alt="Editar"
+                      />
+                    </a>
+                    29588843
+                  </p>
+                  <p class="table-header-item b">Juan Marin</p>
+                  <p class="table-header-item r">0412-0000000</p>
+                  <p class="table-header-item r">Juan@gmail.com</p>
+                  <p class="table-header-item r">Independencia</p>
+                  <p class="table-header-item r">10 de Febrero de 2003</p>
+                  <span class="table-header-item r">
+                    <svg
+                      class="icon icon-accion icon-devolver"
+                      viewBox="0 0 512 512"
+                    >
+                      <path
+                        d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                      />
+                    </svg>
+                  </span>
+
+                  <div class="box-see-more none">
+                    <div>
+                      <p class="title-see-more">Teléfono:</p>
+                      <p>0412-0000000</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Correo:</p>
+                      <p>Juan@gmail.com</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Municipio:</p>
+                      <p>Independencia</p>
+                    </div>
+                    <div>
+                      <p class="title-see-more">Fecha de Nacimiento:</p>
+                      <p>10 de febrero de 2002</p>
+                    </div>
+                    <div class="box-accion">
+                      <p class="title-see-more">Acción:</p>
+                      <p>
+                        <a href="/pages/admin/edit-perfil-usuario.php">
+                          <svg class="icon icon-accion" viewBox="0 0 512 512">
+                            <path
+                              fill="#4d4d4d"
+                              d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z"
+                            />
+                          </svg>
+                        </a>
+                      </p>
+                      <p>
+                        <svg class="icon icon-accion" viewBox="0 0 512 512">
+                          <path
+                            d="M205 34.8c11.5 5.1 19 16.6 19 29.2l0 64 112 0c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96l-96 0 0 64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"
+                          />
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ################# -->
+        </article>
+      </section>
+    </main>
+  </body>
 </html>

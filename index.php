@@ -1,6 +1,11 @@
+<?php include("./backend/login.php"); 
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -32,9 +37,9 @@
         <div class="form-box">
           <h1>Iniciar Sesión</h1>
 
-          <form id="form" action="#">
+          <form id="form" method="POST" action="index.php">
             <div class="input-box">
-              <input type="number" placeholder="Cédula" id="input-cedula" />
+              <input type="text" name="cedula" placeholder="Cédula" id="input-cedula" />
               <img
                 src="./assets/icons/user.svg"
                 alt="icon user"
@@ -45,6 +50,7 @@
             <div class="input-box">
               <input
                 type="password"
+                name="contraseña"
                 placeholder="Contraseña"
                 id="input-password"
               />
@@ -55,7 +61,7 @@
               />
               <p id="error-password" class="error"></p>
             </div>
-            <button id="ingresar">Ingresar</button>
+            <button type="submit" name="login" id="ingresar">Ingresar</button>
           </form>
 
           <div class="additional-links">
@@ -91,5 +97,6 @@
         </div>
       </div>
     </div>
+    <?php if (!empty($alerta)) echo $alerta; ?>
   </body>
 </html>

@@ -28,7 +28,7 @@
       <p class="error" id="error-email"></p>
 
       <button type="submit" class="btn" name="register" id="register">Registrar</button>
-      <a class="form-link" href="../index.html">Iniciar Sesion</a>
+      <a class="form-link" href="../index.php">Iniciar Sesion</a>
     </form>
 
 
