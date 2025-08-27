@@ -98,5 +98,8 @@
       </div>
     </div>
     <?php if (!empty($alerta)) echo $alerta; ?>
+    <?php if (!empty($mensaje)): ?>
+  <div class="alerta"><?= $mensaje ?></div>
+<?php endif; ?>
   </body>
 </html>

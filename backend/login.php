@@ -1,38 +1,70 @@
 <?php
-include("conexion.php");
 
-$alerta = ''; // Inicializa la variable
+include("conexion.php");
+session_start();
+
+$alerta = '';
 
 if (isset($_POST['login'])) {
     $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
     $contraseña = isset($_POST['contraseña']) ? trim($_POST['contraseña']) : '';
 
-    // Buscar en estudiante
-    $consulta_est = "SELECT u.*, 'estudiante' AS rol FROM usuario u INNER JOIN estudiante e ON u.id = e.usuario_id WHERE u.cedula='$cedula' AND u.contraseña='$contraseña'";
-    $resultado_est = mysqli_query($conex, $consulta_est);
+    // Busca el usuario por cédula y contraseña
+    $consulta = "SELECT * FROM usuario WHERE cedula='$cedula' AND contraseña='$contraseña'";
+    $resultado = mysqli_query($conex, $consulta);
 
-    // Buscar en empleado (docente o administrador)
-    $consulta_emp = "SELECT u.*, e.tipo_empleado AS rol FROM usuario u INNER JOIN empleado e ON u.id = e.usuario_id WHERE u.cedula='$cedula' AND u.contraseña='$contraseña'";
-    $resultado_emp = mysqli_query($conex, $consulta_emp);
+    if ($usuario = mysqli_fetch_assoc($resultado)) {
+        if ($usuario['activo'] != 1) {
+            $alerta = "<script>
+            Swal.fire({
+                title: 'Usuario inactivo',
+                text: 'Tu usuario está inactivo, contacta al administrador.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar'
+            });
+            </script>";
+        } else {
+            $usuario_id = $usuario['id'];
 
-    if (mysqli_num_rows($resultado_est) > 0) {
-        $usuario = mysqli_fetch_assoc($resultado_est);
-        session_start();
-        $_SESSION['cedula'] = $cedula;
-        $_SESSION['rol'] = $usuario['rol'];
-        header("Location: ../pages/panel-estudiante.php");
-        exit();
-    } elseif (mysqli_num_rows($resultado_emp) > 0) {
-        $usuario = mysqli_fetch_assoc($resultado_emp);
-        session_start();
-        $_SESSION['cedula'] = $cedula;
-        $_SESSION['rol'] = $usuario['rol'];
-        if ($usuario['rol'] == 'docente') {
-            header("Location: /imaf-project/pages/profesor/cursos.html");
-        } elseif ($usuario['rol'] == 'administrador') {
-            header("Location: /imaf-project/pages/admin/usuarios.html");
+            // Verificar roles activos
+            $qEst = mysqli_query($conex, "SELECT id FROM estudiante WHERE usuario_id = $usuario_id AND activo = 1");
+            $qDoc = mysqli_query($conex, "SELECT id FROM empleado WHERE usuario_id = $usuario_id AND tipo_empleado = 'docente' AND activo = 1");
+            $qAdmin = mysqli_query($conex, "SELECT id FROM empleado WHERE usuario_id = $usuario_id AND tipo_empleado = 'administrador' AND activo = 1");
+
+            $esEstudiante = mysqli_num_rows($qEst) > 0;
+            $esDocente = mysqli_num_rows($qDoc) > 0;
+            $esAdmin = mysqli_num_rows($qAdmin) > 0;
+
+            $_SESSION['usuario_id'] = $usuario_id;
+            $_SESSION['cedula'] = $cedula;
+
+            if ($esAdmin) {
+                $_SESSION['rol'] = 'administrador';
+                header("Location: /imaf-project/pages/admin/usuarios.php");
+                exit;
+            } elseif ($esEstudiante && $esDocente) {
+                // No guardes $_SESSION['rol'] aquí
+                header("Location: /imaf-project/pages/elegir-rol.php");
+                exit;
+            } elseif ($esEstudiante) {
+                $_SESSION['rol'] = 'estudiante';
+                header("Location: /imaf-project/pages/estudiante/panel.php");
+                exit;
+            } elseif ($esDocente) {
+                $_SESSION['rol'] = 'docente';
+                header("Location: /imaf-project/pages/profesor/cursos.php");
+                exit;
+            } else {
+                $alerta = "<script>
+                Swal.fire({
+                    title: 'Sin rol activo',
+                    text: 'No tienes un rol activo en el sistema.',
+                    icon: 'warning',
+                    confirmButtonText: 'Aceptar'
+                });
+                </script>";
+            }
         }
-        exit();
     } else {
         $alerta = "<script>
         Swal.fire({

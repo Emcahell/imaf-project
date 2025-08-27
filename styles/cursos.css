@@ -167,7 +167,7 @@ nav {
   min-height: 140px;
   transition: box-shadow 0.2s;
   max-width: 100%;
-  height: max-content;
+  max-height: max-content;
 }
 
 .card-style svg {

@@ -21,7 +21,7 @@ if (isset($_POST['crear-profesor'])) {
 if (isset($_FILES["foto-profesor"]) && $_FILES["foto-profesor"]["error"] == 0) {
     $fotoTmp = $_FILES["foto-profesor"]["tmp_name"];
     $foto_nombre = uniqid() . "_" . basename($_FILES["foto-profesor"]["name"]);
-    $directorio = realpath(__DIR__ . '/../uploads/profesores');
+    $directorio = realpath(__DIR__ . '/../uploads/profilepic');
     if (!is_dir($directorio)) {
         mkdir($directorio, 0777, true);
     }

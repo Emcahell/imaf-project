@@ -182,6 +182,13 @@ section {
 .corner-upleft-svg {
   cursor: pointer;
 }
+
+.icon-devolver {
+  width: 4px;
+  height: auto;
+  margin: auto;
+  cursor: pointer;
+}
 .icon-devolver path {
   fill: var(--color-gray-titles);
 }
@@ -248,6 +255,21 @@ section {
 
 .block {
   display: block;
+}
+
+.table-header-item {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.table-header-item[title]:hover {
+  /* Opcional: subrayado al pasar el mouse */
+  text-decoration: underline dotted;
 }
 
 /* Media Querys */
