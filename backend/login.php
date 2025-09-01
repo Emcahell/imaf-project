@@ -48,7 +48,7 @@ if (isset($_POST['login'])) {
                 exit;
             } elseif ($esEstudiante) {
                 $_SESSION['rol'] = 'estudiante';
-                header("Location: /imaf-project/pages/estudiante/panel.php");
+                header("Location: /imaf-project/pages/estudiante/cursos.php");
                 exit;
             } elseif ($esDocente) {
                 $_SESSION['rol'] = 'docente';
