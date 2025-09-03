@@ -113,7 +113,7 @@ section {
   min-height: 180px;
   transition: box-shadow 0.2s;
   max-width: 100%;
-  height: auto;
+  height: max-content;
 }
 
 .card-style svg {
@@ -128,8 +128,8 @@ section {
 
 .card-img {
   position: relative;
-  width: 80px;
-  height: 100px;
+  width: 130px;
+  height: 140px;
   background: #80003c;
   border-radius: 10px;
   flex-shrink: 0;
@@ -173,6 +173,7 @@ section {
 .title-c {
   position: absolute;
   bottom: -22px;
+  left: 22px;
   font-size: 10px;
 }
 
@@ -181,7 +182,6 @@ section {
   justify-content: end;
   align-items: center;
   gap: 20px;
-  padding: 20px 0;
 }
 
 .aprobar {
@@ -265,7 +265,6 @@ section {
   }
   .card-field {
     font-size: 16px;
-
   }
   .title-c {
     top: 0;

@@ -1,5 +1,4 @@
 <?php
-// filepath: c:\xampp\htdocs\imaf-project\pages\profesor\ajax_participantes.php
 include("../../backend/conexion.php");
 
 // Mostrar lista de participantes (GET)
@@ -28,7 +27,6 @@ if (isset($_GET['curso_id'])) {
         echo "</tr>";
     }
     echo "</table>";
-    // Mensaje de error si existe
     if (isset($_GET['error'])) {
         echo "<div style='color:#d00;margin-top:1em;text-align:center;font-weight:bold'>{$_GET['error']}</div>";
     }

@@ -1,7 +1,7 @@
 <?php
 include("../../backend/conexion.php");
 
-// Consulta cursos activos
+// Solo cursos activos y no finalizados por el profesor
 $queryActivos = "
 SELECT 
     cp.id,
@@ -48,13 +48,20 @@ FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
-WHERE cp.activo = 0 OR cp.fecha_fin < CURDATE()
+WHERE cp.finalizado = 1 OR cp.fecha_fin < CURDATE()
 ORDER BY cp.fecha_fin DESC
 ";
 $resultTerminados = $conex->query($queryTerminados);
 
 // Determinar tab activo
 $tab = $_GET['tab'] ?? 'activos';
+
+// Obtener lista de profesores activos para el select
+$docentes = [];
+$qDocentes = mysqli_query($conex, "SELECT e.id, u.nombre, u.apellido FROM empleado e JOIN usuario u ON e.usuario_id = u.id WHERE e.tipo_empleado = 'docente' AND e.activo = 1");
+while ($row = mysqli_fetch_assoc($qDocentes)) {
+    $docentes[] = $row;
+}
 
 ?>
 
@@ -71,12 +78,17 @@ $tab = $_GET['tab'] ?? 'activos';
     <link rel="stylesheet" href="../../styles/globals.css">
     <link rel="stylesheet" href="../../styles/sidebar.css" />
     <link rel="stylesheet" href="../../styles/header.css" />
-    <link rel="stylesheet" href="../../styles/cursos.css" />
+    <link rel="stylesheet" href="/imaf-project/styles/cursos.css" />
     <link rel="stylesheet" href="../../styles/transitionPages.css">
     <script src="../../scripts/transitionPages.js" defer></script>
     <script src="../../scripts/header.js" defer></script>
     <script src="../../scripts/cursos.js" defer></script>
     <title>IMAF | Cursos</title>
+    <style>
+      .card-style{
+        height: max-content;
+      }
+    </style>
   </head>
   <body>
       <?php
@@ -143,10 +155,10 @@ $tab = $_GET['tab'] ?? 'activos';
       <div class="right-column">
         <div class="right-bottom">
        <div class="dashboard-options">
-  <a href="?tab=activos"><button class="tab-btn <?= $tab == 'activos' ? 'active' : '' ?>">Activos</button></a>
-  <a href="?tab=profesores"><button class="tab-btn <?= $tab == 'profesores' ? 'active' : '' ?>">Profesores</button></a>
-  <a href="?tab=terminados"><button class="tab-btn <?= $tab == 'terminados' ? 'active' : '' ?>">Terminados</button></a>
-</div>
+        <a href="?tab=activos"><button class="tab-btn <?= $tab == 'activos' ? 'active' : '' ?>">Activos</button></a>
+        <a href="?tab=profesores"><button class="tab-btn <?= $tab == 'profesores' ? 'active' : '' ?>">Profesores</button></a>
+        <a href="?tab=terminados"><button class="tab-btn <?= $tab == 'terminados' ? 'active' : '' ?>">Terminados</button></a>
+      </div>
 
           <div class="label-box">
             <span>Datos</span>
@@ -158,39 +170,79 @@ $tab = $_GET['tab'] ?? 'activos';
   <?php if ($tab == 'activos'): ?>
     <?php if ($resultActivos->num_rows): ?>
       <?php while($curso = $resultActivos->fetch_assoc()): ?>
-            <div class="card-activos card-style">
-              <div class="card-img">
-                <img src="<?= !empty($curso['imagen']) ? '../../uploads/cursos/' . htmlspecialchars($curso['imagen']) : 'https://via.placeholder.com/300x200?text=Sin+Imagen' ?>" alt="">
-              </div>
-              <div class="card-info">
-                <div class="card-col left">
-                  <div class="card-field">
-                    <span class="card-label">Nombre:</span> <?= htmlspecialchars($curso['nombre_curso']) ?>
-                  </div>
-                  <div class="card-field">
-                    <span class="card-label">Profesor:</span> <?= htmlspecialchars($curso['nombre_profesor'] . ' ' . $curso['apellido_profesor']) ?>
-                  </div>
-                  <div class="card-field">
-                    <span class="card-label">Fecha de inicio:</span> <?= date("d/m/Y", strtotime($curso['fecha_inicio'])) ?>
-                  </div>
-                  <div class="card-field">
-                    <span class="card-label">Fecha de fin:</span> <?= date("d/m/Y", strtotime($curso['fecha_fin'])) ?>
-                  </div>
+        <?php
+          // Obtener número de participantes
+          $curso_id = $curso['id'];
+          $qPart = mysqli_query($conex, "SELECT cp.*, u.nombre, u.apellido FROM curso_participante cp JOIN usuario u ON cp.id_estudiante = u.id WHERE cp.id_curso_promocion = $curso_id");
+          $participantes = [];
+          while ($row = mysqli_fetch_assoc($qPart)) {
+              $participantes[] = $row;
+          }
+          $num_participantes = count($participantes);
+        ?>
+        <div class="card-activos card-style" data-curso-id="<?= $curso['id'] ?>">
+          <div class="card-img">
+            <img src="<?= !empty($curso['imagen']) ? '../../uploads/cursos/' . htmlspecialchars($curso['imagen']) : 'https://via.placeholder.com/300x200?text=Sin+Imagen' ?>" alt="">
+          </div>
+          <div class="card-info">
+            <form class="form-editar-curso" method="POST" action="/imaf-project/backend/editar_curso.php">
+              <input type="hidden" name="curso_id" value="<?= $curso['id'] ?>">
+              <div class="card-col left">
+                <div class="card-field">
+                  <span class="card-label">Nombre:</span>
+                  <input type="text" name="nombre_curso" value="<?= htmlspecialchars($curso['nombre_curso']) ?>" disabled>
                 </div>
-                <div class="card-col right">
-                  <div class="card-field">
-                    <span class="card-label">Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
-                  </div>
-                  <div class="card-field">
-                    <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
-                  </div>
+                <div class="card-field">
+                  <span class="card-label">Profesor:</span>
+                  <select name="id_profesor" disabled>
+                    <?php foreach ($docentes as $doc): ?>
+                      <option value="<?= $doc['id'] ?>" <?= ($curso['nombre_profesor'].' '.$curso['apellido_profesor'] == $doc['nombre'].' '.$doc['apellido']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($doc['nombre'].' '.$doc['apellido']) ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="card-field">
+                  <span class="card-label">Fecha de inicio:</span>
+                  <input type="date" name="fecha_inicio" value="<?= htmlspecialchars($curso['fecha_inicio']) ?>" disabled>
+                </div>
+                <div class="card-field">
+                  <span class="card-label">Fecha de fin:</span>
+                  <input type="date" name="fecha_fin" value="<?= htmlspecialchars($curso['fecha_fin']) ?>" disabled>
+                </div>
+                <div class="card-field">
+                  <span class="card-label">Participantes:</span>
+                  <span><?= $num_participantes ?></span>
+                  <button type="button" class="btn-ver-participantes" data-curso="<?= $curso['id'] ?>" style="background:none;border:none;padding:0;vertical-align:middle;">
+                    <svg width="18" height="18" viewBox="0 0 576 512" style="vertical-align:middle;cursor:pointer;">
+                      <path fill="currentColor" d="M572.52 241.4C518.7 135.5 410.7 64 288 64S57.3 135.5 3.48 241.4a48.07 48.07 0 0 0 0 45.2C57.3 376.5 165.3 448 288 448s230.7-71.5 284.52-161.4a48.07 48.07 0 0 0 0-45.2zM288 400c-97.2 0-189.6-57.6-238.8-144C98.4 169.6 190.8 112 288 112s189.6 57.6 238.8 144C477.6 342.4 385.2 400 288 400zm0-272a128 128 0 1 0 128 128A128 128 0 0 0 288 128zm0 208a80 80 0 1 1 80-80 80 80 0 0 1-80 80z"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
-            </div>
-          <?php endwhile; ?>
-        <?php else: ?>
-          <p>No hay cursos activos para mostrar.</p>
-        <?php endif; ?>
+              <div class="card-col right">
+                <div class="card-field">
+                  <span class="card-label">Total de Cupos:</span>
+                  <input type="number" name="cupos" value="<?= htmlspecialchars($curso['cupos']) ?>" min="1" disabled>
+                </div>
+                <div class="card-field">
+                  <span class="card-label">Valor en Bs:</span>
+                  <input type="number" name="precio" value="<?= htmlspecialchars($curso['precio']) ?>" step="0.01" min="0" disabled>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button type="button" class="btn-editar-curso">Editar</button>
+                <button type="submit" class="btn-guardar-curso" style="display:none;">Guardar</button>
+                <button type="button" class="btn-cancelar-curso" style="display:none;">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+       
+      <?php endwhile; ?>
+    <?php else: ?>
+      <p>No hay cursos activos para mostrar.</p>
+    <?php endif; ?>
         <!-- fin area activos -->
 
         <!-- inicio area de profesores -->
@@ -282,5 +334,22 @@ $tab = $_GET['tab'] ?? 'activos';
         </div>
       </div>
     </div>
+
+
+    <!-- Modal de participantes (solo una vez en la página) -->
+    <div id="modal-participantes" class="modal-participantes modal none">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalParticipantes()">&times;</span>
+        <h3>Participantes del curso</h3>
+        <input type="text" id="busqueda-participante" placeholder="Buscar por nombre, apellido o cédula..." onkeyup="filtrarParticipantes()">
+        <div id="tabla-participantes"></div>
+        <form id="form-agregar-participante" style="display:flex;gap:1em;margin-top:1em;">
+          <input type="hidden" name="curso_id" id="modal_participantes_curso_id">
+          <input type="text" name="cedula_estudiante" placeholder="Cédula del estudiante" required style="flex:1;">
+          <button type="submit">Agregar</button>
+        </form>
+      </div>
+    </div>
+
   </body>
 </html>

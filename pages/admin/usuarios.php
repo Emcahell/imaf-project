@@ -197,7 +197,7 @@ if (isset($_POST['cambiar_rol'], $_POST['usuario_id'], $_POST['nuevo_rol'])) {
                       <!-- ...icono ver más... -->
                     </div>
                     <p class="table-header-item box-info-y-edit">
-                      <a href="/pages/admin/edit-perfil-usuario.php?id=<?= $usuario['id'] ?>">
+                      <a href="/imaf-project/pages/edit-perfil.php?id=<?= $usuario['id'] ?>">
                         <img class="editsvg r" src="/imaf-project/assets/icons/pen-to-square.svg" alt="Editar" />
                       </a>
                       <?= htmlspecialchars($usuario['cedula']) ?>
@@ -259,7 +259,7 @@ if (isset($_POST['cambiar_rol'], $_POST['usuario_id'], $_POST['nuevo_rol'])) {
                   <div class="table-row2">
                     <!-- ...icono ver más... -->
                     <p class="table-header-item box-info-y-edit">
-                      <a href="/pages/admin/edit-perfil-usuario.php?id=<?= $usuario['id'] ?>">
+                      <a href="/imaf-project/pages/edit-perfil.php?id=<?= $usuario['id'] ?>">
                         <img class="editsvg r" src="/imaf-project/assets/icons/pen-to-square.svg" alt="Editar" />
                       </a>
                       <?= htmlspecialchars($usuario['cedula']) ?>
