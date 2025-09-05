@@ -2,13 +2,13 @@
   background-color: lightgreen;
   border: none;
   padding: 5px 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   border-radius: 3px;
   width: 100%;
   letter-spacing: 1px;
   font-weight: 600;
   font-size: 13px;
-  transition: all .1s;
+  transition: all 0.1s;
   cursor: pointer;
 }
 
@@ -18,22 +18,37 @@
 
 .card-activos {
   position: relative;
-  height: auto;
+  height: max-content;
+}
+
+.box-buttons {
+  display: flex;
 }
 
 .wasa {
   position: absolute;
   bottom: 10px;
   right: 20px;
-  text-decoration: none;
-  letter-spacing: 1px;
-  font-weight: 600;
-  font-size: 13px;
+
   padding: 5px 10px;
   margin-top: 10px;
-  border-radius: 3px;
-  background-color: lightgreen;
-  color: black;
+}
+
+.card-actions-bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.card-activos .btn-finalizar {
+  width: auto;
+  margin-top:0px;
+}
+
+.card-activos .wasa svg {
+  width: 40px;
+  height: 40px;
 }
 
 .wasa:hover {

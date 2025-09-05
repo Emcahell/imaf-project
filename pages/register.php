@@ -20,11 +20,11 @@
 
       <!-- Paso 1 -->
       <div id="step1">
-        <input class="form-input" type="text" name="cedula" placeholder="Cédula" required />
+        <input class="form-input" type="number" name="cedula" placeholder="Cédula" required />
         <input class="form-input" type="email" name="correo" placeholder="Correo" required />
         <input class="form-input" type="password" name="contraseña" placeholder="Contraseña" required />
         <button type="button" class="btn" onclick="nextStep()">Siguiente</button>
-        <a href="/imaf-project/index.php">Iniciar sesion</a>
+        <a style="display:flex; justify-self:center; margin-top: 20px;" href="/imaf-project/index.php">Iniciar sesion</a>
       </div>
 
       <!-- Paso 2 -->

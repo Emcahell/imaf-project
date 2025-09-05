@@ -1,7 +1,7 @@
 <?php
 include("../../backend/conexion.php");
 
-// Solo cursos activos y no finalizados por el profesor
+// Cursos activos
 $queryActivos = "
 SELECT 
     cp.id,
@@ -12,12 +12,14 @@ SELECT
     cp.cupos,
     cp.precio,
     u.nombre AS nombre_profesor,
-    u.apellido AS apellido_profesor
+    u.apellido AS apellido_profesor,
+    cp.oferta,
+    cp.estado
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
-WHERE cp.activo = 1
+WHERE cp.estado IN ('disponible', 'en_curso')
 ORDER BY cp.fecha_inicio DESC
 ";
 $resultActivos = $conex->query($queryActivos);
@@ -32,7 +34,7 @@ WHERE e.tipo_empleado = 'docente' AND e.activo = 1
 $resultProfesores = $conex->query($queryProfesores);
 
 
-// Consulta cursos terminados o inactivos
+// Cursos terminados
 $queryTerminados = "
 SELECT 
     cp.id,
@@ -43,12 +45,14 @@ SELECT
     cp.cupos,
     cp.precio,
     u.nombre AS nombre_profesor,
-    u.apellido AS apellido_profesor
+    u.apellido AS apellido_profesor,
+    cp.oferta,
+    cp.estado
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
-WHERE cp.finalizado = 1 OR cp.fecha_fin < CURDATE()
+WHERE cp.estado = 'terminado'
 ORDER BY cp.fecha_fin DESC
 ";
 $resultTerminados = $conex->query($queryTerminados);
@@ -82,12 +86,15 @@ while ($row = mysqli_fetch_assoc($qDocentes)) {
     <link rel="stylesheet" href="../../styles/transitionPages.css">
     <script src="../../scripts/transitionPages.js" defer></script>
     <script src="../../scripts/header.js" defer></script>
-    <script src="../../scripts/cursos.js" defer></script>
+    <script src="/imaf-project/scripts/cursos.js" defer></script>
     <title>IMAF | Cursos</title>
     <style>
       .card-style{
         height: max-content;
       }
+
+
+
     </style>
   </head>
   <body>
@@ -173,16 +180,16 @@ while ($row = mysqli_fetch_assoc($qDocentes)) {
         <?php
           // Obtener número de participantes
           $curso_id = $curso['id'];
-          $qPart = mysqli_query($conex, "SELECT cp.*, u.nombre, u.apellido FROM curso_participante cp JOIN usuario u ON cp.id_estudiante = u.id WHERE cp.id_curso_promocion = $curso_id");
-          $participantes = [];
-          while ($row = mysqli_fetch_assoc($qPart)) {
-              $participantes[] = $row;
-          }
-          $num_participantes = count($participantes);
+          $qPart = mysqli_query($conex, "SELECT COUNT(*) AS total FROM curso_participante WHERE id_curso_promocion = $curso_id");
+          $row = mysqli_fetch_assoc($qPart);
+          $num_participantes = $row ? intval($row['total']) : 0;
         ?>
         <div class="card-activos card-style" data-curso-id="<?= $curso['id'] ?>">
           <div class="card-img">
             <img src="<?= !empty($curso['imagen']) ? '../../uploads/cursos/' . htmlspecialchars($curso['imagen']) : 'https://via.placeholder.com/300x200?text=Sin+Imagen' ?>" alt="">
+            <?php if ($curso['estado'] === 'en_curso'): ?>
+              <span style="position:relative;left:20px;background:#43a047;color:#fff;padding:4px 12px;border-radius:6px;font-weight:bold;font-size:0.95em;box-shadow:0 2px 6px #0002;">En curso</span>
+            <?php endif; ?>
           </div>
           <div class="card-info">
             <form class="form-editar-curso" method="POST" action="/imaf-project/backend/editar_curso.php">
@@ -219,9 +226,7 @@ while ($row = mysqli_fetch_assoc($qDocentes)) {
                     </svg>
                   </button>
                 </div>
-              </div>
-              <div class="card-col right">
-                <div class="card-field">
+                 <div class="card-field">
                   <span class="card-label">Total de Cupos:</span>
                   <input type="number" name="cupos" value="<?= htmlspecialchars($curso['cupos']) ?>" min="1" disabled>
                 </div>
@@ -229,7 +234,15 @@ while ($row = mysqli_fetch_assoc($qDocentes)) {
                   <span class="card-label">Valor en Bs:</span>
                   <input type="number" name="precio" value="<?= htmlspecialchars($curso['precio']) ?>" step="0.01" min="0" disabled>
                 </div>
+                <div class="card-field">
+                  <label>
+                    <input type="checkbox" name="oferta" value="0" <?= isset($curso) && $curso['oferta'] ? 'checked' : '' ?> disabled>
+                    En oferta
+                  </label>
+                </div>
+
               </div>
+
               <div class="card-actions">
                 <button type="button" class="btn-editar-curso">Editar</button>
                 <button type="submit" class="btn-guardar-curso" style="display:none;">Guardar</button>
@@ -350,6 +363,109 @@ while ($row = mysqli_fetch_assoc($qDocentes)) {
         </form>
       </div>
     </div>
+    <script>
+  // Editar datos del curso ya creado
 
+document.querySelectorAll(".btn-editar-curso").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const form = btn.closest(".form-editar-curso");
+    form
+      .querySelectorAll("input, select")
+      .forEach((el) => (el.disabled = false));
+    form.querySelector(".btn-guardar-curso").style.display = "";
+    form.querySelector(".btn-cancelar-curso").style.display = "";
+    btn.style.display = "none";
+  });
+});
+document.querySelectorAll(".btn-cancelar-curso").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const form = btn.closest(".form-editar-curso");
+    form.reset();
+    form
+      .querySelectorAll("input, select")
+      .forEach((el) => (el.disabled = true));
+    form.querySelector(".btn-guardar-curso").style.display = "none";
+    form.querySelector(".btn-editar-curso").style.display = "";
+    btn.style.display = "none";
+  });
+});
+
+//// modal de ver participantes en curso ya creado ////
+
+// Mostrar modal y cargar participantes
+document.querySelectorAll(".btn-ver-participantes").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    var cursoId = btn.getAttribute("data-curso");
+    document.getElementById("modal-participantes").classList.remove("none");
+    document.getElementById("modal_participantes_curso_id").value = cursoId;
+    cargarParticipantes(cursoId, "");
+    document.getElementById("busqueda-participante").value = "";
+  });
+});
+
+function cerrarModalParticipantes() {
+  document.getElementById("modal-participantes").classList.add("none");
+}
+
+// Cargar participantes vía AJAX
+function cargarParticipantes(cursoId, filtro) {
+  fetch(
+    "/imaf-project/pages/admin/ajax_participantes.php?curso_id=" +
+      cursoId +
+      "&filtro=" +
+      encodeURIComponent(filtro)
+  )
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("tabla-participantes").innerHTML = html;
+    });
+}
+
+// Filtrar participantes
+function filtrarParticipantes() {
+  var cursoId = document.getElementById("modal_participantes_curso_id").value;
+  var filtro = document.getElementById("busqueda-participante").value;
+  cargarParticipantes(cursoId, filtro);
+}
+
+// Agregar participante
+document
+  .getElementById("form-agregar-participante")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+    var cursoId = document.getElementById("modal_participantes_curso_id").value;
+    var cedula = this.cedula_estudiante.value;
+    var formData = new FormData();
+    formData.append("agregar", 1);
+    formData.append("curso_id", cursoId);
+    formData.append("cedula_estudiante", cedula);
+    fetch("/imaf-project/pages/admin/ajax_participantes.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.text())
+      .then((html) => {
+        document.getElementById("tabla-participantes").innerHTML = html;
+        this.cedula_estudiante.value = "";
+      });
+  });
+
+// Eliminar participante (llamado desde el HTML generado)
+function eliminarParticipante(id, cursoId) {
+  var formData = new FormData();
+  formData.append("eliminar", 1);
+  formData.append("id", id);
+  formData.append("curso_id", cursoId);
+  fetch("/imaf-project/pages/admin/ajax_participantes.php", {
+    method: "POST",
+    body: formData,
+  })
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("tabla-participantes").innerHTML = html;
+    });
+}
+
+      </script>
   </body>
 </html>

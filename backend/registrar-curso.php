@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["crear-curso"])) {
     $fechaFin = $_POST["fecha-fin"];
     $cupos = $_POST["cupos"];
     $precio = $_POST["precio"];
+    $oferta = isset($_POST['oferta']) ? 1 : 0;
 
     // Manejo de la imagen
     $imagenNombre = null;
@@ -43,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["crear-curso"])) {
     }
 
     // 2. Insertar la promoción del curso
-    $stmtPromo = $conex->prepare("INSERT INTO curso_promocion (id_curso, imagen, id_profesor, fecha_inicio, fecha_fin, cupos, precio) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmtPromo->bind_param("isissid", $cursoId, $imagenNombre, $profesorId, $fechaInicio, $fechaFin, $cupos, $precio);
+    $stmtPromo = $conex->prepare("INSERT INTO curso_promocion (id_curso, imagen, id_profesor, fecha_inicio, fecha_fin, cupos, precio, oferta) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmtPromo->bind_param("isissidi", $cursoId, $imagenNombre, $profesorId, $fechaInicio, $fechaFin, $cupos, $precio, $oferta);
     $stmtPromo->execute();
     $stmtPromo->close();
 

@@ -258,6 +258,46 @@ nav {
   display: block;
 }
 
+.form-editar-curso input {
+  width: 80%;
+  border-radius: 4px;
+  border: 1px solid var(--color-gray-borders);
+  padding-left: 8px;
+}
+
+.btn-editar-curso,
+.btn-guardar-curso,
+.btn-cancelar-curso {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 20px;
+}
+
+.btn-editar-curso,
+.btn-guardar-curso {
+  background: #d81b60;
+  color: #fff;
+}
+.btn-editar-curso:hover {
+  background: #ad1457;
+}
+.btn-guardar-curso:hover {
+  background: #ad1457;
+}
+
+.btn-cancelar-curso {
+  background: #d0d0d0;
+  color: black;
+}
+.btn-cancelar-curso:hover {
+  background: #e5e5e5;
+}
+
 /* Modal fondo */
 .modal-participantes,
 .modal {

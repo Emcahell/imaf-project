@@ -119,14 +119,16 @@
               <?php while($sol = mysqli_fetch_assoc($resultPendientes)): ?>
                 <div class="card-pendientes card-style">
                   <div class="card-info">
-                    <div class="card-img">
-                      <span class="title-c">Comprobante</span>
-                      <?php if (!empty($sol['comprobante'])): ?>
-                        <img src="../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>" alt="Comprobante">
-                      <?php else: ?>
-                        <span>No subido</span>
-                      <?php endif; ?>
-                    </div>
+                  
+                      <div class="card-img" style="cursor:pointer"
+                          onclick="abrirModalComprobante('../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>')">
+                        <span class="title-c">Comprobante</span>
+                        <?php if (!empty($sol['comprobante'])): ?>
+                          <img src="../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>" alt="Comprobante">
+                        <?php else: ?>
+                          <span>No subido</span>
+                        <?php endif; ?>
+                      </div>
                     <div class="card-col left">
                       <div class="card-field">
                         <span class="card-label">Nombre:</span> <?= htmlspecialchars($sol['nombre_estudiante'] . ' ' . $sol['apellido_estudiante']) ?>
@@ -159,11 +161,11 @@
                     </div>
                   </div>
                   <div class="box-buttons">
-                    <form method="POST" action="aprobar_inscripcion.php" style="display:inline;">
+                    <form method="POST" action="/imaf-project/backend/aprobar_inscripcion.php" style="display:inline;">
                       <input type="hidden" name="inscripcion_id" value="<?= $sol['id'] ?>">
                       <button class="aprobar" type="submit">Aprobar</button>
                     </form>
-                    <form method="POST" action="rechazar_inscripcion.php" style="display:inline;">
+                    <form method="POST" action="/imaf-project/backend/rechazar_inscripcion.php" style="display:inline;">
                       <input type="hidden" name="inscripcion_id" value="<?= $sol['id'] ?>">
                       <button class="rechazar" type="submit">Rechazar</button>
                     </form>
@@ -174,11 +176,290 @@
               <p>No hay solicitudes pendientes para mostrar.</p>
             <?php endif; ?>
           </div>
+          
+          <?php
+          // Solicitudes aprobadas
+          $queryAprobados = "
+          SELECT 
+              i.id,
+              i.comprobante,
+              i.referencia,
+              i.estado,
+              i.fecha,
+              i.id_estudiante,
+              i.id_curso_promocion,
+              cp.precio AS valor_curso,
+              cp.fecha_inicio,
+              cp.fecha_fin,
+              c.nombre AS nombre_curso,
+              u.nombre AS nombre_estudiante,
+              u.apellido AS apellido_estudiante,
+              u.cedula,
+              u.correo,
+              u.telefono
+          FROM inscripcion i
+          JOIN curso_promocion cp ON i.id_curso_promocion = cp.id
+          JOIN curso c ON cp.id_curso = c.id
+          JOIN estudiante e ON i.id_estudiante = e.id
+          JOIN usuario u ON e.usuario_id = u.id
+          WHERE i.estado = 'aprobada'
+          ORDER BY i.fecha DESC
+          ";
+          $resultAprobados = mysqli_query($conex, $queryAprobados);
+          ?>
+
+          <!-- Aprobadas -->
+          <div class="box-cards box-card-aprobados" id="aprobados" style="display:none;">
+            <?php if (mysqli_num_rows($resultAprobados)): ?>
+              <?php while($sol = mysqli_fetch_assoc($resultAprobados)): ?>
+                <div class="card-aprobados card-style">
+                  <div class="card-info">
+                    <div class="card-img" style="cursor:pointer"
+                        onclick="abrirModalComprobante('../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>')">
+                      <span class="title-c">Comprobante</span>
+                      <?php if (!empty($sol['comprobante'])): ?>
+                        <img src="../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>" alt="Comprobante">
+                      <?php else: ?>
+                        <span>No subido</span>
+                      <?php endif; ?>
+                    </div>
+                    <div class="card-col left">
+                      <div class="card-field">
+                        <span class="card-label">Nombre:</span> <?= htmlspecialchars($sol['nombre_estudiante'] . ' ' . $sol['apellido_estudiante']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Cédula:</span> <?= htmlspecialchars($sol['cedula']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Correo:</span> <?= htmlspecialchars($sol['correo']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Teléfono:</span> <?= htmlspecialchars($sol['telefono']) ?>
+                      </div>
+                    </div>
+                    <div class="card-col right">
+                      <div class="card-field">
+                        <span class="card-label">Curso:</span> <?= htmlspecialchars($sol['nombre_curso']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Referencia:</span> <?= htmlspecialchars($sol['referencia']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Fecha de pago:</span> <?= date("d/m/Y", strtotime($sol['fecha'])) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Valor del curso:</span> <?= number_format($sol['valor_curso'], 2, ',', '.') ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Estado:</span>
+                        <span style="color:#43a047;">
+                          <?= ucfirst($sol['estado']) ?>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            <?php else: ?>
+              <p>No hay solicitudes aprobadas para mostrar.</p>
+            <?php endif; ?>
+          </div>
+
+
+          <?php
+          $queryTodos = "
+          SELECT 
+              i.id,
+              i.comprobante,
+              i.referencia,
+              i.estado,
+              i.fecha,
+              i.id_estudiante,
+              i.id_curso_promocion,
+              cp.precio AS valor_curso,
+              cp.fecha_inicio,
+              cp.fecha_fin,
+              c.nombre AS nombre_curso,
+              u.nombre AS nombre_estudiante,
+              u.apellido AS apellido_estudiante,
+              u.cedula,
+              u.correo,
+              u.telefono
+          FROM inscripcion i
+          JOIN curso_promocion cp ON i.id_curso_promocion = cp.id
+          JOIN curso c ON cp.id_curso = c.id
+          JOIN estudiante e ON i.id_estudiante = e.id
+          JOIN usuario u ON e.usuario_id = u.id
+          ORDER BY i.fecha DESC
+          ";
+          $resultTodos = mysqli_query($conex, $queryTodos);
+          ?>
+
+          <?php
+
+          // Solicitudes rechazadas
+          $queryRechazados = "
+          SELECT 
+              i.id,
+              i.comprobante,
+              i.referencia,
+              i.estado,
+              i.fecha,
+              i.id_estudiante,
+              i.id_curso_promocion,
+              cp.precio AS valor_curso,
+              cp.fecha_inicio,
+              cp.fecha_fin,
+              c.nombre AS nombre_curso,
+              u.nombre AS nombre_estudiante,
+              u.apellido AS apellido_estudiante,
+              u.cedula,
+              u.correo,
+              u.telefono
+          FROM inscripcion i
+          JOIN curso_promocion cp ON i.id_curso_promocion = cp.id
+          JOIN curso c ON cp.id_curso = c.id
+          JOIN estudiante e ON i.id_estudiante = e.id
+          JOIN usuario u ON e.usuario_id = u.id
+          WHERE i.estado = 'rechazada'
+          ORDER BY i.fecha DESC
+          ";
+          $resultRechazados = mysqli_query($conex, $queryRechazados);
+          ?>
+
+          <!-- Rechazadas -->
+          <div class="box-cards box-card-rechazados" id="rechazados" style="display:none;">
+            <?php if (mysqli_num_rows($resultRechazados)): ?>
+              <?php while($sol = mysqli_fetch_assoc($resultRechazados)): ?>
+                <div class="card-rechazados card-style">
+                  <div class="card-info">
+                    <div class="card-img" style="cursor:pointer"
+                        onclick="abrirModalComprobante('../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>')">
+                      <span class="title-c">Comprobante</span>
+                      <?php if (!empty($sol['comprobante'])): ?>
+                        <img src="../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>" alt="Comprobante">
+                      <?php else: ?>
+                        <span>No subido</span>
+                      <?php endif; ?>
+                    </div>
+                    <div class="card-col left">
+                      <div class="card-field">
+                        <span class="card-label">Nombre:</span> <?= htmlspecialchars($sol['nombre_estudiante'] . ' ' . $sol['apellido_estudiante']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Cédula:</span> <?= htmlspecialchars($sol['cedula']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Correo:</span> <?= htmlspecialchars($sol['correo']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Teléfono:</span> <?= htmlspecialchars($sol['telefono']) ?>
+                      </div>
+                    </div>
+                    <div class="card-col right">
+                      <div class="card-field">
+                        <span class="card-label">Curso:</span> <?= htmlspecialchars($sol['nombre_curso']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Referencia:</span> <?= htmlspecialchars($sol['referencia']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Fecha de pago:</span> <?= date("d/m/Y", strtotime($sol['fecha'])) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Valor del curso:</span> <?= number_format($sol['valor_curso'], 2, ',', '.') ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Estado:</span>
+                        <span style="color:#e53935;">
+                          <?= ucfirst($sol['estado']) ?>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            <?php else: ?>
+              <p>No hay solicitudes rechazadas para mostrar.</p>
+            <?php endif; ?>
+          </div>
+
+          <div class="box-cards box-card-todos" id="todos" style="display:none;">
+            <?php if (mysqli_num_rows($resultTodos)): ?>
+              <?php while($sol = mysqli_fetch_assoc($resultTodos)): ?>
+                <div class="card-todos card-style">
+                  <div class="card-info">
+                    <div class="card-img" style="cursor:pointer"
+                        onclick="abrirModalComprobante('../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>')">
+                      <span class="title-c">Comprobante</span>
+                      <?php if (!empty($sol['comprobante'])): ?>
+                        <img src="../../uploads/comprobantes/<?= htmlspecialchars($sol['comprobante']) ?>" alt="Comprobante">
+                      <?php else: ?>
+                        <span>No subido</span>
+                      <?php endif; ?>
+                    </div>
+                    <div class="card-col left">
+                      <div class="card-field">
+                        <span class="card-label">Nombre:</span> <?= htmlspecialchars($sol['nombre_estudiante'] . ' ' . $sol['apellido_estudiante']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Cédula:</span> <?= htmlspecialchars($sol['cedula']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Correo:</span> <?= htmlspecialchars($sol['correo']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Teléfono:</span> <?= htmlspecialchars($sol['telefono']) ?>
+                      </div>
+                    </div>
+                    <div class="card-col right">
+                      <div class="card-field">
+                        <span class="card-label">Curso:</span> <?= htmlspecialchars($sol['nombre_curso']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Referencia:</span> <?= htmlspecialchars($sol['referencia']) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Fecha de pago:</span> <?= date("d/m/Y", strtotime($sol['fecha'])) ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Valor del curso:</span> <?= number_format($sol['valor_curso'], 2, ',', '.') ?>
+                      </div>
+                      <div class="card-field">
+                        <span class="card-label">Estado:</span> 
+                        <span style="color:<?= $sol['estado']=='pendiente' ? '#d81b60' : ($sol['estado']=='aprobada' ? '#43a047' : '#e53935') ?>;">
+                          <?= ucfirst($sol['estado']) ?>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            <?php else: ?>
+              <p>No hay solicitudes para mostrar.</p>
+            <?php endif; ?>
+          </div>
 
         </div>
       </article>
     </section>
   </main>
+
+  <!-- Modal para comprobante -->
+<div id="modal-comprobante" class="modal-comprobante none">
+  <span class="close-modal" onclick="cerrarModalComprobante()">&times;</span>
+  <img id="img-modal-comprobante" src="" alt="Comprobante grande">
+</div>
+
+<script>
+function abrirModalComprobante(src) {
+  document.getElementById('img-modal-comprobante').src = src;
+  document.getElementById('modal-comprobante').classList.remove('none');
+}
+function cerrarModalComprobante() {
+  document.getElementById('modal-comprobante').classList.add('none');
+}
+</script>
 </body>
 
 </html>

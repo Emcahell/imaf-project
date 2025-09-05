@@ -126,6 +126,12 @@ section {
   box-shadow: 0 4px 16px #0002;
 }
 
+.card-todos,
+.card-aprobados,
+.card-rechazados {
+  padding-bottom: 30px;
+}
+
 .card-img {
   position: relative;
   width: 130px;
@@ -144,12 +150,48 @@ section {
   border-radius: 10px;
 }
 
+.modal-comprobante {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 30, 30, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+.modal-comprobante.none {
+  display: none !important;
+}
+.modal-comprobante img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  background: #fff;
+  padding: 8px;
+  height: 80vh;
+}
+.close-modal {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 100000;
+}
+
 .card-info {
   display: flex;
   justify-content: space-between;
   gap: 8px;
   width: 100%;
   align-self: center;
+  align-items: center;
 }
 
 .card-col {
@@ -162,7 +204,7 @@ section {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .icon-field svg {
@@ -232,6 +274,12 @@ section {
   border-bottom: 5px solid var(--color-pink-hover);
 }
 
+@media (max-width: 1400px) {
+  .box-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 718px) {
   .filter button {
     font-size: 2vw;
@@ -264,7 +312,7 @@ section {
     gap: 16px;
   }
   .card-field {
-    font-size: 16px;
+    font-size: 0.8rem;
   }
   .title-c {
     top: 0;

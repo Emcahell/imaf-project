@@ -6,6 +6,47 @@ $usuario_id = $_SESSION['usuario_id'];
 $qUsuario = mysqli_query($conex, "SELECT nombre, apellido, foto, 'estudiante' AS rol FROM usuario WHERE id = $usuario_id");
 $usuario = mysqli_fetch_assoc($qUsuario);
 
+// Cambiar estado automáticamente según la fecha
+$conex->query("UPDATE curso_promocion SET estado = 'en_curso' WHERE estado = 'disponible' AND CURDATE() >= fecha_inicio AND CURDATE() <= fecha_fin");
+
+// Obtener el id del estudiante correspondiente al usuario actual
+$qEst = mysqli_query($conex, "SELECT id FROM estudiante WHERE usuario_id = $usuario_id");
+$rowEst = mysqli_fetch_assoc($qEst);
+$estudiante_id = $rowEst['id'];
+
+// Obtener los IDs de cursos en los que el estudiante ya está inscrito
+$idsInscritos = [];
+$qInscritos = mysqli_query($conex, "SELECT id_curso_promocion FROM curso_participante WHERE id_estudiante = $estudiante_id");
+while ($row = mysqli_fetch_assoc($qInscritos)) {
+    $idsInscritos[] = $row['id_curso_promocion'];
+}
+
+// IDs de cursos con solicitud pendiente
+$idsPendientes = [];
+$qPendientes = mysqli_query($conex, "
+    SELECT id_curso_promocion 
+    FROM inscripcion 
+    WHERE id_estudiante = $estudiante_id AND estado = 'pendiente'
+");
+while ($row = mysqli_fetch_assoc($qPendientes)) {
+    $idsPendientes[] = $row['id_curso_promocion'];
+}
+
+// Cursos NO inscritos (solo para el select)
+$queryNoInscritos = "
+SELECT 
+    cp.id,
+    c.nombre AS nombre_curso
+FROM curso_promocion cp
+JOIN curso c ON cp.id_curso = c.id
+WHERE cp.estado = 'disponible'
+AND cp.id NOT IN (
+    SELECT cp2.id_curso_promocion FROM curso_participante cp2 WHERE cp2.id_estudiante = $estudiante_id
+)
+ORDER BY cp.fecha_inicio DESC
+";
+
+
 // Cursos disponibles (activos y no inscritos)
 $queryDisponibles = "
 SELECT 
@@ -22,14 +63,12 @@ FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
-WHERE cp.activo = 1
-AND cp.id NOT IN (
-    SELECT cp2.id_curso_promocion FROM curso_participante cp2 WHERE cp2.id_estudiante = $usuario_id
-)
+WHERE cp.estado = 'disponible'
 ORDER BY cp.fecha_inicio DESC
 ";
 $resultDisponibles = $conex->query($queryDisponibles);
 
+// Cursos cursando (inscritos y aprobados)
 // Cursos cursando (inscritos y aprobados)
 $queryCursando = "
 SELECT
@@ -40,6 +79,7 @@ SELECT
     cp.fecha_fin,
     cp.cupos,
     cp.precio,
+    cp.whatsapp_link,
     u.nombre AS nombre_profesor,
     u.apellido AS apellido_profesor
 FROM curso_promocion cp
@@ -47,7 +87,8 @@ JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
 JOIN curso_participante cp2 ON cp2.id_curso_promocion = cp.id
-WHERE cp2.id_estudiante = $usuario_id
+WHERE cp2.id_estudiante = $estudiante_id
+  AND cp.estado IN ('disponible', 'en_curso')
 ORDER BY cp.fecha_inicio DESC
 ";
 $resultCursando = $conex->query($queryCursando);
@@ -68,7 +109,8 @@ FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
-WHERE cp.activo = 1 AND cp.cupos > 0
+WHERE cp.estado = 'disponible'
+  AND cp.oferta = 1
 ORDER BY cp.fecha_inicio DESC
 ";
 $resultOferta = $conex->query($queryOferta);
@@ -89,7 +131,9 @@ FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
-WHERE cp.activo = 0 OR cp.fecha_fin < CURDATE()
+JOIN curso_participante cp2 ON cp2.id_curso_promocion = cp.id
+WHERE cp2.id_estudiante = $estudiante_id
+  AND cp.estado = 'terminado'
 ORDER BY cp.fecha_fin DESC
 ";
 $resultTerminados = $conex->query($queryTerminados);
@@ -317,11 +361,30 @@ padding: 6px 12px;
                         <span class="card-label">Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
                       </div>
                       <div class="card-field">
-                        <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
+                        <span class="card-label">Cupos restantes:</span>
+                        <?php
+                          // Calcular cupos restantes
+                          $qCupos = mysqli_query($conex, "SELECT COUNT(*) AS inscritos FROM curso_participante WHERE id_curso_promocion = " . intval($curso['id']));
+                          $rowCupos = mysqli_fetch_assoc($qCupos);
+                          $cupos_restantes = $curso['cupos'] - intval($rowCupos['inscritos']);
+                          echo $cupos_restantes;
+                        ?>
                       </div>
                       <div class="card-field">
-                        <button class="btn-inscribirse" onclick="abrirFormularioInscripcion(<?= $curso['id'] ?>)">Inscribirse</button>
+                        <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
                       </div>
+                      
+                    <div class="card-field">
+                      <?php if (in_array($curso['id'], $idsInscritos)): ?>
+                        <button class="btn-inscribirse" disabled style="background:white;color:#43a047;cursor:default;">Inscrito</button>
+                      <?php elseif (in_array($curso['id'], $idsPendientes)): ?>
+                        <span style="background:white; font-size:0.7rem; color: #d4a900;">
+                          Solicitud pendiente
+                        </span>
+                      <?php else: ?>
+                        <button class="btn-inscribirse" onclick="abrirFormularioInscripcion(<?= $curso['id'] ?>)">Inscribirse</button>
+                      <?php endif; ?>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -360,6 +423,13 @@ padding: 6px 12px;
                       <div class="card-field">
                         <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
                       </div>
+                      <?php if (!empty($curso['whatsapp_link'])): ?>
+                        <a href="<?= htmlspecialchars($curso['whatsapp_link']) ?>" target="_blank" title="Grupo WhatsApp" style=" margin-left:8px;display:inline-block;">
+                          <svg style="width:40px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="50px" height="50px">
+                            <path fill="#63E6BE" width="50px" d="M188.1 318.6C188.1 343.5 195.1 367.8 208.3 388.7L211.4 393.7L198.1 442.3L248 429.2L252.8 432.1C273 444.1 296.2 450.5 319.9 450.5L320 450.5C392.6 450.5 453.3 391.4 453.3 318.7C453.3 283.5 438.1 250.4 413.2 225.5C388.2 200.5 355.2 186.8 320 186.8C247.3 186.8 188.2 245.9 188.1 318.6zM370.8 394C358.2 395.9 348.4 394.9 323.3 384.1C286.5 368.2 261.5 332.6 256.4 325.4C256 324.8 255.7 324.5 255.6 324.3C253.6 321.7 239.4 302.8 239.4 283.3C239.4 264.9 248.4 255.4 252.6 251C252.9 250.7 253.1 250.5 253.3 250.2C256.9 246.2 261.2 245.2 263.9 245.2C266.5 245.2 269.2 245.2 271.5 245.3L272.3 245.3C274.6 245.3 277.5 245.3 280.4 252.1C281.6 255 283.4 259.4 285.3 263.9C288.6 271.9 292 280.2 292.6 281.5C293.6 283.5 294.3 285.8 292.9 288.4C289.5 295.2 286 298.8 283.6 301.4C280.5 304.6 279.1 306.1 281.3 310C296.6 336.3 311.9 345.4 335.2 357.1C339.2 359.1 341.5 358.8 343.8 356.1C346.1 353.5 353.7 344.5 356.3 340.6C358.9 336.6 361.6 337.3 365.2 338.6C368.8 339.9 388.3 349.5 392.3 351.5C393.1 351.9 393.8 352.2 394.4 352.5C397.2 353.9 399.1 354.8 399.9 356.1C400.8 358 400.8 366 397.5 375.2C394.2 384.5 378.4 392.9 370.8 394zM544 160C544 124.7 515.3 96 480 96L160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160zM244.1 457.9L160 480L182.5 397.8C168.6 373.8 161.3 346.5 161.3 318.5C161.4 231.1 232.5 160 319.9 160C362.3 160 402.1 176.5 432.1 206.5C462 236.5 480 276.3 480 318.7C480 406.1 407.3 477.2 319.9 477.2C293.3 477.2 267.2 470.5 244.1 457.9z"/>
+                          </svg>
+                        </a>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -396,10 +466,28 @@ padding: 6px 12px;
                         <span class="card-label">Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
                       </div>
                       <div class="card-field">
+                        <span class="card-label">Cupos restantes:</span>
+                        <?php
+                          // Calcular cupos restantes
+                          $qCupos = mysqli_query($conex, "SELECT COUNT(*) AS inscritos FROM curso_participante WHERE id_curso_promocion = " . intval($curso['id']));
+                          $rowCupos = mysqli_fetch_assoc($qCupos);
+                          $cupos_restantes = $curso['cupos'] - intval($rowCupos['inscritos']);
+                          echo $cupos_restantes;
+                        ?>
+                      </div>
+                      <div class="card-field">
                         <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
                       </div>
                       <div class="card-field">
-                        <button class="btn-inscribirse" onclick="abrirFormularioInscripcion(<?= $curso['id'] ?>)">Inscribirse</button>
+                        <?php if (in_array($curso['id'], $idsInscritos)): ?>
+                          <button class="btn-inscribirse" disabled style="background:white;color:#43a047;cursor:default;">Inscrito</button>
+                        <?php elseif (in_array($curso['id'], $idsPendientes)): ?>
+                          <span style="background:white; font-size:0.7rem; color: #d4a900;">
+                            Solicitud pendiente
+                          </span>
+                        <?php else: ?>
+                          <button class="btn-inscribirse" onclick="abrirFormularioInscripcion(<?= $curso['id'] ?>)">Inscribirse</button>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>
@@ -459,10 +547,11 @@ padding: 6px 12px;
         <form id="form-inscripcion" enctype="multipart/form-data" method="POST" action="/imaf-project/backend/procesar_inscripcion.php">
           <div class="form-group">
             <label for="curso_id_modal">Curso:</label>
+            
             <select id="curso_id_modal" name="curso_id" required>
               <?php
-              $resultCursos = $conex->query($queryDisponibles);
-              while ($curso = $resultCursos->fetch_assoc()):
+              $resultNoInscritos = $conex->query($queryNoInscritos);
+              while ($curso = $resultNoInscritos->fetch_assoc()):
               ?>
                 <option value="<?= $curso['id'] ?>">
                   <?= htmlspecialchars($curso['nombre_curso']) ?>

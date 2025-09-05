@@ -3,13 +3,6 @@
 include("../../backend/conexion.php");
 session_start();
 
-// Procesar finalización de curso
-if (isset($_POST['finalizar_curso'])) {
-    $id = intval($_POST['finalizar_curso']);
-    mysqli_query($conex, "UPDATE curso_promocion SET finalizado = 1 WHERE id = $id");
-    header("Location: cursos.php");
-    exit;
-}
 
 // Validar sesión
 $cedula = $_SESSION['cedula'] ?? null;
@@ -33,12 +26,12 @@ if (!$docente) {
 
 $empleado_id = $docente['empleado_id'];
 
-// Cursos activos
+// Cursos activos (disponibles o en curso)
 $queryCursosActivos = "
 SELECT cp.*, c.nombre AS nombre_curso
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
-WHERE cp.id_profesor = $empleado_id AND cp.finalizado = 0
+WHERE cp.id_profesor = $empleado_id AND cp.estado IN ('disponible', 'en_curso')
 ORDER BY cp.fecha_inicio DESC
 ";
 $resultCursosActivos = mysqli_query($conex, $queryCursosActivos);
@@ -48,7 +41,7 @@ $queryCursosTerminados = "
 SELECT cp.*, c.nombre AS nombre_curso
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
-WHERE cp.id_profesor = $empleado_id AND cp.finalizado = 1
+WHERE cp.id_profesor = $empleado_id AND cp.estado = 'terminado'
 ORDER BY cp.fecha_inicio DESC
 ";
 $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
@@ -71,6 +64,63 @@ $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
     <script src="../../scripts/headerDocente.js" defer></script>
     <script src="../../scripts/profesor/cursos.js" defer></script>
     <title>IMAF | Cursos</title>
+
+    <style>
+        /* Puedes agregar esto en tu archivo CSS o dentro de <style> en cursos.php */
+// filepath: c:\xampp\htdocs\imaf-project\styles\profesores\cards-cursos.css
+
+#graduar-modal .modal-content {
+    padding: 40px 30px;
+    border-radius: 16px;
+    min-width: 500px;
+    max-width: 98vw;
+    width: 80vw;
+    box-shadow: 0 4px 24px #0003;
+    position: relative;
+    background: #fff;
+}
+
+#graduar-modal h2 {
+    margin-bottom: 28px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#graduar-list table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+#graduar-list th, #graduar-list td {
+    text-align: center;
+    padding: 14px 10px;
+    font-size: 1.1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+#graduar-list th {
+    background: #f0f0f0;
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+#graduar-list tr {
+    margin-bottom: 12px;
+}
+
+#graduar-list .btn-certificado {
+    margin-left: 8px;
+}
+
+#graduar-list .graduado-label {
+    color: #43a047;
+    font-weight: bold;
+    margin-right: 8px;
+}
+    </style>
   </head>
   <body>
     <?php
@@ -144,17 +194,30 @@ $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
                     <div class="card-info" style="display:flex;justify-content:space-between;align-items:flex-start;">
                         <div class="card-col left">
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Nombre:</span> <?= htmlspecialchars($curso['nombre_curso']) ?>
+                                <span class="card-label">Nombre:</span> <?= htmlspecialchars($curso['nombre_curso']) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/eye.svg" style="width:16px;vertical-align:middle;"> Profesor:</span> <?= htmlspecialchars($docente['nombre'] . ' ' . $docente['apellido']) ?>
+                                <span class="card-label">Profesor:</span> <?= htmlspecialchars($docente['nombre'] . ' ' . $docente['apellido']) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Fecha de inicio:</span> <?= date("d/m/Y", strtotime($curso['fecha_inicio'])) ?>
+                                <span class="card-label">Fecha de inicio:</span> <?= date("d/m/Y", strtotime($curso['fecha_inicio'])) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Fecha de fin:</span> <?= date("d/m/Y", strtotime($curso['fecha_fin'])) ?>
+                                <span class="card-label">Fecha de fin:</span> <?= date("d/m/Y", strtotime($curso['fecha_fin'])) ?>
                             </div>
+                            <a
+                                href="<?= !empty($curso['whatsapp_link']) ? htmlspecialchars($curso['whatsapp_link']) : 'javascript:void(0);' ?>"
+                                target="_blank"
+                                title="Grupo WhatsApp"
+                                style="margin-left:8px;display:inline-block;cursor:pointer;"
+                                <?php if (empty($curso['whatsapp_link'])): ?>
+                                    onclick="openWhatsappModal(<?= $curso['id'] ?>); return false;"
+                                <?php endif; ?>
+                                >
+                                    <svg style="width:40px; margin-top:6px; " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="32" height="32">
+                                        <path fill="#63E6BE" d="M188.1 318.6C188.1 343.5 195.1 367.8 208.3 388.7L211.4 393.7L198.1 442.3L248 429.2L252.8 432.1C273 444.1 296.2 450.5 319.9 450.5L320 450.5C392.6 450.5 453.3 391.4 453.3 318.7C453.3 283.5 438.1 250.4 413.2 225.5C388.2 200.5 355.2 186.8 320 186.8C247.3 186.8 188.2 245.9 188.1 318.6zM370.8 394C358.2 395.9 348.4 394.9 323.3 384.1C286.5 368.2 261.5 332.6 256.4 325.4C256 324.8 255.7 324.5 255.6 324.3C253.6 321.7 239.4 302.8 239.4 283.3C239.4 264.9 248.4 255.4 252.6 251C252.9 250.7 253.1 250.5 253.3 250.2C256.9 246.2 261.2 245.2 263.9 245.2C266.5 245.2 269.2 245.2 271.5 245.3L272.3 245.3C274.6 245.3 277.5 245.3 280.4 252.1C281.6 255 283.4 259.4 285.3 263.9C288.6 271.9 292 280.2 292.6 281.5C293.6 283.5 294.3 285.8 292.9 288.4C289.5 295.2 286 298.8 283.6 301.4C280.5 304.6 279.1 306.1 281.3 310C296.6 336.3 311.9 345.4 335.2 357.1C339.2 359.1 341.5 358.8 343.8 356.1C346.1 353.5 353.7 344.5 356.3 340.6C358.9 336.6 361.6 337.3 365.2 338.6C368.8 339.9 388.3 349.5 392.3 351.5C393.1 351.9 393.8 352.2 394.4 352.5C397.2 353.9 399.1 354.8 399.9 356.1C400.8 358 400.8 366 397.5 375.2C394.2 384.5 378.4 392.9 370.8 394zM544 160C544 124.7 515.3 96 480 96L160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160zM244.1 457.9L160 480L182.5 397.8C168.6 373.8 161.3 346.5 161.3 318.5C161.4 231.1 232.5 160 319.9 160C362.3 160 402.1 176.5 432.1 206.5C462 236.5 480 276.3 480 318.7C480 406.1 407.3 477.2 319.9 477.2C293.3 477.2 267.2 470.5 244.1 457.9z"/>
+                                    </svg>
+                                </a>
                         </div>
                         <div class="card-col right">
                             <div class="card-field">
@@ -169,26 +232,21 @@ $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
                                 <?= $total_participantes ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
+                                <span class="card-label"> Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Cupos Restantes:</span> <?= $cupos_restantes ?>
+                                <span class="card-label"> Cupos Restantes:</span> <?= $cupos_restantes ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="../../assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
+                                <span class="card-label"> Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
                             </div>
+        
+                            <form method="POST" action="/imaf-project/backend/finalizar_curso.php">
+                                <input type="hidden" name="finalizar_curso" value="<?= $curso['id'] ?>">
+                                <button style="margin-top:10px;" type="submit" class="btn-finalizar">Finalizar</button>
+                            </form>
+                
                         </div>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
-                        <form method="POST">
-                            <input type="hidden" name="finalizar_curso" value="<?= $curso['id'] ?>">
-                            <button type="submit" class="btn-finalizar" style="background:#7fffa7;color:#222;font-weight:bold;border:none;padding:10px 30px;border-radius:8px;cursor:pointer;">Finalizar</button>
-                        </form>
-                        <?php if (!empty($curso['whatsapp_link'])): ?>
-                            <a href="<?= htmlspecialchars($curso['whatsapp_link']) ?>" target="_blank" class="btn-wsp" style="background:#7fffa7;color:#222;font-weight:bold;border:none;padding:10px 30px;border-radius:8px;text-decoration:none;">WhatsApp</a>
-                        <?php else: ?>
-                            <button class="btn-wsp" type="button" style="background:#7fffa7;color:#222;font-weight:bold;border:none;padding:10px 30px;border-radius:8px;cursor:pointer;" onclick="openWhatsappModal(<?= $curso['id'] ?>)">WhatsApp</button>
-                        <?php endif; ?>
                     </div>
                 </div>
             <?php endwhile; ?>
@@ -215,35 +273,45 @@ $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
                     <div class="card-info" style="display:flex;justify-content:space-between;align-items:flex-start;">
                         <div class="card-col left">
                             <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Nombre:</span> <?= htmlspecialchars($curso['nombre_curso']) ?>
+                                <span class="card-label">Nombre:</span> <?= htmlspecialchars($curso['nombre_curso']) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"> Profesor:</span> <?= htmlspecialchars($docente['nombre'] . ' ' . $docente['apellido']) ?>
+                                <span class="card-label">Profesor:</span> <?= htmlspecialchars($docente['nombre'] . ' ' . $docente['apellido']) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Fecha de inicio:</span> <?= date("d/m/Y", strtotime($curso['fecha_inicio'])) ?>
+                                <span class="card-label">Fecha de inicio:</span> <?= date("d/m/Y", strtotime($curso['fecha_inicio'])) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Fecha de fin:</span> <?= date("d/m/Y", strtotime($curso['fecha_fin'])) ?>
+                                <span class="card-label">Fecha de fin:</span> <?= date("d/m/Y", strtotime($curso['fecha_fin'])) ?>
                             </div>
                         </div>
                         <div class="card-col right">
+                            <span style="font-size:0.6rem;" class="card-label">
+                                <img src="/imaf-project/assets/icons/eye.svg"
+                                    style="width:16px;vertical-align:middle;cursor:pointer;"
+                                    onclick="openGraduarModal(<?= $curso['id'] ?>)">
+                                Participantes: <?= $total_participantes ?>
+                            </span>
                             <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/eye.svg" style="width:16px;vertical-align:middle;"> Participantes:</span> <?= $total_participantes ?>
+                                <span class="card-label">Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Total de Cupos:</span> <?= htmlspecialchars($curso['cupos']) ?>
+                                <span class="card-label">Cupos Restantes:</span> <?= $cupos_restantes ?>
                             </div>
                             <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Cupos Restantes:</span> <?= $cupos_restantes ?>
+                                <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
                             </div>
-                            <div class="card-field">
-                                <span class="card-label"><img src="/imaf-project/assets/icons/pen-to-square.svg" style="width:16px;vertical-align:middle;"> Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
+                            <div style="margin-top:10px;">
+                                <span style="color:red;font-weight:bold;font-size:0.6rem;">Terminado</span>
                             </div>
+                            <?php
+                                $q = mysqli_query($conex, "SELECT graduado FROM curso_participante WHERE id_curso_promocion = {$curso['id']} AND id_estudiante = {$_SESSION['usuario_id']}");
+                                $row = mysqli_fetch_assoc($q);
+                                if ($row && $row['graduado']) {
+                                    echo '<a href="/imaf-project/backend/descargar_certificado.php?curso_id='.$curso['id'].'" class="btn-certificado" style="background:#43a047;color:#fff;font-weight:bold;border:none;padding:8px 24px;border-radius:8px;cursor:pointer;">Descargar certificado</a>';
+                                }
+                            ?>
                         </div>
-                    </div>
-                    <div style="margin-top:10px;">
-                        <span style="color:red;font-weight:bold;font-size:1.2em;">Terminado</span>
                     </div>
                 </div>
             <?php endwhile; ?>
@@ -298,7 +366,7 @@ function closeWhatsappModal() {
     btnRealizados.addEventListener('click', () => {
         btnRealizados.classList.add('active');
         btnTerminados.classList.remove('active');
-        cardsArea.style.display = 'block';
+        cardsArea.style.display = 'grid';
         cardsTerminados.style.display = 'none';
     });
 
@@ -306,11 +374,11 @@ function closeWhatsappModal() {
         btnTerminados.classList.add('active');
         btnRealizados.classList.remove('active');
         cardsArea.style.display = 'none';
-        cardsTerminados.style.display = 'block';
+        cardsTerminados.style.display = 'grid';
     });
 </script>
 
-<!-- Modal de participantes mejorada -->
+<!-- Modal de participantes  -->
 <div id="participantes-modal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0005;justify-content:center;align-items:center;z-index:999;">
     <div style="background:#fff;padding:40px 30px;border-radius:16px;min-width:500px;max-width:98vw;box-shadow:0 4px 24px #0003;position:relative;">
         <span style="position:absolute;top:18px;right:22px;cursor:pointer;font-size:2em;" onclick="closeParticipantesModal()">&times;</span>
@@ -386,6 +454,55 @@ document.getElementById('busqueda-participante').addEventListener('input', funct
     const filtro = this.value;
     cargarParticipantes(cursoId, filtro);
 });
+
+
+
 </script>
+
+
+
+<script>
+
+    //modal de graduar participantes
+
+function openGraduarModal(cursoId) {
+    document.getElementById('graduar-modal').style.display = 'flex';
+    fetch('ajax_graduar.php?curso_id=' + cursoId)
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('graduar-list').innerHTML = html;
+        });
+}
+function closeGraduarModal() {
+    document.getElementById('graduar-modal').style.display = 'none';
+}
+
+//funcion de graduar participantes
+function graduarParticipante(id, cursoId, btn) {
+    fetch('ajax_graduar.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'graduar=1&id=' + id + '&curso_id=' + cursoId
+    })
+    .then(() => {
+        // Actualiza la fila: muestra "Graduado" y el botón de certificado
+        const td = btn.parentNode;
+        td.innerHTML = "<span style='color:green;font-weight:bold;'>Graduado</span> <a href='/imaf-project/backend/descargar_certificado.php?participante_id=" + id + "' class='btn-certificado' style='background:#43a047;color:#fff;font-weight:bold;border:none;padding:6px 16px;border-radius:8px;cursor:pointer;'>Descargar certificado</a>";
+    });
+}
+
+</script>
+
+<!-- Modal para graduar participantes -->
+
+<div id="graduar-modal" class="modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0005;justify-content:center;align-items:center;z-index:999;">
+    <div class="modal-content">
+        <span style="position:absolute;top:18px;right:22px;cursor:pointer;font-size:2em;" onclick="closeGraduarModal()">&times;</span>
+        <h2>Graduar participantes</h2>
+        <div id="graduar-list" style="margin-bottom:18px;max-height:350px;overflow-y:auto;">
+            <!-- Se carga la lista vía AJAX -->
+        </div>
+    </div>
+</div>
   </body>
 </html>

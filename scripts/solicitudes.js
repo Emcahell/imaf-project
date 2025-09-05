@@ -82,3 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   showActivos();
 });
+
+
+
+//modal foto de comprobante
+
+function abrirModalComprobante(src) {
+  document.getElementById('img-modal-comprobante').src = src;
+  document.getElementById('modal-comprobante').classList.remove('none');
+}
+function cerrarModalComprobante() {
+  document.getElementById('modal-comprobante').classList.add('none');
+}

@@ -10,15 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_fin = mysqli_real_escape_string($conex, $_POST['fecha_fin']);
     $cupos = intval($_POST['cupos']);
     $precio = floatval($_POST['precio']);
+    $oferta = isset($_POST['oferta']) ? 1 : 0; // <-- NUEVO
+
 
     // Actualiza curso_promocion (sin nombre)
     $sql = "UPDATE curso_promocion SET 
-                id_profesor = $id_profesor,
-                fecha_inicio = '$fecha_inicio',
-                fecha_fin = '$fecha_fin',
-                cupos = $cupos,
-                precio = $precio
-            WHERE id = $curso_id";
+            id_profesor = $id_profesor,
+            fecha_inicio = '$fecha_inicio',
+            fecha_fin = '$fecha_fin',
+            cupos = $cupos,
+            precio = $precio,
+            oferta = $oferta
+        WHERE id = $curso_id";
     $result = mysqli_query($conex, $sql);
 
     // Actualiza el nombre en la tabla curso si es necesario

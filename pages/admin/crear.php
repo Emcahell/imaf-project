@@ -160,6 +160,10 @@ while ($row = $result->fetch_assoc()) {
                 <label for="precio">Valor en BS</label>
                 <input type="number" name="precio" id="precio-inscripcion" required>
               </div>
+              <div class="form-group">
+                  <label for="oferta">En oferta</label>
+                  <input type="checkbox" name="oferta" id="oferta" value="1">
+              </div>
               <button class="btn-modal" name="crear-curso" type="submit">Crear</button>
             </form>
           </div>
