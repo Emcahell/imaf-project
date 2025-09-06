@@ -99,7 +99,7 @@ section {
   background: var(--color-wine);
   border-radius: 20px;
 }
-
+/* cambios */
 .card-style {
   display: flex;
   flex-direction: column;
@@ -113,7 +113,7 @@ section {
   min-height: 180px;
   transition: box-shadow 0.2s;
   max-width: 100%;
-  height: max-content;
+  height: max-content !important;
 }
 
 .card-style svg {

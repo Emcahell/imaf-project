@@ -13,7 +13,11 @@
   <script src="../../scripts/header.js" defer></script>
   <script src="../../scripts/solicitudes.js" defer></script>
   <title>IMAF | Solicitudes</title>
- 
+ <style>
+  .card-style{
+    height:max-content;
+  }
+ </style>
 </head>
 
 <body>
@@ -81,6 +85,10 @@
           <button id="btn-aprobados">Aprobados</button>
           <button id="btn-rechazados">Rechazados</button>
           <button id="btn-todos">Todos</button>
+        </div>
+
+        <div class="search-box" style="margin: 10px 0;">
+          <input type="text" id="busqueda-cards" placeholder="Buscar por cualquier dato..." style="width:100%;padding:8px 14px;border-radius:8px;border:1px solid #ccc;">
         </div>
         <div class="contenido">
 
@@ -459,6 +467,22 @@ function abrirModalComprobante(src) {
 function cerrarModalComprobante() {
   document.getElementById('modal-comprobante').classList.add('none');
 }
+
+// Filtro de búsqueda para solicitudes
+document.getElementById('busqueda-cards').addEventListener('input', function() {
+  const filtro = this.value.toLowerCase();
+
+  // Filtra en cada sección de solicitudes
+  ['pendientes', 'aprobados', 'rechazados', 'todos'].forEach(id => {
+    const box = document.getElementById(id);
+    if (box) {
+      box.querySelectorAll('.card-style').forEach(card => {
+        const texto = card.innerText.toLowerCase();
+        card.style.display = texto.includes(filtro) ? '' : 'none';
+      });
+    }
+  });
+});
 </script>
 </body>
 

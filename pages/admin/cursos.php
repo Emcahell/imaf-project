@@ -20,8 +20,7 @@ JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
 WHERE cp.estado IN ('disponible', 'en_curso')
-ORDER BY cp.fecha_inicio DESC
-";
+ORDER BY cp.id DESC";
 $resultActivos = $conex->query($queryActivos);
 
 // Consulta profesores activos (ajusta el campo 'activo' según tu estructura)
@@ -167,9 +166,14 @@ while ($row = mysqli_fetch_assoc($qDocentes)) {
         <a href="?tab=terminados"><button class="tab-btn <?= $tab == 'terminados' ? 'active' : '' ?>">Terminados</button></a>
       </div>
 
-          <div class="label-box">
+          <div class="label-box" style="display:flex; align-items:center;justify-content:space-between;">
             <span>Datos</span>
+
+             <div class="search-box" style="display:inline-block;width: 40vw;">
+                <input type="text" id="busqueda-cards" placeholder="Buscar por cualquier dato..." style="width:100%;padding:8px 14px;border-radius:8px;border:1px solid #ccc;">
+            </div>
           </div>
+
         </div>
 
         <!-- cards area -->
@@ -465,6 +469,18 @@ function eliminarParticipante(id, cursoId) {
       document.getElementById("tabla-participantes").innerHTML = html;
     });
 }
+
+//filtro de busqueda
+
+document.getElementById('busqueda-cards').addEventListener('input', function() {
+  const filtro = this.value.toLowerCase();
+  // Selecciona todas las cards visibles (activos, profesores, terminados)
+  document.querySelectorAll('.cards-area > .card-style').forEach(card => {
+    // Busca en todo el texto visible de la card
+    const texto = card.innerText.toLowerCase();
+    card.style.display = texto.includes(filtro) ? '' : 'none';
+  });
+});
 
       </script>
   </body>

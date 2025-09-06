@@ -32,7 +32,7 @@ SELECT cp.*, c.nombre AS nombre_curso
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 WHERE cp.id_profesor = $empleado_id AND cp.estado IN ('disponible', 'en_curso')
-ORDER BY cp.fecha_inicio DESC
+ORDER BY cp.id DESC
 ";
 $resultCursosActivos = mysqli_query($conex, $queryCursosActivos);
 
@@ -42,7 +42,7 @@ SELECT cp.*, c.nombre AS nombre_curso
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 WHERE cp.id_profesor = $empleado_id AND cp.estado = 'terminado'
-ORDER BY cp.fecha_inicio DESC
+ORDER BY cp.fecha_fin DESC
 ";
 $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
 ?>
@@ -209,7 +209,7 @@ $resultCursosTerminados = mysqli_query($conex, $queryCursosTerminados);
                                 href="<?= !empty($curso['whatsapp_link']) ? htmlspecialchars($curso['whatsapp_link']) : 'javascript:void(0);' ?>"
                                 target="_blank"
                                 title="Grupo WhatsApp"
-                                style="margin-left:8px;display:inline-block;cursor:pointer;"
+                                style="margin-left:8px;display:inline-block;cursor:pointer;width:40px;"
                                 <?php if (empty($curso['whatsapp_link'])): ?>
                                     onclick="openWhatsappModal(<?= $curso['id'] ?>); return false;"
                                 <?php endif; ?>

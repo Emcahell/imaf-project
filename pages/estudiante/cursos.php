@@ -64,7 +64,7 @@ JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
 WHERE cp.estado = 'disponible'
-ORDER BY cp.fecha_inicio DESC
+ORDER BY cp.id DESC
 ";
 $resultDisponibles = $conex->query($queryDisponibles);
 
@@ -111,7 +111,7 @@ JOIN empleado e ON cp.id_profesor = e.id
 JOIN usuario u ON e.usuario_id = u.id
 WHERE cp.estado = 'disponible'
   AND cp.oferta = 1
-ORDER BY cp.fecha_inicio DESC
+ORDER BY cp.id DESC
 ";
 $resultOferta = $conex->query($queryOferta);
 
@@ -126,7 +126,9 @@ SELECT
     cp.cupos,
     cp.precio,
     u.nombre AS nombre_profesor,
-    u.apellido AS apellido_profesor
+    u.apellido AS apellido_profesor,
+    cp2.graduado,
+    cp2.id AS participante_id
 FROM curso_promocion cp
 JOIN curso c ON cp.id_curso = c.id
 JOIN empleado e ON cp.id_profesor = e.id
@@ -527,6 +529,16 @@ padding: 6px 12px;
                       <div class="card-field">
                         <span class="card-label">Valor en Bs:</span> <?= number_format($curso['precio'], 2, ',', '.') ?>
                       </div>
+                      <div class="card-field">
+                        <?php if ($curso['graduado']): ?>
+                          <a href="/imaf-project/backend/descargar_certificado.php?participante_id=<?= $curso['participante_id'] ?>"
+                            class="btn-certificado"
+                            style="background:#43a047;margin-top:10px;display:inline-block;text-decoration: none;padding:  4px;border-radius: 3px;color: white;">
+                            Descargar certificado
+                          </a>
+                      
+                        <?php endif; ?>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -540,40 +552,42 @@ padding: 6px 12px;
     </div>
 
     <!-- Modal Inscripción -->
-    <div id="modal-inscripcion" class="modal none">
-      <div class="modal-content">
-        <span class="close" onclick="cerrarFormularioInscripcion()">&times;</span>
-        <h2>Inscribirse al curso</h2>
-        <form id="form-inscripcion" enctype="multipart/form-data" method="POST" action="/imaf-project/backend/procesar_inscripcion.php">
-          <div class="form-group">
-            <label for="curso_id_modal">Curso:</label>
-            
-            <select id="curso_id_modal" name="curso_id" required>
-              <?php
-              $resultNoInscritos = $conex->query($queryNoInscritos);
-              while ($curso = $resultNoInscritos->fetch_assoc()):
-              ?>
-                <option value="<?= $curso['id'] ?>">
-                  <?= htmlspecialchars($curso['nombre_curso']) ?>
-                </option>
-              <?php endwhile; ?>
-            </select>
-            <div id="curso_img_preview" style="margin-top:10px;">
-              <!-- Aquí se muestra la imagen pequeña del curso seleccionado -->
+      <div id="modal-inscripcion" class="modal none">
+        <div class="modal-content">
+          <span class="close" onclick="cerrarFormularioInscripcion()">&times;</span>
+          <h2>Inscribirse al curso</h2>
+          <form id="form-inscripcion" enctype="multipart/form-data" method="POST" action="/imaf-project/backend/procesar_inscripcion.php">
+            <div class="form-group">
+              <label for="curso_id_modal">Curso:</label>
+              <select id="curso_id_modal" name="curso_id" required>
+                <?php
+                $resultNoInscritos = $conex->query($queryNoInscritos);
+                while ($curso = $resultNoInscritos->fetch_assoc()):
+                ?>
+                  <option value="<?= $curso['id'] ?>">
+                    <?= htmlspecialchars($curso['nombre_curso']) ?>
+                  </option>
+                <?php endwhile; ?>
+              </select>
+              <div id="curso_img_preview" style="margin-top:10px;">
+                <!-- Aquí se muestra la imagen pequeña del curso seleccionado -->
+              </div>
+              <div id="curso_precio_preview" style="margin-top:10px;font-weight:bold;color:#d81b60;">
+                <!-- Aquí se muestra el monto del curso seleccionado -->
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="comprobante_pago">Comprobante de pago:</label>
-            <input type="file" id="comprobante_pago" name="comprobante_pago" accept="image/*" required>
-          </div>
-          <div class="form-group">
-            <label for="referencia_pago">Número de referencia:</label>
-            <input type="text" id="referencia_pago" name="referencia_pago" required>
-          </div>
-          <button type="submit" class="btn-enviar">Enviar solicitud</button>
-        </form>
+            <div class="form-group">
+              <label for="comprobante_pago">Comprobante de pago:</label>
+              <input type="file" id="comprobante_pago" name="comprobante_pago" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="referencia_pago">Número de referencia:</label>
+              <input type="text" id="referencia_pago" name="referencia_pago" required>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar solicitud</button>
+          </form>
+        </div>
       </div>
-    </div>
 
     <script>
     window.cursosData = {};
@@ -587,24 +601,33 @@ padding: 6px 12px;
 
     <script>
     function abrirFormularioInscripcion(cursoId) {
-      document.getElementById('modal-inscripcion').classList.remove('none');
-      document.getElementById('curso_id_modal').value = cursoId;
-      mostrarImagenCurso(cursoId);
-    }
-    function cerrarFormularioInscripcion() {
-      document.getElementById('modal-inscripcion').classList.add('none');
-    }
-    function mostrarImagenCurso(cursoId) {
-      const cursos = window.cursosData || {};
-      const img = cursos[cursoId] ? cursos[cursoId].imagen : '';
-      const nombre = cursos[cursoId] ? cursos[cursoId].nombre : '';
-      document.getElementById('curso_img_preview').innerHTML = img
-        ? `<img src="../../uploads/cursos/${img}" alt="${nombre}" style="width:60px;height:40px;">`
-        : '';
-    }
-    document.getElementById('curso_id_modal').addEventListener('change', function() {
-      mostrarImagenCurso(this.value);
-    });
+  document.getElementById('modal-inscripcion').classList.remove('none');
+  document.getElementById('curso_id_modal').value = cursoId;
+  mostrarImagenCurso(cursoId);
+  mostrarPrecioCurso(cursoId);
+}
+function cerrarFormularioInscripcion() {
+  document.getElementById('modal-inscripcion').classList.add('none');
+}
+function mostrarImagenCurso(cursoId) {
+  const cursos = window.cursosData || {};
+  const img = cursos[cursoId] ? cursos[cursoId].imagen : '';
+  const nombre = cursos[cursoId] ? cursos[cursoId].nombre : '';
+  document.getElementById('curso_img_preview').innerHTML = img
+    ? `<img src="../../uploads/cursos/${img}" alt="${nombre}" style="width:60px;height:40px;">`
+    : '';
+}
+function mostrarPrecioCurso(cursoId) {
+  const cursos = window.cursosData || {};
+  const precio = cursos[cursoId] ? cursos[cursoId].precio : '';
+  document.getElementById('curso_precio_preview').innerHTML = precio
+    ? `Monto del curso: <span style="color:#43a047;">Bs ${precio}</span>`
+    : '';
+}
+document.getElementById('curso_id_modal').addEventListener('change', function() {
+  mostrarImagenCurso(this.value);
+  mostrarPrecioCurso(this.value);
+});
     </script>
 
     <script>

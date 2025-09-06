@@ -14,15 +14,26 @@
   <script src="/imaf-project/scripts/header.js" defer></script>
   <script src="../../scripts/estudiante/solicitudes.js" defer></script>
   <title>IMAF | Solicitudes</title>
+
+  <style>
+    .cards-style{
+      height:max-content !important;
+    }
+  </style>
 </head>
 
 <body>
   <main>
     <?php
     session_start();
+    if (!isset($_SESSION['usuario_id'])) {
+        // Redirige al login o muestra un mensaje de error
+        header("Location: /imaf-project/index.php");
+        exit;
+    }
     include("../../backend/conexion.php");
     $usuario_id = $_SESSION['usuario_id'];
-$qUsuario = mysqli_query($conex, "SELECT nombre, apellido, foto, 'estudiante' AS rol FROM usuario WHERE id = $usuario_id");    $usuario = mysqli_fetch_assoc($qUsuario);
+    $qUsuario = mysqli_query($conex, "SELECT nombre, apellido, foto, 'estudiante' AS rol FROM usuario WHERE id = $usuario_id");    $usuario = mysqli_fetch_assoc($qUsuario);
 
     include($_SERVER['DOCUMENT_ROOT'] . '/imaf-project/pages/header.php');
     ?>
@@ -106,7 +117,7 @@ $qUsuario = mysqli_query($conex, "SELECT nombre, apellido, foto, 'estudiante' AS
               if($sol['estado'] == 'pendiente'):
                 $hayPendientes = true;
             ?>
-                <div class="card-pendientes card-style">
+                <div style="height:max-content;" class="card-pendientes card-style">
                   <div class="card-info">
                   
                     <div class="card-img" style="cursor:pointer"

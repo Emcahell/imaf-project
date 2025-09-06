@@ -5,6 +5,7 @@
 
 .card-pendientes {
   padding-bottom: 30px;
+  height: max-content !important;
 }
 
 .modal-comprobante {
