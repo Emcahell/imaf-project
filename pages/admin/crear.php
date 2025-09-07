@@ -47,6 +47,12 @@ while ($row = $result->fetch_assoc()) {
       $qUsuario = mysqli_query($conex, "SELECT nombre, apellido, foto, 'administrador' AS rol FROM usuario WHERE id = $usuario_id");
       $usuario = mysqli_fetch_assoc($qUsuario);
 
+      // Consulta el conteo de solicitudes pendientes
+      $qSolicitudes = mysqli_query($conex, "SELECT COUNT(*) AS pendientes FROM inscripcion WHERE estado = 'pendiente'");
+      $rowSolicitudes = mysqli_fetch_assoc($qSolicitudes);
+      $solicitudes_pendientes = $rowSolicitudes['pendientes'];
+      $GLOBALS['solicitudes_pendientes'] = $solicitudes_pendientes;
+
       include($_SERVER['DOCUMENT_ROOT'] . '/imaf-project/pages/header.php');
       ?>
 

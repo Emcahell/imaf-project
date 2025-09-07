@@ -14,6 +14,12 @@ $qEst = mysqli_query($conex, "SELECT id FROM estudiante WHERE usuario_id = $usua
 $rowEst = mysqli_fetch_assoc($qEst);
 $estudiante_id = $rowEst['id'];
 
+// Consultar notificaciones no leidas
+$qNotificaciones = mysqli_query($conex, "SELECT * FROM notificacion WHERE id_estudiante = $estudiante_id AND leida = 0 ORDER BY fecha DESC");
+$numNotificaciones = mysqli_num_rows($qNotificaciones);
+
+
+
 // Obtener los IDs de cursos en los que el estudiante ya está inscrito
 $idsInscritos = [];
 $qInscritos = mysqli_query($conex, "SELECT id_curso_promocion FROM curso_participante WHERE id_estudiante = $estudiante_id");
@@ -140,7 +146,7 @@ ORDER BY cp.fecha_fin DESC
 ";
 $resultTerminados = $conex->query($queryTerminados);
 
-include($_SERVER['DOCUMENT_ROOT'] . '/imaf-project/pages/header.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/imaf-project/pages/estudiante/header_estudiante.php');
 ?>
 
 <!DOCTYPE html>

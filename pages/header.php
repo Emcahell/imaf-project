@@ -12,11 +12,39 @@
   </div>
   <div class="tools">
     <p><?= ucfirst($usuario['rol']) ?> <span id="conexion">•</span></p>
-    <div id="btn-notification">
-      <svg class="icon" id="icon-notification" viewBox="0 0 448 512">
+    <?php
+$solicitudes_pendientes = isset($GLOBALS['solicitudes_pendientes']) ? $GLOBALS['solicitudes_pendientes'] : 0;
+    ?>
+    <div id="btn-notification" style="position:relative;">
+      <svg class="icon" id="icon-notification"
+        style="color:<?= $solicitudes_pendientes > 0 ? 'red' : '#888' ?>;"
+        viewBox="0 0 448 512">
         <path d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 25.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416l400 0c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4l0-25.4c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm0 96c61.9 0 112 50.1 112 112l0 25.4c0 47.9 13.9 94.6 39.7 134.6L72.3 368C98.1 328 112 281.3 112 233.4l0-25.4c0-61.9 50.1-112 112-112zm64 352l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"/>
       </svg>
+      <?php if($solicitudes_pendientes > 0): ?>
+        <span class="badge-notificacion"><?= $solicitudes_pendientes ?></span>
+      <?php endif; ?>
     </div>
+    <span class="icon-notification" id="notif-icon" style="position:relative;cursor:pointer;">
+      <?php if ($usuario['rol'] === 'estudiante' && isset($numNotificaciones) && $numNotificaciones > 0): ?>
+        <span class="notif-count" style="position:absolute;top:-6px;right:-6px;background:#d81b60;color:#fff;font-size:0.8rem;padding:2px 6px;border-radius:50%;font-weight:bold;">
+          <?= $numNotificaciones ?>
+        </span>
+      <?php endif; ?>
+    </span>
+    <?php if ($usuario['rol'] === 'estudiante'): ?>
+      <div id="notif-dropdown" style="display:none;position:absolute;top:36px;right:0;background:#fff;border-radius:8px;box-shadow:0 2px 12px #0002;min-width:260px;z-index:999;">
+        <?php if (isset($numNotificaciones) && $numNotificaciones > 0): ?>
+          <?php foreach ($qNotificaciones as $notif): ?>
+            <div style="padding:12px 16px;border-bottom:1px solid #eee;color:#d81b60;">
+              <?= htmlspecialchars($notif['mensaje']) ?>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <div style="padding:12px 16px;color:#888;">Sin mensajes nuevos</div>
+        <?php endif; ?>
+      </div>
+    <?php endif; ?>
     <div class="box-useradmin">
       <img class="icon-user" src="<?= $usuario['foto'] ? '/imaf-project/uploads/profilepic/' . htmlspecialchars($usuario['foto']) : '/imaf-project/assets/recursos/user-default.png' ?>" alt="Foto de perfil" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">
       <span>&nbsp; <?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido']) ?></span>
@@ -27,6 +55,28 @@
       </svg>
     </div>
   </div>
+  <?php if ($usuario['rol'] !== 'estudiante'): ?>
+    <div class="notification-modal none" id="notification-modal">
+      <div class="title-notification">
+        <div>
+          <svg class="icon" id="icon-notification-back" viewBox="0 0 448 512">
+            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+          </svg>
+          Notificaciones
+        </div>
+      </div>
+      <!-- Solo admins ven esto -->
+      <a href="./solicitudes.php" style="position:relative;">
+        Solicitud recibida
+        <?php if($solicitudes_pendientes > 0): ?>
+          <span class="badge-notificacion" style="position:static; margin-left:6px; top:0; right:0;">
+            <?= $solicitudes_pendientes ?>
+          </span>
+        <?php endif; ?>
+      </a>
+      <a href="./usuarios.php">Nuevo usuario registrado</a>
+    </div>
+  <?php endif; ?>
   <div class="notification-modal none" id="notification-modal">
     <div class="title-notification">
       <div>
@@ -37,12 +87,19 @@
       </div>
     </div>
     <!-- Aquí puedes cargar notificaciones dinámicas -->
-    <a href="./solicitudes.php">Solicitud recibida</a>
+    <a href="./solicitudes.php" style="position:relative;">
+      Solicitud recibida
+      <?php if($solicitudes_pendientes > 0): ?>
+        <span class="badge-notificacion" style="position:static; margin-left:6px; top:0; right:0;">
+          <?= $solicitudes_pendientes ?>
+        </span>
+      <?php endif; ?>
+    </a>
     <a href="./usuarios.php">Nuevo usuario registrado</a>
   </div>
   <div class="edit-modal none" id="edit-modal">
     <svg class="icon icon-down-admin" id="close-modal-edit" viewBox="0 0 448 512">
-      <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
+      <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5-12.5-32.8-12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
     </svg>
     <a class="box-edit" href="../editar-perfil.php">
       <svg class="icon icon-edit-modal" viewBox="0 0 512 512">
@@ -59,6 +116,19 @@
   </div>
 </header>
 
+<style>
+.badge-notificacion {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 2px 6px;
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const closeBtn = document.getElementById('close-modal-edit');
@@ -68,5 +138,29 @@ document.addEventListener('DOMContentLoaded', function() {
       editModal.classList.add('none');
     });
   }
+});
+
+
+</script>
+
+<script>
+
+  
+document.addEventListener('DOMContentLoaded', function() {
+  const notifIcon = document.getElementById('notif-icon');
+  const notifDropdown = document.getElementById('notif-dropdown');
+  notifIcon.addEventListener('click', function(e) {
+    notifDropdown.style.display = notifDropdown.style.display === 'none' ? 'block' : 'none';
+    if (notifDropdown.style.display === 'block') {
+      fetch('/imaf-project/backend/marcar_notificaciones_leidas.php', {method: 'POST'});
+      // Opcional: ocultar el contador en rojo
+      const count = notifIcon.querySelector('.notif-count');
+      if (count) count.style.display = 'none';
+    }
+    e.stopPropagation();
+  });
+  document.addEventListener('click', function() {
+    notifDropdown.style.display = 'none';
+  });
 });
 </script>

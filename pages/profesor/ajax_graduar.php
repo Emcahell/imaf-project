@@ -7,6 +7,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['graduar'], $_POST['id
     $id = intval($_POST['id']);
     $curso_id = intval($_POST['curso_id']);
     mysqli_query($conex, "UPDATE curso_participante SET graduado=1 WHERE id=$id AND id_curso_promocion=$curso_id");
+
+    // Obtener id_estudiante
+    $res = mysqli_query($conex, "SELECT id_estudiante FROM curso_participante WHERE id=$id");
+    $row = mysqli_fetch_assoc($res);
+    $id_estudiante = intval($row['id_estudiante']);
+
+    // Obtener nombre del curso
+    $resCurso = mysqli_query($conex, "SELECT c.nombre FROM curso_promocion cp JOIN curso c ON cp.id_curso = c.id WHERE cp.id = $curso_id");
+    $rowCurso = mysqli_fetch_assoc($resCurso);
+    $nombreCurso = $rowCurso['nombre'];
+
+    // Insertar notificación
+    $mensaje = "¡Felicidades! Ahora puedes descargar el certificado del curso: $nombreCurso";
+    mysqli_query($conex, "INSERT INTO notificacion (id_estudiante, mensaje) VALUES ($id_estudiante, '" . mysqli_real_escape_string($conex, $mensaje) . "')");
+
     exit;
 }
 
